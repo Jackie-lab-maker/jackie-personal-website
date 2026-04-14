@@ -1,173 +1,131 @@
 {
   "main": {
-    "name": "Jingkai Shao",
-    "occupation": "Full-Stack Developer & AI Enthusiast",
+    "name": "Jackie (Jingkai) Shao",
+    "occupation": "Mechanical Engineer & Automation Specialist",
     "description": "",
     "image": "profilepic.jpg",
-    "bio": "My name is Jingkai. I'm a 24-year-old full-stack developer with a passion for building innovative web applications. I specialize in TypeScript, Python, and Rust, working with cutting-edge frameworks like Next.js, SvelteKit, and FastAPI. Currently pursuing my Master's in Computer Science at MIT. I'm also the lead developer at CyberForge Labs and an active contributor to open-source projects.",
+    "bio": "My name is Jackie. I'm a Mechanical Engineering student at the University of Waterloo with hands-on experience in system design, automation, and manufacturing. I specialize in CAD/CAE tools like CATIA, SolidWorks, Abaqus, and Ansys, with expertise in robotic programming using RAPID and KRL. Currently working as a Manufacturing Controls Engineer at OPmobility, focusing on filament winding automation for hydrogen mobility vessels.",
     "contactmessage": "Let's build something amazing together!",
-    "email": "alex.rivera@cyberforge.dev",
-    "phone": "+1 (555) 123-4567",
+    "email": "j66shao@uwaterloo.ca",
+    "phone": "(+1) 514-562-8684",
     "address": {
-      "street": "77 Massachusetts Ave",
-      "city": "Cambridge",
-      "state": "Massachusetts",
-      "zip": "02139"
+      "street": "",
+      "city": "Waterloo",
+      "state": "Ontario",
+      "zip": ""
     },
     "website": "",
     "resumedownload": "",
     "social": [
       {
-        "name": "youtube",
-        "url": "https://www.youtube.com/@alexcodes",
-        "className": "fa fa-youtube"
-      },
-      {
         "name": "linkedin",
-        "url": "https://www.linkedin.com/in/alexrivera",
+        "url": "https://linkedin.com/jackie",
         "className": "fa fa-linkedin"
       },
       {
         "name": "github",
-        "url": "https://github.com/alexrivera",
+        "url": "https://github.com/engineering-portfolio",
         "className": "fa fa-github"
-      },
-      {
-        "name": "twitter",
-        "url": "https://x.com/alex_codes",
-        "className": "fa fa-twitter"
       }
     ],
-    "profiles": [
-      {
-        "name": "vscode-publisher",
-        "url": "https://marketplace.visualstudio.com/publishers/AlexRivera",
-        "className": "fa fa-box"
-      },
-      {
-        "name": "npm-profile",
-        "url": "https://www.npmjs.com/~alex_rivera",
-        "className": "fa fa-npm"
-      }
-    ]
+    "profiles": []
   },
   "resume": {
     "skillmessage": "My Technical Arsenal",
     "education": [
       {
-        "school": "Massachusetts Institute of Technology",
-        "degree": "Master's in Computer Science",
-        "graduated": "May 2025",
-        "description": "Specializing in Distributed Systems and Machine Learning"
-      },
-      {
-        "school": "Stanford University",
-        "degree": "Bachelor's in Computer Science",
-        "graduated": "June 2022",
-        "description": "Graduated Summa Cum Laude with Honors in AI Research"
+        "school": "University of Waterloo",
+        "degree": "B.A.Sc in Mechanical Engineering",
+        "graduated": "September 2025 - June 2030",
+        "description": "Honours Program with Co-op. Relevant Coursework: Engineering Design, C++ Programming, Material Science, Electrical Circuits, Mechanics, CFD/FEA Workshop"
       }
     ],
     "work": [
       {
-        "company": "CyberForge Labs",
-        "title": "Lead Full-Stack Developer",
-        "years": "Jun 2023 - Present"
+        "company": "OPmobility (Plastic Omnium)",
+        "title": "Manufacturing Controls Engineer",
+        "years": "April 2026 - Present",
+        "description": "Filament Winding automation using RAPID and KUKA Robot Language (KRL) for hydrogen mobility vessels."
       },
       {
-        "company": "QuantumScale Inc.",
-        "title": "Senior Backend Engineer",
-        "years": "Jan 2022 - May 2023"
+        "company": "Chart Industries, Inc.",
+        "title": "Mechanical Engineer",
+        "years": "December 2025 - March 2026",
+        "description": "Designed SolidWorks 3D models and AutoCAD 2D drawings for bulk storage tanks. Conducted pipeline stress analysis and conjugate heat transfer analysis."
       },
       {
-        "company": "OpenSource Foundation",
-        "title": "Core Contributor",
-        "years": "Mar 2021 - Present"
+        "company": "OPmobility (Plastic Omnium)",
+        "title": "System Design & Automation Engineer",
+        "years": "May 2025 - August 2025",
+        "description": "Designed CATIA 3D models for thermoplastic liners used in Type IV hydrogen mobility vessels. Developed Digital Twin Robotic Arm in KUKA.Sim."
       }
     ],
     "skills": [
       {
-        "name": "TypeScript",
+        "name": "CATIA & SolidWorks",
         "level": "95%"
       },
       {
-        "name": "Next.js & React",
+        "name": "Abaqus & Ansys FEA",
         "level": "90%"
       },
       {
-        "name": "Python & FastAPI",
+        "name": "RAPID & KRL Programming",
         "level": "85%"
       },
       {
-        "name": "Rust",
-        "level": "80%"
-      },
-      {
-        "name": "PostgreSQL & Redis",
+        "name": "AutoCAD & Triflex",
         "level": "88%"
       },
       {
-        "name": "Docker & Kubernetes",
+        "name": "KUKA.Sim & Robotstudio",
         "level": "82%"
       },
       {
-        "name": "Machine Learning",
-        "level": "75%"
+        "name": "C++ & Python",
+        "level": "80%"
       },
       {
-        "name": "GraphQL",
-        "level": "87%"
+        "name": "PLC Programming",
+        "level": "78%"
+      },
+      {
+        "name": "GD&T & DFM/DFA",
+        "level": "92%"
       }
     ]
   },
   "portfolio": {
     "projects": [
       {
-        "title": "NeuroChat AI",
-        "about": "An advanced AI chatbot platform powered by GPT-4 and custom fine-tuned models. Features real-time streaming, context awareness, and multi-language support for enterprise-grade conversations.",
-        "image": "/byte.png",
-        "url": "https://neurochat.ai"
+        "title": "Tooling Design (Jigs & Fixtures)",
+        "about": "Designed a jig with spring-loaded hold-down clamps (DFA) in SolidWorks, eliminating the need for threaded fasteners. Also designed a fixture with single-motion clamping instead of a screw-down clamp (DFM), reducing manufacturing cost by 10%.",
+        "image": "/tooling.png",
+        "url": "https://github.com/engineering-portfolio"
       },
       {
-        "title": "CloudSync Pro",
-        "about": "A real-time collaboration suite that syncs documents, code, and designs across teams. Built with WebSockets, operational transformation algorithms, and distributed systems architecture.",
-        "image": "/akshaya.png",
-        "url": "https://cloudsync.pro"
+        "title": "LNG Cryogenic Storage Tank Modeling",
+        "about": "Designed a 3D Model of LNG Cryogenic Storage Tank in SolidWorks with instrumentation panels (HMI + gauges) and piping functions (valves + regulators + reliefs), providing clear visualization to clients and technicians.",
+        "image": "/lng-tank.png",
+        "url": "https://github.com/engineering-portfolio"
       },
       {
-        "title": "CodeForge IDE",
-        "about": "A browser-based IDE with live collaboration, AI-powered code completion, and integrated deployment pipelines. Supports 20+ programming languages with extensible plugin system.",
-        "image": "/devdump.png",
-        "url": "https://codeforge.dev"
-      },
-      {
-        "title": "FinanceFlow",
-        "about": "A comprehensive financial management platform for startups and freelancers. Features automated invoicing, expense tracking, tax calculations, and real-time analytics dashboards.",
-        "image": "/furnace.png",
-        "url": "https://financeflow.app"
-      },
-      {
-        "title": "SmartCommit VS Code Extension",
-        "about": "An intelligent Git assistant that analyzes code changes and generates contextual commit messages using Claude AI. Includes automatic branch naming and PR description generation.",
-        "image": "/leegit.png",
-        "url": "https://marketplace.visualstudio.com/items?itemName=AlexRivera.smartcommit"
-      },
-      {
-        "title": "APIGuardian",
-        "about": "A security-focused API gateway with built-in rate limiting, authentication, request validation, and real-time threat detection. Protects microservices with zero-trust architecture.",
-        "image": "/byte.png",
-        "url": "https://apiguardian.io"
+        "title": "Filament Winding Robotic Arm Digital Twin",
+        "about": "Developed a Digital Twin Robotic Arm in KUKA.Sim to perform a Gage R&R study on fibre winding angle, improving the measurement accuracy of the rotary encoders by 10%.",
+        "image": "/robotic-arm.png",
+        "url": "https://github.com/engineering-portfolio"
       }
     ]
   },
   "testimonials": {
     "testimonials": [
       {
-        "text": "Jingkai's technical expertise and problem-solving abilities are outstanding. They transformed our entire infrastructure and reduced costs by 40%.",
-        "user": "Sarah Chen, CTO at TechVentures"
+        "text": "Jackie's technical expertise in CAD/CAE and automation has been instrumental in improving our manufacturing processes.",
+        "user": "Engineering Manager at OPmobility"
       },
       {
-        "text": "Working with Jingkai was a game-changer for our team. Their code quality and architectural decisions set new standards for our organization.",
-        "user": "Marcus Johnson, Engineering Manager"
+        "text": "An exceptional engineer who combines strong analytical skills with practical manufacturing knowledge.",
+        "user": "Senior Engineer at Chart Industries"
       }
     ]
   }
