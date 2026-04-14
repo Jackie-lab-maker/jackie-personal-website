@@ -1,0 +1,174 @@
+{
+  "main": {
+    "name": "Alex Rivera",
+    "occupation": "Full-Stack Developer & AI Enthusiast",
+    "description": "",
+    "image": "profilepic.jpg",
+    "bio": "My name is Alex. I'm a 24-year-old full-stack developer with a passion for building innovative web applications. I specialize in TypeScript, Python, and Rust, working with cutting-edge frameworks like Next.js, SvelteKit, and FastAPI. Currently pursuing my Master's in Computer Science at MIT. I'm also the lead developer at CyberForge Labs and an active contributor to open-source projects.",
+    "contactmessage": "Let's build something amazing together!",
+    "email": "alex.rivera@cyberforge.dev",
+    "phone": "+1 (555) 123-4567",
+    "address": {
+      "street": "77 Massachusetts Ave",
+      "city": "Cambridge",
+      "state": "Massachusetts",
+      "zip": "02139"
+    },
+    "website": "",
+    "resumedownload": "",
+    "social": [
+      {
+        "name": "youtube",
+        "url": "https://www.youtube.com/@alexcodes",
+        "className": "fa fa-youtube"
+      },
+      {
+        "name": "linkedin",
+        "url": "https://www.linkedin.com/in/alexrivera",
+        "className": "fa fa-linkedin"
+      },
+      {
+        "name": "github",
+        "url": "https://github.com/alexrivera",
+        "className": "fa fa-github"
+      },
+      {
+        "name": "twitter",
+        "url": "https://x.com/alex_codes",
+        "className": "fa fa-twitter"
+      }
+    ],
+    "profiles": [
+      {
+        "name": "vscode-publisher",
+        "url": "https://marketplace.visualstudio.com/publishers/AlexRivera",
+        "className": "fa fa-box"
+      },
+      {
+        "name": "npm-profile",
+        "url": "https://www.npmjs.com/~alex_rivera",
+        "className": "fa fa-npm"
+      }
+    ]
+  },
+  "resume": {
+    "skillmessage": "My Technical Arsenal",
+    "education": [
+      {
+        "school": "Massachusetts Institute of Technology",
+        "degree": "Master's in Computer Science",
+        "graduated": "May 2025",
+        "description": "Specializing in Distributed Systems and Machine Learning"
+      },
+      {
+        "school": "Stanford University",
+        "degree": "Bachelor's in Computer Science",
+        "graduated": "June 2022",
+        "description": "Graduated Summa Cum Laude with Honors in AI Research"
+      }
+    ],
+    "work": [
+      {
+        "company": "CyberForge Labs",
+        "title": "Lead Full-Stack Developer",
+        "years": "Jun 2023 - Present"
+      },
+      {
+        "company": "QuantumScale Inc.",
+        "title": "Senior Backend Engineer",
+        "years": "Jan 2022 - May 2023"
+      },
+      {
+        "company": "OpenSource Foundation",
+        "title": "Core Contributor",
+        "years": "Mar 2021 - Present"
+      }
+    ],
+    "skills": [
+      {
+        "name": "TypeScript",
+        "level": "95%"
+      },
+      {
+        "name": "Next.js & React",
+        "level": "90%"
+      },
+      {
+        "name": "Python & FastAPI",
+        "level": "85%"
+      },
+      {
+        "name": "Rust",
+        "level": "80%"
+      },
+      {
+        "name": "PostgreSQL & Redis",
+        "level": "88%"
+      },
+      {
+        "name": "Docker & Kubernetes",
+        "level": "82%"
+      },
+      {
+        "name": "Machine Learning",
+        "level": "75%"
+      },
+      {
+        "name": "GraphQL",
+        "level": "87%"
+      }
+    ]
+  },
+  "portfolio": {
+    "projects": [
+      {
+        "title": "NeuroChat AI",
+        "about": "An advanced AI chatbot platform powered by GPT-4 and custom fine-tuned models. Features real-time streaming, context awareness, and multi-language support for enterprise-grade conversations.",
+        "image": "/byte.png",
+        "url": "https://neurochat.ai"
+      },
+      {
+        "title": "CloudSync Pro",
+        "about": "A real-time collaboration suite that syncs documents, code, and designs across teams. Built with WebSockets, operational transformation algorithms, and distributed systems architecture.",
+        "image": "/akshaya.png",
+        "url": "https://cloudsync.pro"
+      },
+      {
+        "title": "CodeForge IDE",
+        "about": "A browser-based IDE with live collaboration, AI-powered code completion, and integrated deployment pipelines. Supports 20+ programming languages with extensible plugin system.",
+        "image": "/devdump.png",
+        "url": "https://codeforge.dev"
+      },
+      {
+        "title": "FinanceFlow",
+        "about": "A comprehensive financial management platform for startups and freelancers. Features automated invoicing, expense tracking, tax calculations, and real-time analytics dashboards.",
+        "image": "/furnace.png",
+        "url": "https://financeflow.app"
+      },
+      {
+        "title": "SmartCommit VS Code Extension",
+        "about": "An intelligent Git assistant that analyzes code changes and generates contextual commit messages using Claude AI. Includes automatic branch naming and PR description generation.",
+        "image": "/leegit.png",
+        "url": "https://marketplace.visualstudio.com/items?itemName=AlexRivera.smartcommit"
+      },
+      {
+        "title": "APIGuardian",
+        "about": "A security-focused API gateway with built-in rate limiting, authentication, request validation, and real-time threat detection. Protects microservices with zero-trust architecture.",
+        "image": "/byte.png",
+        "url": "https://apiguardian.io"
+      }
+    ]
+  },
+  "testimonials": {
+    "testimonials": [
+      {
+        "text": "Alex's technical expertise and problem-solving abilities are outstanding. They transformed our entire infrastructure and reduced costs by 40%.",
+        "user": "Sarah Chen, CTO at TechVentures"
+      },
+      {
+        "text": "Working with Alex was a game-changer for our team. Their code quality and architectural decisions set new standards for our organization.",
+        "user": "Marcus Johnson, Engineering Manager"
+      }
+    ]
+  }
+}
