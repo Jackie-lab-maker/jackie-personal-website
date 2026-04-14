@@ -107,13 +107,13 @@
         "title": "LNG Cryogenic Storage Tank Modeling",
         "about": "Designed a 3D Model of LNG Cryogenic Storage Tank in SolidWorks with instrumentation panels (HMI + gauges) and piping functions (valves + regulators + reliefs), providing clear visualization to clients and technicians.",
         "image": "/lng-tank.png",
-        "url": "https://github.com/engineering-portfolio"
+        "url": "https://github.com/Jackie-lab-maker/Cryogenics-Systems-Modeling"
       },
       {
         "title": "Filament Winding Robotic Arm Digital Twin",
         "about": "Developed a Digital Twin Robotic Arm in KUKA.Sim to perform a Gage R&R study on fibre winding angle, improving the measurement accuracy of the rotary encoders by 10%.",
         "image": "/robotic-arm.png",
-        "url": "https://github.com/engineering-portfolio"
+        "url": "https://github.com/Jackie-lab-maker/KUKA.Sim-Projects/tree/main/OPmobility/Filament%20Winding"
       }
     ]
   },
