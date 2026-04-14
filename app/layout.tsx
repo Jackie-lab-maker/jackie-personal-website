@@ -10,8 +10,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Sri Harsha V A - Portfolio",
-  description: "Fullstack Developer Portfolio with ASCII Art Theme",
+  title: "jackie-portfolio",
+  description: "Mechanical Engineering Student Portfolio with ASCII Art Theme",
   generator: "v0.app",
   icons: {
     icon: [
