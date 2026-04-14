@@ -101,7 +101,7 @@
         "title": "Tooling Design (Jigs & Fixtures)",
         "about": "Designed a jig with spring-loaded hold-down clamps (DFA) in SolidWorks, eliminating the need for threaded fasteners. Also designed a fixture with single-motion clamping instead of a screw-down clamp (DFM), reducing manufacturing cost by 10%.",
         "image": "/tooling.png",
-        "url": "https://github.com/engineering-portfolio"
+        "url": "https://github.com/Jackie-lab-maker/Design-of-Tooling"
       },
       {
         "title": "LNG Cryogenic Storage Tank Modeling",
