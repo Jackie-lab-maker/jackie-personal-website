@@ -18,15 +18,16 @@ const ASCII_LINES = [
   " ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ",
 ]
 
+// Column boundaries for each letter: J, A, C, K, I, E, (space), S, H, A, O
+const LETTER_COLUMNS = [0, 8, 18, 27, 36, 39, 48, 52, 61, 70, 79, 88]
+
 export default function Hero({ data }: HeroProps) {
   const [isVisible, setIsVisible] = useState(true)
-  const [displayedChars, setDisplayedChars] = useState(0)
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
 
-  const totalChars = useMemo(() => {
-    return ASCII_LINES.reduce((sum, line) => sum + line.length, 0)
-  }, [])
+  const totalLetters = LETTER_COLUMNS.length - 1
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,24 +47,25 @@ export default function Hero({ data }: HeroProps) {
       const pauseTimeout = setTimeout(() => {
         setIsPaused(false)
         setIsDeleting(!isDeleting)
-      }, isDeleting ? 500 : 2000)
+      }, isDeleting ? 400 : 1500)
       return () => clearTimeout(pauseTimeout)
     }
 
-    const baseSpeed = isDeleting ? 2 : 8
-    const variation = Math.random() * (isDeleting ? 2 : 6)
+    // Typewriter timing with natural variation
+    const baseSpeed = isDeleting ? 60 : 120
+    const variation = Math.random() * (isDeleting ? 30 : 80)
     const speed = baseSpeed + variation
 
     const timeout = setTimeout(() => {
       if (isDeleting) {
-        if (displayedChars > 0) {
-          setDisplayedChars((prev) => Math.max(0, prev - 8))
+        if (currentLetterIndex > 0) {
+          setCurrentLetterIndex((prev) => prev - 1)
         } else {
           setIsPaused(true)
         }
       } else {
-        if (displayedChars < totalChars) {
-          setDisplayedChars((prev) => Math.min(totalChars, prev + 3))
+        if (currentLetterIndex < totalLetters) {
+          setCurrentLetterIndex((prev) => prev + 1)
         } else {
           setIsPaused(true)
         }
@@ -71,21 +73,15 @@ export default function Hero({ data }: HeroProps) {
     }, speed)
 
     return () => clearTimeout(timeout)
-  }, [displayedChars, isDeleting, isPaused, totalChars])
+  }, [currentLetterIndex, isDeleting, isPaused, totalLetters])
 
   const renderedLines = useMemo(() => {
-    let charsRemaining = displayedChars
+    const visibleColumns = LETTER_COLUMNS[currentLetterIndex] || 0
     return ASCII_LINES.map((line) => {
-      if (charsRemaining <= 0) return ""
-      if (charsRemaining >= line.length) {
-        charsRemaining -= line.length
-        return line
-      }
-      const partial = line.slice(0, charsRemaining)
-      charsRemaining = 0
-      return partial
+      if (visibleColumns <= 0) return ""
+      return line.slice(0, visibleColumns)
     })
-  }, [displayedChars])
+  }, [currentLetterIndex])
 
   return (
     <section className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
