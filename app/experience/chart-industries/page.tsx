@@ -49,7 +49,7 @@ export default function ChartIndustriesPage() {
                   src="/images/chart-industries/chart-logo.png"
                   alt="Chart Industries Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain dark:invert"
                   sizes="(max-width: 768px) 144px, 192px"
                   priority
                 />
