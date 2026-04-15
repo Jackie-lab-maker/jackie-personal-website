@@ -10,6 +10,7 @@ import Education from "@/components/education"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import { LoadingScreen } from "@/components/loading-screen"
+import { ScrollIndicator } from "@/components/scroll-indicator"
 
 interface ResumeData {
   main: any
@@ -48,6 +49,7 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-background">
+      <ScrollIndicator />
       <Hero data={data.main} />
       <About data={data.main} />
       <Experience data={data.resume} />
