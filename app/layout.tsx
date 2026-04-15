@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Navigation } from "@/components/navigation"
 import "./globals.css"
 
 const jetbrainsMono = JetBrains_Mono({
@@ -48,7 +48,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <ThemeToggle />
+          <Navigation />
           {children}
         </ThemeProvider>
         <Analytics />
