@@ -78,7 +78,7 @@ export default function About({ data }: AboutProps) {
                 download="Jackie_Shao_Resume.pdf"
                 className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10"
               >
-                [Resume]
+                [resume]
               </a>
             </div>
           </div>
