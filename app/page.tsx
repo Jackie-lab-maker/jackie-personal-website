@@ -9,6 +9,7 @@ import Skills from "@/components/skills"
 import Education from "@/components/education"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import { LoadingScreen } from "@/components/loading-screen"
 
 interface ResumeData {
   main: any
@@ -18,26 +19,31 @@ interface ResumeData {
 
 export default function Page() {
   const [data, setData] = useState<ResumeData | null>(null)
+  const [showLoading, setShowLoading] = useState(true)
+  const [dataLoaded, setDataLoaded] = useState(false)
 
   useEffect(() => {
     fetch("/resumeData.json")
       .then((res) => res.json())
-      .then((json) => setData(json))
+      .then((json) => {
+        setData(json)
+        setDataLoaded(true)
+      })
       .catch((err) => console.error("[v0] Failed to load resume data:", err))
   }, [])
 
+  const handleLoadingComplete = () => {
+    if (dataLoaded) {
+      setShowLoading(false)
+    }
+  }
+
+  if (showLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />
+  }
+
   if (!data) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="font-mono text-sm text-accent animate-pulse">
-          <pre className="text-center">
-            {`╔════════════════╗
-║   LOADING...   ║
-╚════════════════╝`}
-          </pre>
-        </div>
-      </div>
-    )
+    return null
   }
 
   return (
