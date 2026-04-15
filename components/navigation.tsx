@@ -63,11 +63,25 @@ export function Navigation() {
       role="banner"
     >
       <nav
-        className="container mx-auto px-4 py-3 flex items-center justify-center"
+        className="container mx-auto px-4 py-3 flex items-center justify-between"
         role="navigation"
         aria-label="Main navigation"
       >
-        {/* Desktop Navigation - Centered */}
+        {/* Logo / Brand */}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: "smooth" })
+            setIsMenuOpen(false)
+          }}
+          className="font-mono text-sm text-accent hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+          aria-label="Go to top of page"
+        >
+          {">"} jackie_shao
+        </a>
+
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <a
@@ -95,7 +109,7 @@ export function Navigation() {
           )}
         </div>
 
-        {/* Mobile Menu Button - Centered */}
+        {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-2">
           {/* Mobile Theme Toggle */}
           {mounted && (
