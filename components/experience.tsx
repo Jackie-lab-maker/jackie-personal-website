@@ -59,20 +59,11 @@ export default function Experience({ data }: ExperienceProps) {
                     expandedIndex === index ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
                   }`}
                 >
-                  {job.description && (
-                    <div className="border-t border-border pt-4 pl-4">
-                      <div className="text-muted-foreground">
-                        <span className="text-accent">{">"}</span> {job.description}
-                      </div>
+                  <div className="border-t border-border pt-4 pl-4">
+                    <div className="text-muted-foreground italic">
+                      <span className="text-accent">{">"}</span> Details coming soon...
                     </div>
-                  )}
-                  {!job.description && (
-                    <div className="border-t border-border pt-4 pl-4">
-                      <div className="text-muted-foreground italic">
-                        <span className="text-accent">{">"}</span> Details coming soon...
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
