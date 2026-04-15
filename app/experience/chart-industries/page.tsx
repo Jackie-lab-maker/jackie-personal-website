@@ -42,15 +42,25 @@ export default function ChartIndustriesPage() {
         <div className="max-w-6xl mx-auto">
           {/* Title Section */}
           <div className="font-mono text-center mb-12">
-            {/* Chart Industries Logo */}
-            <div className="flex justify-center mb-6">
-              <div className="relative w-48 h-24 md:w-64 md:h-32">
+            {/* Company Logos */}
+            <div className="flex justify-center items-center gap-6 md:gap-10 mb-6">
+              <div className="relative w-36 h-20 md:w-48 md:h-24">
                 <Image
                   src="/images/chart-industries/chart-logo.png"
                   alt="Chart Industries Logo"
                   fill
-                  className="object-contain object-bottom"
-                  sizes="(max-width: 768px) 192px, 256px"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 144px, 192px"
+                  priority
+                />
+              </div>
+              <div className="relative w-36 h-20 md:w-48 md:h-24 rounded-lg overflow-hidden">
+                <Image
+                  src="/images/chart-industries/baker-hughes-logo.jpg"
+                  alt="Baker Hughes Logo"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 144px, 192px"
                   priority
                 />
               </div>
