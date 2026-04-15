@@ -19,6 +19,7 @@ const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?:
   "Chart Industries": { route: "/experience/chart-industries", company: "Chart Industries" },
   "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Controls Engineering Intern" },
   "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "System Design & Automation Engineering Intern" },
+  "WISA": { route: "/experience/wisa", company: "Waterloo Institute for Sustainable Aeronautics" },
 }
 
 // Helper to match company and optionally title
