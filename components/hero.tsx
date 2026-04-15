@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 
 interface HeroProps {
   data: {
@@ -9,8 +9,25 @@ interface HeroProps {
   }
 }
 
+const ASCII_LINES = [
+  "     ██╗ █████╗  ██████╗██╗  ██╗██╗███████╗    ███████╗██╗  ██╗ █████╗  ██████╗ ",
+  "     ██║██╔══██╗██╔════╝██║ ██╔╝██║██╔════╝    ██╔════╝██║  ██║██╔══██╗██╔═══██╗",
+  "     ██║███████║██║     █████╔╝ ██║█████╗      ███████╗███████║███████║██║   ██║",
+  "██   ██║██╔══██║██║     ██╔═██╗ ██║██╔══╝      ╚════██║██╔══██║██╔══██║██║   ██║",
+  "╚█████╔╝██║  ██║╚██████╗██║  ██╗██║███████╗    ███████║██║  ██║██║  ██║╚██████╔╝",
+  " ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ",
+]
+
+// Column boundaries for each letter: J, A, C, K, I, E, (space), S, H, A, O
+const LETTER_COLUMNS = [0, 8, 18, 27, 36, 39, 48, 52, 61, 70, 79, 88]
+
 export default function Hero({ data }: HeroProps) {
   const [isVisible, setIsVisible] = useState(true)
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const totalLetters = LETTER_COLUMNS.length - 1
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,19 +42,59 @@ export default function Hero({ data }: HeroProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (isPaused) {
+      const pauseTimeout = setTimeout(() => {
+        setIsPaused(false)
+        setIsDeleting(!isDeleting)
+      }, isDeleting ? 400 : 1500)
+      return () => clearTimeout(pauseTimeout)
+    }
+
+    // Typewriter timing with natural variation
+    const baseSpeed = isDeleting ? 60 : 120
+    const variation = Math.random() * (isDeleting ? 30 : 80)
+    const speed = baseSpeed + variation
+
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        if (currentLetterIndex > 0) {
+          setCurrentLetterIndex((prev) => prev - 1)
+        } else {
+          setIsPaused(true)
+        }
+      } else {
+        if (currentLetterIndex < totalLetters) {
+          setCurrentLetterIndex((prev) => prev + 1)
+        } else {
+          setIsPaused(true)
+        }
+      }
+    }, speed)
+
+    return () => clearTimeout(timeout)
+  }, [currentLetterIndex, isDeleting, isPaused, totalLetters])
+
+  const renderedLines = useMemo(() => {
+    const visibleColumns = LETTER_COLUMNS[currentLetterIndex] || 0
+    return ASCII_LINES.map((line) => {
+      if (visibleColumns <= 0) return ""
+      return line.slice(0, visibleColumns)
+    })
+  }, [currentLetterIndex])
+
   return (
     <section className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
       <div className="flex flex-col items-center justify-center gap-8">
         <div className="font-mono leading-tight">
-          <pre className="text-[10px] sm:text-xs md:text-sm lg:text-base neon-text">
-            {`
-     ██╗ █████╗  ██████╗██╗  ██╗██╗███████╗    ███████╗██╗  ██╗ █████╗  ██████╗ 
-     ██║██╔══██╗██╔════╝██║ ██╔╝██║██╔════╝    ██╔════╝██║  ██║██╔══██╗██╔═══██╗
-     ██║███████║██║     █████╔╝ ██║█████╗      ███████╗███████║███████║██║   ██║
-██   ██║██╔══██║██║     ██╔═██╗ ██║██╔══╝      ╚════██║██╔══██║██╔══██║██║   ██║
-╚█████╔╝██║  ██║╚██████╗██║  ██╗██║███████╗    ███████║██║  ██║██║  ██║╚██████╔╝
- ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ 
-`}
+          <pre className="text-[10px] sm:text-xs md:text-sm lg:text-base neon-text whitespace-pre">
+{renderedLines.map((line, i) => (
+  <span key={i}>
+    {line || " "}
+    {i < renderedLines.length - 1 && "\n"}
+  </span>
+))}
+            <span className="animate-pulse">{"█"}</span>
           </pre>
         </div>
 
