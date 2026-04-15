@@ -43,6 +43,18 @@ export default function OPmobilityManufacturingPage() {
         </div>
       </header>
 
+      {/* OPmobility Banner */}
+      <div className="relative w-full h-32 md:h-48 overflow-hidden">
+        <Image
+          src="/images/opmobility/opmobility-banner.jpeg"
+          alt="OPmobility - Always on the Move"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          priority
+        />
+      </div>
+
       {/* Page Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
