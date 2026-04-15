@@ -46,7 +46,7 @@ export default function ChartIndustriesPage() {
             <div className="flex justify-center mb-6">
               <div className="relative w-48 h-24 md:w-64 md:h-32">
                 <Image
-                  src="/images/chart-industries/chart-logo.webp"
+                  src="/images/chart-industries/chart-logo.png"
                   alt="Chart Industries Logo"
                   fill
                   className="object-contain object-bottom"
