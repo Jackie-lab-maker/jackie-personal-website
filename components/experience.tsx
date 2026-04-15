@@ -1,14 +1,25 @@
+"use client"
+
+import { useState } from "react"
+
 interface ExperienceProps {
   data: {
     work: Array<{
       company: string
       title: string
       years: string
+      description?: string
     }>
   }
 }
 
 export default function Experience({ data }: ExperienceProps) {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index)
+  }
+
   return (
     <section className="container mx-auto px-4 py-12" id="experience">
       <div className="max-w-4xl mx-auto">
@@ -31,6 +42,37 @@ export default function Experience({ data }: ExperienceProps) {
                     <div className="text-foreground font-semibold pl-4">║ {job.title}</div>
                     <div className="text-muted-foreground pl-4 mt-1">╚═══ {job.years}</div>
                   </div>
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-ring"
+                    aria-expanded={expandedIndex === index}
+                    aria-controls={`experience-details-${index}`}
+                  >
+                    {expandedIndex === index ? "[hide]" : "[view experience]"}
+                  </button>
+                </div>
+                
+                {/* Expandable Description */}
+                <div
+                  id={`experience-details-${index}`}
+                  className={`overflow-hidden transition-all duration-300 ${
+                    expandedIndex === index ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  {job.description && (
+                    <div className="border-t border-border pt-4 pl-4">
+                      <div className="text-muted-foreground">
+                        <span className="text-accent">{">"}</span> {job.description}
+                      </div>
+                    </div>
+                  )}
+                  {!job.description && (
+                    <div className="border-t border-border pt-4 pl-4">
+                      <div className="text-muted-foreground italic">
+                        <span className="text-accent">{">"}</span> Details coming soon...
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
