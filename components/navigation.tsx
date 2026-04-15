@@ -20,11 +20,6 @@ export function Navigation() {
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
 
-  // Hide navigation on experience detail pages
-  if (pathname?.startsWith("/experience/")) {
-    return null
-  }
-
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -71,6 +66,11 @@ export function Navigation() {
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
+  }
+
+  // Hide navigation on experience detail pages
+  if (pathname?.startsWith("/experience/")) {
+    return null
   }
 
   return (
