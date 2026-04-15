@@ -18,6 +18,7 @@ interface ExperienceProps {
 const EXPERIENCE_PAGES: Record<string, { route: string; title?: string }> = {
   "Chart Industries": { route: "/experience/chart-industries" },
   "OPmobility": { route: "/experience/opmobility-manufacturing", title: "Manufacturing Controls Engineering Intern" },
+  "Waterloo Institute for Sustainable Aeronautics": { route: "/experience/wisa" },
 }
 
 // Helper to match company and optionally title
