@@ -73,6 +73,13 @@ export default function About({ data }: AboutProps) {
                   [{profile.name}]
                 </a>
               ))}
+              <a
+                href="/Jackie_Shao_Resume.pdf"
+                download="Jackie_Shao_Resume.pdf"
+                className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10"
+              >
+                [Resume]
+              </a>
             </div>
           </div>
         </div>
