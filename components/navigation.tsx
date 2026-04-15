@@ -63,11 +63,11 @@ export function Navigation() {
       role="banner"
     >
       <nav
-        className="container mx-auto px-4 py-3 flex items-center justify-start"
+        className="container mx-auto px-4 py-3 flex items-center justify-between"
         role="navigation"
         aria-label="Main navigation"
       >
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Left */}
         <div className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <a
@@ -79,12 +79,14 @@ export function Navigation() {
               [{link.label}]
             </a>
           ))}
+        </div>
           
-          {/* Theme Toggle */}
+        {/* Theme Toggle - Right */}
+        <div className="hidden md:flex">
           {mounted && (
             <button
               onClick={toggleTheme}
-              className="ml-2 flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
+              className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
               <span>{theme === "dark" ? "[☀]" : "[☾]"}</span>
@@ -95,19 +97,8 @@ export function Navigation() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-2">
-          {/* Mobile Theme Toggle */}
-          {mounted && (
-            <button
-              onClick={toggleTheme}
-              className="flex items-center border border-border bg-card px-2 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            >
-              <span>{theme === "dark" ? "[☀]" : "[☾]"}</span>
-            </button>
-          )}
-          
+        {/* Mobile Menu Button - Left */}
+        <div className="flex md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="flex items-center border border-border bg-card px-2 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
@@ -117,6 +108,19 @@ export function Navigation() {
           >
             <span>{isMenuOpen ? "[✕]" : "[≡]"}</span>
           </button>
+        </div>
+
+        {/* Mobile Theme Toggle - Right */}
+        <div className="flex md:hidden">
+          {mounted && (
+            <button
+              onClick={toggleTheme}
+              className="flex items-center border border-border bg-card px-2 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            >
+              <span>{theme === "dark" ? "[☀]" : "[☾]"}</span>
+            </button>
+          )}
         </div>
       </nav>
 
