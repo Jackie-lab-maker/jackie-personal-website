@@ -60,7 +60,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       columns.push({
         x: i * columnWidth,
         y: Math.random() * canvas.height,
-        speed: 2 + Math.random() * 4,
+        speed: 4 + Math.random() * 6,
         chars: Array.from({ length: 20 }, () => 
           MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
         ),
@@ -113,8 +113,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     if (lineIndex >= HACKER_LINES.length) {
       setTimeout(() => {
         setFadeOut(true)
-        setTimeout(onComplete, 800)
-      }, 500)
+        setTimeout(onComplete, 400)
+      }, 150)
       return
     }
 
@@ -124,7 +124,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       const timeout = setTimeout(() => {
         setCurrentLine(currentFullLine.slice(0, charIndex + 1))
         setCharIndex(charIndex + 1)
-      }, 20 + Math.random() * 30)
+      }, 8 + Math.random() * 12)
       return () => clearTimeout(timeout)
     } else {
       const timeout = setTimeout(() => {
@@ -133,14 +133,14 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         setCharIndex(0)
         setLineIndex(lineIndex + 1)
         setProgress(((lineIndex + 1) / HACKER_LINES.length) * 100)
-      }, 100)
+      }, 30)
       return () => clearTimeout(timeout)
     }
   }, [lineIndex, charIndex, onComplete])
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-800 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-500 ${
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
