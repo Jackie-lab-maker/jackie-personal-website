@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 
 const NAV_LINKS = [
@@ -17,6 +18,12 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
+
+  // Hide navigation on experience detail pages
+  if (pathname?.startsWith("/experience/")) {
+    return null
+  }
 
   useEffect(() => {
     setMounted(true)
