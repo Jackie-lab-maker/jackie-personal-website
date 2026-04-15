@@ -42,6 +42,19 @@ export default function ChartIndustriesPage() {
         <div className="max-w-6xl mx-auto">
           {/* Title Section */}
           <div className="font-mono text-center mb-12">
+            {/* Chart Industries Logo */}
+            <div className="flex justify-center mb-6">
+              <div className="relative w-48 h-24 md:w-64 md:h-32">
+                <Image
+                  src="/images/chart-industries/chart-logo.webp"
+                  alt="Chart Industries Logo"
+                  fill
+                  className="object-contain object-bottom"
+                  sizes="(max-width: 768px) 192px, 256px"
+                  priority
+                />
+              </div>
+            </div>
             <div className="text-accent mb-4 flex flex-col items-center">
               <pre className="text-xs md:text-sm">╔══════════════════════════════════════════════════════════════╗</pre>
               <pre className="text-xs md:text-sm font-bold">║ CHART INDUSTRIES, INC. ║</pre>
