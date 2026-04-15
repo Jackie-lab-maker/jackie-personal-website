@@ -31,6 +31,20 @@ export default function WISAPage() {
         </div>
       </header>
 
+      {/* WISA Logo */}
+      <div className="flex justify-center py-8 bg-white">
+        <div className="relative w-64 h-20 md:w-96 md:h-28">
+          <Image
+            src="/images/wisa/wisa-logo.jpg"
+            alt="Waterloo Institute for Sustainable Aeronautics Logo"
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 256px, 384px"
+            priority
+          />
+        </div>
+      </div>
+
       {/* Page Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
