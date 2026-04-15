@@ -27,22 +27,6 @@ export function ScrollIndicator() {
 
   return (
     <>
-      {/* Bottom scroll indicator - shows on hero section */}
-      <div
-        className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <div className="flex flex-col items-center gap-2 font-mono text-accent">
-          <span className="text-xs text-muted-foreground tracking-wider">[SCROLL]</span>
-          <div className="flex flex-col items-center animate-bounce">
-            <span className="text-sm">{"▼"}</span>
-            <span className="text-xs opacity-60">{"▼"}</span>
-            <span className="text-[10px] opacity-30">{"▼"}</span>
-          </div>
-        </div>
-      </div>
-
       {/* Side progress bar */}
       <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2">
         <div className="font-mono text-[10px] text-muted-foreground">[{Math.round(scrollProgress).toString().padStart(3, "0")}%]</div>
