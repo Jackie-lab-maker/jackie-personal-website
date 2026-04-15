@@ -15,8 +15,25 @@ interface ExperienceProps {
 }
 
 // Map company names to their detail page routes
-const EXPERIENCE_PAGES: Record<string, string> = {
-  "Chart Industries": "/experience/chart-industries",
+const EXPERIENCE_PAGES: Record<string, { route: string; title?: string }> = {
+  "Chart Industries": { route: "/experience/chart-industries" },
+  "OPmobility": { route: "/experience/opmobility-manufacturing", title: "Manufacturing Controls Engineering Intern" },
+}
+
+// Helper to match company and optionally title
+const getExperiencePageKey = (company: string, title: string): string | null => {
+  for (const [key, value] of Object.entries(EXPERIENCE_PAGES)) {
+    if (company.includes(key)) {
+      if (value.title) {
+        if (title.includes(value.title)) {
+          return key
+        }
+      } else {
+        return key
+      }
+    }
+  }
+  return null
 }
 
 export default function Experience({ data }: ExperienceProps) {
@@ -26,11 +43,10 @@ export default function Experience({ data }: ExperienceProps) {
     setExpandedIndex(expandedIndex === index ? null : index)
   }
 
-  const getExperiencePage = (company: string): string | null => {
-    for (const [key, value] of Object.entries(EXPERIENCE_PAGES)) {
-      if (company.includes(key)) {
-        return value
-      }
+  const getExperiencePage = (company: string, title: string): string | null => {
+    const key = getExperiencePageKey(company, title)
+    if (key) {
+      return EXPERIENCE_PAGES[key].route
     }
     return null
   }
@@ -46,7 +62,7 @@ export default function Experience({ data }: ExperienceProps) {
 
         <div className="space-y-4">
           {data.work?.map((job, index) => {
-            const detailPage = getExperiencePage(job.company)
+            const detailPage = getExperiencePage(job.company, job.title)
             
             return (
               <div
