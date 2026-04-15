@@ -14,16 +14,17 @@ interface ExperienceProps {
   }
 }
 
-// Map company names to their detail page routes
-const EXPERIENCE_PAGES: Record<string, { route: string; title?: string }> = {
-  "Chart Industries": { route: "/experience/chart-industries" },
-  "OPmobility": { route: "/experience/opmobility-manufacturing", title: "Manufacturing Controls Engineering Intern" },
+// Map company names to their detail page routes (use unique keys for multiple entries)
+const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?: string }> = {
+  "Chart Industries": { route: "/experience/chart-industries", company: "Chart Industries" },
+  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Controls Engineering Intern" },
+  "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "System Design & Automation Engineering Intern" },
 }
 
 // Helper to match company and optionally title
 const getExperiencePageKey = (company: string, title: string): string | null => {
   for (const [key, value] of Object.entries(EXPERIENCE_PAGES)) {
-    if (company.includes(key)) {
+    if (company.includes(value.company)) {
       if (value.title) {
         if (title.includes(value.title)) {
           return key
