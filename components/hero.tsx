@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 
 interface HeroProps {
   data: {
@@ -9,8 +9,24 @@ interface HeroProps {
   }
 }
 
+const ASCII_LINES = [
+  "     ██╗ █████╗  ██████╗██╗  ██╗██╗███████╗    ███████╗██╗  ██╗ █████╗  ██████╗ ",
+  "     ██║██╔══██╗██╔════╝██║ ██╔╝██║██╔════╝    ██╔════╝██║  ██║██╔══██╗██╔═══██╗",
+  "     ██║███████║██║     █████╔╝ ██║█████╗      ███████╗███████║███████║██║   ██║",
+  "██   ██║██╔══██║██║     ██╔═██╗ ██║██╔══╝      ╚════██║██╔══██║██╔══██║██║   ██║",
+  "╚█████╔╝██║  ██║╚██████╗██║  ██╗██║███████╗    ███████║██║  ██║██║  ██║╚██████╔╝",
+  " ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ",
+]
+
 export default function Hero({ data }: HeroProps) {
   const [isVisible, setIsVisible] = useState(true)
+  const [displayedChars, setDisplayedChars] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const totalChars = useMemo(() => {
+    return ASCII_LINES.reduce((sum, line) => sum + line.length, 0)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,19 +41,64 @@ export default function Hero({ data }: HeroProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (isPaused) {
+      const pauseTimeout = setTimeout(() => {
+        setIsPaused(false)
+        setIsDeleting(!isDeleting)
+      }, isDeleting ? 500 : 2000)
+      return () => clearTimeout(pauseTimeout)
+    }
+
+    const baseSpeed = isDeleting ? 2 : 8
+    const variation = Math.random() * (isDeleting ? 2 : 6)
+    const speed = baseSpeed + variation
+
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        if (displayedChars > 0) {
+          setDisplayedChars((prev) => Math.max(0, prev - 8))
+        } else {
+          setIsPaused(true)
+        }
+      } else {
+        if (displayedChars < totalChars) {
+          setDisplayedChars((prev) => Math.min(totalChars, prev + 3))
+        } else {
+          setIsPaused(true)
+        }
+      }
+    }, speed)
+
+    return () => clearTimeout(timeout)
+  }, [displayedChars, isDeleting, isPaused, totalChars])
+
+  const renderedLines = useMemo(() => {
+    let charsRemaining = displayedChars
+    return ASCII_LINES.map((line) => {
+      if (charsRemaining <= 0) return ""
+      if (charsRemaining >= line.length) {
+        charsRemaining -= line.length
+        return line
+      }
+      const partial = line.slice(0, charsRemaining)
+      charsRemaining = 0
+      return partial
+    })
+  }, [displayedChars])
+
   return (
     <section className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
       <div className="flex flex-col items-center justify-center gap-8">
         <div className="font-mono leading-tight">
-          <pre className="text-[10px] sm:text-xs md:text-sm lg:text-base neon-text">
-            {`
-     ██╗ █████╗  ██████╗██╗  ██╗██╗███████╗    ███████╗██╗  ██╗ █████╗  ██████╗ 
-     ██║██╔══██╗██╔════╝██║ ██╔╝██║██╔════╝    ██╔════╝██║  ██║██╔══██╗██╔═══██╗
-     ██║███████║██║     █████╔╝ ██║█████╗      ███████╗███████║███████║██║   ██║
-██   ██║██╔══██║██║     ██╔═██╗ ██║██╔══╝      ╚════██║██╔══██║██╔══██║██║   ██║
-╚█████╔╝██║  ██║╚██████╗██║  ██╗██║███████╗    ███████║██║  ██║██║  ██║╚██████╔╝
- ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ 
-`}
+          <pre className="text-[10px] sm:text-xs md:text-sm lg:text-base neon-text whitespace-pre">
+{renderedLines.map((line, i) => (
+  <span key={i}>
+    {line || " "}
+    {i < renderedLines.length - 1 && "\n"}
+  </span>
+))}
+            <span className="animate-pulse">{"█"}</span>
           </pre>
         </div>
 
