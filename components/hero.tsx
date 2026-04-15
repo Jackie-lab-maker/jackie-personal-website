@@ -9,8 +9,7 @@ interface HeroProps {
   }
 }
 
-// ASCII art for "JACKIE SHAO"
-const NAME_ASCII = [
+const ASCII_LINES = [
   "     ██╗ █████╗  ██████╗██╗  ██╗██╗███████╗    ███████╗██╗  ██╗ █████╗  ██████╗ ",
   "     ██║██╔══██╗██╔════╝██║ ██╔╝██║██╔════╝    ██╔════╝██║  ██║██╔══██╗██╔═══██╗",
   "     ██║███████║██║     █████╔╝ ██║█████╗      ███████╗███████║███████║██║   ██║",
@@ -19,17 +18,16 @@ const NAME_ASCII = [
   " ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ",
 ]
 
-// ASCII art for "AVAILABLE FOR INTERNSHIPS" (smaller, cleaner font)
-const TAGLINE_TEXT = "> Available for Internships"
+// Column boundaries for each letter: J, A, C, K, I, E, (space), S, H, A, O
+const LETTER_COLUMNS = [0, 8, 18, 27, 36, 39, 48, 52, 61, 70, 79, 88]
 
 export default function Hero({ data }: HeroProps) {
   const [isVisible, setIsVisible] = useState(true)
-  const [nameCharIndex, setNameCharIndex] = useState(0)
-  const [taglineCharIndex, setTaglineCharIndex] = useState(0)
-  const [phase, setPhase] = useState<"typing_name" | "typing_tagline" | "paused" | "deleting_tagline" | "deleting_name">("typing_name")
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
 
-  const totalNameChars = NAME_ASCII[0].length
-  const totalTaglineChars = TAGLINE_TEXT.length
+  const totalLetters = LETTER_COLUMNS.length - 1
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,93 +43,59 @@ export default function Hero({ data }: HeroProps) {
   }, [])
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout
-
-    switch (phase) {
-      case "typing_name":
-        if (nameCharIndex < totalNameChars) {
-          const speed = 8 + Math.random() * 12
-          timeout = setTimeout(() => {
-            setNameCharIndex((prev) => Math.min(totalNameChars, prev + 3))
-          }, speed)
-        } else {
-          timeout = setTimeout(() => setPhase("typing_tagline"), 300)
-        }
-        break
-
-      case "typing_tagline":
-        if (taglineCharIndex < totalTaglineChars) {
-          const speed = 50 + Math.random() * 80
-          timeout = setTimeout(() => {
-            setTaglineCharIndex((prev) => prev + 1)
-          }, speed)
-        } else {
-          timeout = setTimeout(() => setPhase("paused"), 2000)
-        }
-        break
-
-      case "paused":
-        timeout = setTimeout(() => setPhase("deleting_tagline"), 500)
-        break
-
-      case "deleting_tagline":
-        if (taglineCharIndex > 0) {
-          const speed = 20 + Math.random() * 20
-          timeout = setTimeout(() => {
-            setTaglineCharIndex((prev) => prev - 1)
-          }, speed)
-        } else {
-          timeout = setTimeout(() => setPhase("deleting_name"), 200)
-        }
-        break
-
-      case "deleting_name":
-        if (nameCharIndex > 0) {
-          const speed = 3 + Math.random() * 5
-          timeout = setTimeout(() => {
-            setNameCharIndex((prev) => Math.max(0, prev - 6))
-          }, speed)
-        } else {
-          timeout = setTimeout(() => setPhase("typing_name"), 400)
-        }
-        break
+    if (isPaused) {
+      const pauseTimeout = setTimeout(() => {
+        setIsPaused(false)
+        setIsDeleting(!isDeleting)
+      }, isDeleting ? 400 : 1500)
+      return () => clearTimeout(pauseTimeout)
     }
 
+    // Typewriter timing with natural variation
+    const baseSpeed = isDeleting ? 60 : 120
+    const variation = Math.random() * (isDeleting ? 30 : 80)
+    const speed = baseSpeed + variation
+
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        if (currentLetterIndex > 0) {
+          setCurrentLetterIndex((prev) => prev - 1)
+        } else {
+          setIsPaused(true)
+        }
+      } else {
+        if (currentLetterIndex < totalLetters) {
+          setCurrentLetterIndex((prev) => prev + 1)
+        } else {
+          setIsPaused(true)
+        }
+      }
+    }, speed)
+
     return () => clearTimeout(timeout)
-  }, [phase, nameCharIndex, taglineCharIndex, totalNameChars, totalTaglineChars])
+  }, [currentLetterIndex, isDeleting, isPaused, totalLetters])
 
-  const renderedNameLines = useMemo(() => {
-    return NAME_ASCII.map((line) => {
-      if (nameCharIndex <= 0) return ""
-      return line.slice(0, nameCharIndex)
+  const renderedLines = useMemo(() => {
+    const visibleColumns = LETTER_COLUMNS[currentLetterIndex] || 0
+    return ASCII_LINES.map((line) => {
+      if (visibleColumns <= 0) return ""
+      return line.slice(0, visibleColumns)
     })
-  }, [nameCharIndex])
-
-  const renderedTagline = useMemo(() => {
-    return TAGLINE_TEXT.slice(0, taglineCharIndex)
-  }, [taglineCharIndex])
+  }, [currentLetterIndex])
 
   return (
     <section className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
       <div className="flex flex-col items-center justify-center gap-8">
-        <div className="font-mono leading-tight text-center">
-          {/* Name ASCII Art */}
-          <pre className="text-[8px] sm:text-[10px] md:text-xs lg:text-sm neon-text whitespace-pre inline-block text-left">
-{renderedNameLines.map((line, i) => (
+        <div className="font-mono leading-tight">
+          <pre className="text-[10px] sm:text-xs md:text-sm lg:text-base neon-text whitespace-pre">
+{renderedLines.map((line, i) => (
   <span key={i}>
     {line || " "}
-    {i < renderedNameLines.length - 1 && "\n"}
+    {i < renderedLines.length - 1 && "\n"}
   </span>
 ))}
+            <span className="animate-pulse">{"█"}</span>
           </pre>
-          
-          {/* Tagline with typewriter effect */}
-          <div className="mt-6 h-8 flex items-center justify-center">
-            <span className="text-sm sm:text-base md:text-lg lg:text-xl font-mono text-accent tracking-wider">
-              {renderedTagline}
-              <span className="animate-pulse">{"█"}</span>
-            </span>
-          </div>
         </div>
 
         <div className="text-center space-y-4">
