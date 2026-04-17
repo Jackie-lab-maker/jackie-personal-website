@@ -13,12 +13,36 @@ const GALLERY_ITEMS = [
   },
   {
     id: 2,
+    src: "/images/chart-industries/chart-branded-tank.png",
+    alt: "Chart Industries branded cryogenic storage tank with Cooler By Design tagline",
+    description: "Description coming soon...",
+  },
+  {
+    id: 3,
+    src: "/images/chart-industries/tank-row.jpg",
+    alt: "Row of horizontal cryogenic storage tanks with piping and instrumentation",
+    description: "Description coming soon...",
+  },
+  {
+    id: 4,
+    src: "/images/chart-industries/tank-piping.jpg",
+    alt: "Cryogenic tank base with valve assemblies and piping connections",
+    description: "Description coming soon...",
+  },
+  {
+    id: 5,
+    src: "/images/chart-industries/tank-cad-model.png",
+    alt: "3D CAD model of vertical cryogenic storage tank",
+    description: "Description coming soon...",
+  },
+  {
+    id: 6,
     src: "/images/chart-industries/tank-installation-1.jpg",
     alt: "Cryogenic storage tank installation with crane",
     description: "Description coming soon...",
   },
   {
-    id: 3,
+    id: 7,
     src: "/images/chart-industries/tank-installation-2.jpg",
     alt: "Cryogenic tank being lifted by multiple cranes",
     description: "Description coming soon...",
