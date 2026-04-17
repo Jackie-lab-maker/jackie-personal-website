@@ -7,12 +7,18 @@ import Image from "next/image"
 const GALLERY_ITEMS = [
   {
     id: 1,
+    src: "/images/chart-industries/intern-portrait.png",
+    alt: "Jackie at Chart Industries facility with hard hat",
+    description: "Description coming soon...",
+  },
+  {
+    id: 2,
     src: "/images/chart-industries/tank-installation-1.jpg",
     alt: "Cryogenic storage tank installation with crane",
     description: "Description coming soon...",
   },
   {
-    id: 2,
+    id: 3,
     src: "/images/chart-industries/tank-installation-2.jpg",
     alt: "Cryogenic tank being lifted by multiple cranes",
     description: "Description coming soon...",
