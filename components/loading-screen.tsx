@@ -1,32 +1,20 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useMemo, useCallback } from "react"
 
 const HACKER_LINES = [
   "$ initializing system...",
-  "$ connecting to secure server...",
+  "$ connecting to server...",
   "[OK] connection established",
-  "$ loading kernel modules...",
-  "[OK] kernel loaded successfully",
-  "$ decrypting portfolio data...",
+  "$ loading modules...",
+  "[OK] modules loaded",
+  "$ decrypting data...",
   "[OK] decryption complete",
-  "$ mounting file systems...",
-  "[OK] /home/jackie mounted",
-  "$ starting display server...",
-  "[OK] graphics initialized",
-  "$ loading user profile...",
-  "[OK] welcome, visitor",
   "$ launching interface...",
 ]
 
-const MATRIX_CHARS = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF"
-
-interface MatrixColumn {
-  x: number
-  y: number
-  speed: number
-  chars: string[]
-}
+// Pre-computed matrix characters for better performance
+const MATRIX_CHARS = "アイウエオカキクケコ0123456789"
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [terminalLines, setTerminalLines] = useState<string[]>([])
@@ -36,86 +24,98 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [fadeOut, setFadeOut] = useState(false)
   const [progress, setProgress] = useState(0)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const animationRef = useRef<number>(0)
+  const columnsRef = useRef<{ x: number; y: number; speed: number; char: string }[]>([])
 
-  // Matrix rain effect
+  // Memoized line count for progress calculation
+  const totalLines = useMemo(() => HACKER_LINES.length, [])
+
+  // Optimized matrix rain effect with reduced columns and simpler rendering
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext("2d", { alpha: false })
     if (!ctx) return
 
+    // Use device pixel ratio for crisp rendering but cap it
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const width = window.innerWidth
+      const height = window.innerHeight
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
+      ctx.scale(dpr, dpr)
+      
+      // Reinitialize columns on resize
+      const columnWidth = 25
+      const numColumns = Math.ceil(width / columnWidth)
+      columnsRef.current = Array.from({ length: numColumns }, (_, i) => ({
+        x: i * columnWidth,
+        y: Math.random() * height,
+        speed: 3 + Math.random() * 4,
+        char: MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)],
+      }))
     }
+    
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    const columns: MatrixColumn[] = []
-    const columnWidth = 20
-    const numColumns = Math.ceil(canvas.width / columnWidth)
+    ctx.font = "14px monospace"
+    
+    let lastTime = 0
+    const targetFPS = 30
+    const frameInterval = 1000 / targetFPS
 
-    for (let i = 0; i < numColumns; i++) {
-      columns.push({
-        x: i * columnWidth,
-        y: Math.random() * canvas.height,
-        speed: 4 + Math.random() * 6,
-        chars: Array.from({ length: 20 }, () => 
-          MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
-        ),
-      })
-    }
+    const animate = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime
+      
+      if (deltaTime >= frameInterval) {
+        lastTime = currentTime - (deltaTime % frameInterval)
+        
+        // Fade effect
+        ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
+        ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr)
 
-    const animate = () => {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)"
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      columns.forEach((col) => {
-        col.chars.forEach((char, i) => {
-          const y = col.y - i * 20
-          if (y > 0 && y < canvas.height) {
-            const opacity = 1 - i / col.chars.length
-            ctx.fillStyle = `rgba(0, 255, 136, ${opacity * 0.8})`
-            ctx.font = "14px monospace"
-            ctx.fillText(char, col.x, y)
+        // Draw columns
+        ctx.fillStyle = "rgba(0, 255, 136, 0.7)"
+        const columns = columnsRef.current
+        const height = canvas.height / dpr
+        
+        for (let i = 0; i < columns.length; i++) {
+          const col = columns[i]
+          ctx.fillText(col.char, col.x, col.y)
+          
+          col.y += col.speed
+          if (col.y > height) {
+            col.y = 0
+            col.char = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
           }
-        })
-
-        col.y += col.speed
-        if (col.y - col.chars.length * 20 > canvas.height) {
-          col.y = 0
-          col.chars = Array.from({ length: 20 }, () =>
-            MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
-          )
         }
+      }
 
-        // Randomly change characters
-        if (Math.random() < 0.1) {
-          const idx = Math.floor(Math.random() * col.chars.length)
-          col.chars[idx] = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
-        }
-      })
-
-      requestAnimationFrame(animate)
+      animationRef.current = requestAnimationFrame(animate)
     }
 
-    const animationId = requestAnimationFrame(animate)
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationId)
+      cancelAnimationFrame(animationRef.current)
     }
   }, [])
 
-  // Terminal typing effect
+  // Optimized terminal typing effect
   useEffect(() => {
-    if (lineIndex >= HACKER_LINES.length) {
-      setTimeout(() => {
+    if (lineIndex >= totalLines) {
+      const fadeTimeout = setTimeout(() => {
         setFadeOut(true)
-        setTimeout(onComplete, 400)
-      }, 150)
-      return
+        setTimeout(onComplete, 300)
+      }, 100)
+      return () => clearTimeout(fadeTimeout)
     }
 
     const currentFullLine = HACKER_LINES[lineIndex]
@@ -124,7 +124,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       const timeout = setTimeout(() => {
         setCurrentLine(currentFullLine.slice(0, charIndex + 1))
         setCharIndex(charIndex + 1)
-      }, 8 + Math.random() * 12)
+      }, 6 + Math.random() * 8)
       return () => clearTimeout(timeout)
     } else {
       const timeout = setTimeout(() => {
@@ -132,63 +132,58 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         setCurrentLine("")
         setCharIndex(0)
         setLineIndex(lineIndex + 1)
-        setProgress(((lineIndex + 1) / HACKER_LINES.length) * 100)
-      }, 30)
+        setProgress(((lineIndex + 1) / totalLines) * 100)
+      }, 20)
       return () => clearTimeout(timeout)
     }
-  }, [lineIndex, charIndex, onComplete])
+  }, [lineIndex, charIndex, onComplete, totalLines])
+
+  // Memoized line renderer to prevent unnecessary re-renders
+  const renderedLines = useMemo(() => (
+    terminalLines.map((line, i) => (
+      <div
+        key={i}
+        className={
+          line.startsWith("[OK]")
+            ? "text-[#00ff88]"
+            : "text-[#00ff88]/70"
+        }
+      >
+        {line}
+      </div>
+    ))
+  ), [terminalLines])
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-300 ${
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* Matrix rain canvas */}
+      {/* Matrix rain canvas - optimized */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-25"
       />
 
-      {/* Scanline overlay */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 136, 0.03) 2px, rgba(0, 255, 136, 0.03) 4px)",
-        }}
-      />
-
-      {/* Terminal window */}
-      <div className="relative z-10 w-full max-w-2xl mx-4">
-        <div className="border border-[#00ff88]/30 bg-black/80 backdrop-blur-sm">
+      {/* Terminal window - simplified structure */}
+      <div className="relative z-10 w-full max-w-xl mx-4">
+        <div className="border border-[#00ff88]/30 bg-black/90">
           {/* Terminal header */}
-          <div className="flex items-center gap-2 px-4 py-2 border-b border-[#00ff88]/30 bg-[#00ff88]/10">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          <div className="flex items-center gap-2 px-3 py-2 border-b border-[#00ff88]/30 bg-[#00ff88]/10">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
             </div>
             <span className="ml-2 text-[#00ff88]/70 text-xs font-mono">
               jackie@portfolio:~
             </span>
           </div>
 
-          {/* Terminal content */}
-          <div className="p-4 h-80 overflow-hidden font-mono text-sm">
-            {terminalLines.map((line, i) => (
-              <div
-                key={i}
-                className={`${
-                  line.startsWith("[OK]")
-                    ? "text-[#00ff88]"
-                    : line.startsWith("$")
-                    ? "text-[#00ff88]/70"
-                    : "text-white/80"
-                }`}
-              >
-                {line}
-              </div>
-            ))}
+          {/* Terminal content - reduced height */}
+          <div className="p-3 h-48 overflow-hidden font-mono text-xs">
+            {renderedLines}
             {currentLine && (
               <div className="text-[#00ff88]/70">
                 {currentLine}
@@ -198,46 +193,27 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           </div>
 
           {/* Progress bar */}
-          <div className="px-4 pb-4">
-            <div className="flex items-center justify-between text-xs text-[#00ff88]/50 mb-2 font-mono">
-              <span>LOADING PORTFOLIO</span>
+          <div className="px-3 pb-3">
+            <div className="flex items-center justify-between text-[10px] text-[#00ff88]/50 mb-1 font-mono">
+              <span>LOADING</span>
               <span>{Math.round(progress)}%</span>
             </div>
-            <div className="h-1 bg-[#00ff88]/20 overflow-hidden">
+            <div className="h-0.5 bg-[#00ff88]/20 overflow-hidden">
               <div
-                className="h-full bg-[#00ff88] transition-all duration-300"
+                className="h-full bg-[#00ff88] transition-all duration-200"
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
         </div>
-
-        {/* ASCII art decoration */}
-        <pre className="text-[#00ff88]/30 text-[8px] mt-4 text-center font-mono leading-tight">
-{`╔═══════════════════════════════════════════════════════════════╗
-║  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ║
-║  █ SECURE CONNECTION ESTABLISHED • ENCRYPTION: AES-256-GCM █  ║
-║  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  ║
-╚═══════════════════════════════════════════════════════════════╝`}
-        </pre>
       </div>
 
-      {/* Corner decorations */}
-      <div className="absolute top-4 left-4 text-[#00ff88]/20 font-mono text-xs">
-        <div>SYS://INIT</div>
-        <div>VER: 2.0.26</div>
+      {/* Simplified corner decorations */}
+      <div className="absolute top-3 left-3 text-[#00ff88]/15 font-mono text-[10px]">
+        SYS://INIT
       </div>
-      <div className="absolute top-4 right-4 text-[#00ff88]/20 font-mono text-xs text-right">
-        <div>NODE: ACTIVE</div>
-        <div>PING: 12ms</div>
-      </div>
-      <div className="absolute bottom-4 left-4 text-[#00ff88]/20 font-mono text-xs">
-        <div>MEM: 847MB</div>
-        <div>CPU: 23%</div>
-      </div>
-      <div className="absolute bottom-4 right-4 text-[#00ff88]/20 font-mono text-xs text-right">
-        <div>UPTIME: 99.9%</div>
-        <div>STATUS: OK</div>
+      <div className="absolute bottom-3 right-3 text-[#00ff88]/15 font-mono text-[10px]">
+        STATUS: OK
       </div>
     </div>
   )

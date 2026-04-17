@@ -23,10 +23,12 @@ export default function WISAPage() {
         <div className="container mx-auto px-4 py-4">
           <Link
             href="/#experience"
-            className="font-mono text-xs text-accent hover:text-foreground transition-colors inline-flex items-center gap-2"
+            className="font-mono text-xs text-accent hover:text-foreground transition-colors inline-flex items-center gap-2 border border-border px-3 py-2 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-ring"
+            aria-label="Navigate back to portfolio page"
+            role="button"
           >
-            <span>{"<"}</span>
-            <span>[back to portfolio]</span>
+            <span aria-hidden="true">{"<"}</span>
+            <span>Back to Portfolio</span>
           </Link>
         </div>
       </header>

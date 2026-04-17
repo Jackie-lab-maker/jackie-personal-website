@@ -7,12 +7,42 @@ import Image from "next/image"
 const GALLERY_ITEMS = [
   {
     id: 1,
+    src: "/images/chart-industries/intern-portrait.png",
+    alt: "Jackie at Chart Industries facility with hard hat",
+    description: "Description coming soon...",
+  },
+  {
+    id: 2,
+    src: "/images/chart-industries/chart-branded-tank.png",
+    alt: "Chart Industries branded cryogenic storage tank with Cooler By Design tagline",
+    description: "Description coming soon...",
+  },
+  {
+    id: 3,
+    src: "/images/chart-industries/tank-row.jpg",
+    alt: "Row of horizontal cryogenic storage tanks with piping and instrumentation",
+    description: "Description coming soon...",
+  },
+  {
+    id: 4,
+    src: "/images/chart-industries/tank-piping.jpg",
+    alt: "Cryogenic tank base with valve assemblies and piping connections",
+    description: "Description coming soon...",
+  },
+  {
+    id: 5,
+    src: "/images/chart-industries/tank-cad-model.png",
+    alt: "3D CAD model of vertical cryogenic storage tank",
+    description: "Description coming soon...",
+  },
+  {
+    id: 6,
     src: "/images/chart-industries/tank-installation-1.jpg",
     alt: "Cryogenic storage tank installation with crane",
     description: "Description coming soon...",
   },
   {
-    id: 2,
+    id: 7,
     src: "/images/chart-industries/tank-installation-2.jpg",
     alt: "Cryogenic tank being lifted by multiple cranes",
     description: "Description coming soon...",
@@ -29,10 +59,12 @@ export default function ChartIndustriesPage() {
         <div className="container mx-auto px-4 py-4">
           <Link
             href="/#experience"
-            className="font-mono text-xs text-accent hover:text-foreground transition-colors inline-flex items-center gap-2"
+            className="font-mono text-xs text-accent hover:text-foreground transition-colors inline-flex items-center gap-2 border border-border px-3 py-2 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-ring"
+            aria-label="Navigate back to portfolio page"
+            role="button"
           >
-            <span>{"<"}</span>
-            <span>[back to portfolio]</span>
+            <span aria-hidden="true">{"<"}</span>
+            <span>Back to Portfolio</span>
           </Link>
         </div>
       </header>

@@ -24,6 +24,12 @@ export default function Page() {
   const [dataLoaded, setDataLoaded] = useState(false)
 
   useEffect(() => {
+    // Check if loading screen was already shown in this session
+    const hasSeenLoading = sessionStorage.getItem("hasSeenLoading")
+    if (hasSeenLoading === "true") {
+      setShowLoading(false)
+    }
+
     fetch("/resumeData.json")
       .then((res) => res.json())
       .then((json) => {
@@ -35,6 +41,7 @@ export default function Page() {
 
   const handleLoadingComplete = () => {
     if (dataLoaded) {
+      sessionStorage.setItem("hasSeenLoading", "true")
       setShowLoading(false)
     }
   }
