@@ -2,15 +2,15 @@
 
 import { useEffect, useState, useRef, useMemo, useCallback } from "react"
 
-const HACKER_LINES = [
+const INITIAL_LINES = [
   "$ initializing system...",
   "$ connecting to server...",
   "[OK] connection established",
   "$ loading modules...",
   "[OK] modules loaded",
-  "$ decrypting data...",
-  "[OK] decryption complete",
-  "$ launching interface...",
+  "$ system ready",
+  "",
+  "Type 'launch web' to enter portfolio...",
 ]
 
 // Pre-computed matrix characters for better performance
@@ -22,13 +22,58 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [lineIndex, setLineIndex] = useState(0)
   const [charIndex, setCharIndex] = useState(0)
   const [fadeOut, setFadeOut] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const [typingComplete, setTypingComplete] = useState(false)
+  const [userInput, setUserInput] = useState("")
+  const [commandHistory, setCommandHistory] = useState<string[]>([])
+  const [errorMessage, setErrorMessage] = useState("")
+  const inputRef = useRef<HTMLInputElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
   const columnsRef = useRef<{ x: number; y: number; speed: number; char: string }[]>([])
 
   // Memoized line count for progress calculation
-  const totalLines = useMemo(() => HACKER_LINES.length, [])
+  const totalLines = useMemo(() => INITIAL_LINES.length, [])
+
+  // Handle skip button
+  const handleSkip = useCallback(() => {
+    setFadeOut(true)
+    setTimeout(onComplete, 300)
+  }, [onComplete])
+
+  // Handle command submission
+  const handleCommand = useCallback((e: React.FormEvent) => {
+    e.preventDefault()
+    const command = userInput.trim().toLowerCase()
+    
+    if (command === "launch web") {
+      setCommandHistory(prev => [...prev, `$ ${userInput}`, "[OK] launching portfolio..."])
+      setUserInput("")
+      setErrorMessage("")
+      setTimeout(() => {
+        setFadeOut(true)
+        setTimeout(onComplete, 300)
+      }, 500)
+    } else if (command === "help") {
+      setCommandHistory(prev => [...prev, `$ ${userInput}`, "Available commands:", "  launch web - Enter the portfolio", "  help - Show this message", "  clear - Clear terminal"])
+      setUserInput("")
+      setErrorMessage("")
+    } else if (command === "clear") {
+      setCommandHistory([])
+      setUserInput("")
+      setErrorMessage("")
+    } else if (command !== "") {
+      setCommandHistory(prev => [...prev, `$ ${userInput}`])
+      setErrorMessage(`Command not found: ${userInput}. Type 'help' for available commands.`)
+      setUserInput("")
+    }
+  }, [userInput, onComplete])
+
+  // Focus input when typing is complete
+  useEffect(() => {
+    if (typingComplete && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [typingComplete])
 
   // Optimized matrix rain effect with reduced columns and simpler rendering
   useEffect(() => {
@@ -111,20 +156,17 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   // Optimized terminal typing effect
   useEffect(() => {
     if (lineIndex >= totalLines) {
-      const fadeTimeout = setTimeout(() => {
-        setFadeOut(true)
-        setTimeout(onComplete, 300)
-      }, 100)
-      return () => clearTimeout(fadeTimeout)
+      setTypingComplete(true)
+      return
     }
 
-    const currentFullLine = HACKER_LINES[lineIndex]
+    const currentFullLine = INITIAL_LINES[lineIndex]
     
     if (charIndex < currentFullLine.length) {
       const timeout = setTimeout(() => {
         setCurrentLine(currentFullLine.slice(0, charIndex + 1))
         setCharIndex(charIndex + 1)
-      }, 6 + Math.random() * 8)
+      }, 8 + Math.random() * 12)
       return () => clearTimeout(timeout)
     } else {
       const timeout = setTimeout(() => {
@@ -132,27 +174,32 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         setCurrentLine("")
         setCharIndex(0)
         setLineIndex(lineIndex + 1)
-        setProgress(((lineIndex + 1) / totalLines) * 100)
-      }, 20)
+      }, 30)
       return () => clearTimeout(timeout)
     }
-  }, [lineIndex, charIndex, onComplete, totalLines])
+  }, [lineIndex, charIndex, totalLines])
 
   // Memoized line renderer to prevent unnecessary re-renders
   const renderedLines = useMemo(() => (
-    terminalLines.map((line, i) => (
+    [...terminalLines, ...commandHistory].map((line, i) => (
       <div
         key={i}
         className={
           line.startsWith("[OK]")
             ? "text-[#00ff88]"
+            : line.startsWith("$")
+            ? "text-[#00ff88]/70"
+            : line.startsWith("Command not found") || line.startsWith("Available") || line.startsWith("  ")
+            ? "text-yellow-400/80"
+            : line.startsWith("Type")
+            ? "text-cyan-400"
             : "text-[#00ff88]/70"
         }
       >
         {line}
       </div>
     ))
-  ), [terminalLines])
+  ), [terminalLines, commandHistory])
 
   return (
     <div
@@ -166,23 +213,32 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         className="absolute inset-0 opacity-25"
       />
 
-      {/* Terminal window - simplified structure */}
+      {/* Terminal window */}
       <div className="relative z-10 w-full max-w-xl mx-4">
         <div className="border border-[#00ff88]/30 bg-black/90">
           {/* Terminal header */}
-          <div className="flex items-center gap-2 px-3 py-2 border-b border-[#00ff88]/30 bg-[#00ff88]/10">
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+          <div className="flex items-center justify-between px-3 py-2 border-b border-[#00ff88]/30 bg-[#00ff88]/10">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+              </div>
+              <span className="ml-2 text-[#00ff88]/70 text-xs font-mono">
+                jackie@portfolio:~
+              </span>
             </div>
-            <span className="ml-2 text-[#00ff88]/70 text-xs font-mono">
-              jackie@portfolio:~
-            </span>
+            <button
+              onClick={handleSkip}
+              className="text-[#00ff88]/50 hover:text-[#00ff88] text-xs font-mono transition-colors px-2 py-1 border border-[#00ff88]/30 hover:border-[#00ff88]/60 hover:bg-[#00ff88]/10"
+              aria-label="Skip loading screen"
+            >
+              [SKIP]
+            </button>
           </div>
 
-          {/* Terminal content - reduced height */}
-          <div className="p-3 h-48 overflow-hidden font-mono text-xs">
+          {/* Terminal content */}
+          <div className="p-3 h-56 overflow-y-auto font-mono text-xs">
             {renderedLines}
             {currentLine && (
               <div className="text-[#00ff88]/70">
@@ -190,30 +246,67 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                 <span className="animate-pulse">_</span>
               </div>
             )}
+            {errorMessage && (
+              <div className="text-red-400 mt-1">{errorMessage}</div>
+            )}
           </div>
 
-          {/* Progress bar */}
-          <div className="px-3 pb-3">
-            <div className="flex items-center justify-between text-[10px] text-[#00ff88]/50 mb-1 font-mono">
-              <span>LOADING</span>
-              <span>{Math.round(progress)}%</span>
+          {/* Command input */}
+          {typingComplete && (
+            <form onSubmit={handleCommand} className="px-3 pb-3">
+              <div className="flex items-center gap-2 border border-[#00ff88]/30 bg-black/50 px-2 py-1.5">
+                <span className="text-[#00ff88] text-xs font-mono">$</span>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  className="flex-1 bg-transparent text-[#00ff88] text-xs font-mono outline-none placeholder-[#00ff88]/30"
+                  placeholder="type command..."
+                  autoComplete="off"
+                  spellCheck={false}
+                  aria-label="Command input"
+                />
+                <span className="animate-pulse text-[#00ff88]">_</span>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-[10px] text-[#00ff88]/40 font-mono">
+                  Hint: type &apos;launch web&apos; or &apos;help&apos;
+                </span>
+                <button
+                  type="submit"
+                  className="text-[10px] text-[#00ff88]/50 hover:text-[#00ff88] font-mono transition-colors"
+                >
+                  [ENTER]
+                </button>
+              </div>
+            </form>
+          )}
+
+          {/* Progress indicator while typing */}
+          {!typingComplete && (
+            <div className="px-3 pb-3">
+              <div className="flex items-center justify-between text-[10px] text-[#00ff88]/50 mb-1 font-mono">
+                <span>INITIALIZING</span>
+                <span>{Math.round((lineIndex / totalLines) * 100)}%</span>
+              </div>
+              <div className="h-0.5 bg-[#00ff88]/20 overflow-hidden">
+                <div
+                  className="h-full bg-[#00ff88] transition-all duration-200"
+                  style={{ width: `${(lineIndex / totalLines) * 100}%` }}
+                />
+              </div>
             </div>
-            <div className="h-0.5 bg-[#00ff88]/20 overflow-hidden">
-              <div
-                className="h-full bg-[#00ff88] transition-all duration-200"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
-      {/* Simplified corner decorations */}
+      {/* Corner decorations */}
       <div className="absolute top-3 left-3 text-[#00ff88]/15 font-mono text-[10px]">
         SYS://INIT
       </div>
       <div className="absolute bottom-3 right-3 text-[#00ff88]/15 font-mono text-[10px]">
-        STATUS: OK
+        STATUS: READY
       </div>
     </div>
   )
