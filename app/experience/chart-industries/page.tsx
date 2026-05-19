@@ -99,7 +99,7 @@ export default function ChartIndustriesPage() {
             </div>
             <div className="text-accent mb-4 flex flex-col items-center">
               <pre className="text-xs md:text-sm">╔══════════════════════════════════════════════════════════════╗</pre>
-              <pre className="text-xs md:text-sm font-bold">║ CHART INDUSTRIES, INC. ║</pre>
+              <pre className="text-xs md:text-sm font-bold">║ BAKER HUGHES (CHART INDUSTRIES, INC.) ║</pre>
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">

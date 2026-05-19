@@ -115,22 +115,27 @@ export function Navigation() {
       {/* Dropdown Menu */}
       <div
         id="nav-menu"
-        className={`fixed left-0 right-0 top-[49px] bg-background/98 backdrop-blur-sm border-b border-border transition-all duration-300 ${
-          isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+        className={`fixed left-0 right-0 top-[49px] bg-background/98 backdrop-blur-sm border-b border-border transition-all duration-500 ease-out ${
+          isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4"
         }`}
         aria-hidden={!isMenuOpen}
       >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-wrap gap-2">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link, index) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="font-mono text-xs text-muted-foreground hover:text-accent px-3 py-2 border border-border hover:border-accent transition-all focus:outline-none focus:ring-2 focus:ring-ring"
+                className={`font-mono text-sm text-muted-foreground hover:text-accent hover:bg-accent/10 px-4 py-3 border-l-2 border-transparent hover:border-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring ${
+                  isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                }`}
+                style={{
+                  transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
+                }}
                 tabIndex={isMenuOpen ? 0 : -1}
               >
-                <span className="text-accent mr-1">{String(index + 1).padStart(2, "0")}.</span>
+                <span className="text-accent mr-2">{String(index + 1).padStart(2, "0")}.</span>
                 [{link.label}]
               </a>
             ))}
