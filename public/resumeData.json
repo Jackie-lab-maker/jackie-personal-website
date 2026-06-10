@@ -1,0 +1,144 @@
+{
+  "main": {
+    "name": "Jackie (Jingkai) Shao",
+    "occupation": "Mechanical Engineering Student",
+    "description": "",
+    "image": "profilepic.jpg",
+    "bio": "Hey there! My name is Jackie and I am a Mechanical Engineering Undergraduate Student at the University of Waterloo. I grew up in Montreal, Quebec, Canada where I was a Cirrus SR-22 pilot, aviation flight safety enthusiast, and basketball player among many other things. In 2025, I left to explore my passion towards science and the engineering field at UWaterloo.\n\nPassionate about innovation, design and creative freedom, I've the pleasure of developing a wide variety of skills and experience across automotive and aerospace industries. These projects encapsulate some of the work that I have done within those industries as well as additional personal projects.\n\nFeel free to reach out and ask me anything I have done. I would love to have a conversation and will get back to you as quickly as I can!",
+    "contactmessage": "Let's build something amazing together!",
+    "email": "j66shao@uwaterloo.ca",
+    "phone": "(+1) 514-562-8684",
+    "address": {
+      "street": "",
+      "city": "Waterloo",
+      "state": "Ontario",
+      "zip": ""
+    },
+    "website": "",
+    "resumedownload": "",
+    "social": [
+      {
+        "name": "linkedin",
+        "url": "https://www.linkedin.com/in/jingkai-shao3/",
+        "className": "fa fa-linkedin"
+      },
+      {
+        "name": "github",
+        "url": "https://github.com/Jackie-lab-maker",
+        "className": "fa fa-github"
+      }
+    ],
+    "profiles": []
+  },
+  "resume": {
+    "skillmessage": "My Technical Arsenal",
+    "education": [
+      {
+        "school": "University of Waterloo",
+        "degree": "Bachelor of Applied Science in Mechanical Engineering",
+        "graduated": "September 2025 - June 2030",
+        "description": "Honours Program with Co-op. Relevant Coursework: Engineering Design, C++ Programming, Material Science, Electrical Circuits, Mechanics, CFD/FEA Workshop"
+      }
+    ],
+    "work": [
+      {
+        "company": "Waterloo Institute for Sustainable Aeronautics",
+        "title": "System Design Engineering Researcher",
+        "years": "May 2026 - Present",
+        "description": ""
+      },
+      {
+        "company": "OPmobility (Plastic Omnium)",
+        "title": "Manufacturing Controls Engineering Intern",
+        "years": "April 2026 - May 2026",
+        "description": "Filament Winding automation using RAPID and KUKA Robot Language (KRL) for hydrogen mobility vessels."
+      },
+      {
+        "company": "Baker Hughes (Chart Industries, Inc.)",
+        "title": "Mechanical Engineering Intern",
+        "years": "December 2025 - March 2026",
+        "description": "Designed SolidWorks 3D models and AutoCAD 2D drawings for bulk storage tanks. Conducted pipeline stress analysis and conjugate heat transfer analysis."
+      },
+      {
+        "company": "OPmobility (Plastic Omnium)",
+        "title": "System Design & Automation Engineering Intern",
+        "years": "May 2025 - August 2025",
+        "description": "Designed CATIA 3D models for thermoplastic liners used in Type IV hydrogen mobility vessels. Developed Digital Twin Robotic Arm in KUKA.Sim."
+      }
+    ],
+    "skills": [
+      {
+        "name": "CATIA & SolidWorks",
+        "level": "95%"
+      },
+      {
+        "name": "Abaqus & Ansys FEA",
+        "level": "90%"
+      },
+      {
+        "name": "RAPID & KRL Programming",
+        "level": "85%"
+      },
+      {
+        "name": "AutoCAD",
+        "level": "88%"
+      },
+      {
+        "name": "KUKA.Sim & Robotstudio",
+        "level": "82%"
+      },
+      {
+        "name": "C++ & Python",
+        "level": "80%"
+      },
+      {
+        "name": "PLC Programming (Siemens TIA)",
+        "level": "78%"
+      },
+      {
+        "name": "GD&T & DFM/DFA",
+        "level": "92%"
+      }
+    ]
+  },
+  "portfolio": {
+    "projects": [
+      {
+        "title": "Quad-X-Cage (A quadcopter built for Indoor Inspection)",
+        "about": "X-frame quadrotor platform featuring enclosed propeller cages, central avionics stack, and modular landing gear designed for indoor inspection of warehouses, factories, and infrastructure.",
+        "image": "/quad-x-cage.png",
+        "url": "https://github.com/Jackie-lab-maker/Quad-X-Cage"
+      },
+      {
+        "title": "Tooling Design (Jigs & Fixtures)",
+        "about": "Designed a jig with spring-loaded hold-down clamps (DFA) in SolidWorks, eliminating the need for threaded fasteners. Also designed a fixture with single-motion clamping instead of a screw-down clamp (DFM), reducing manufacturing cost by 10%.",
+        "image": "/tooling.png",
+        "url": "https://github.com/Jackie-lab-maker/Design-of-Tooling"
+      },
+      {
+        "title": "Cryogenics Systems Modeling",
+        "about": "Designed a 3D Model of LNG Cryogenic Storage Tank in SolidWorks with instrumentation panels (HMI + gauges) and piping functions (valves + regulators + reliefs), providing clear visualization to clients and technicians.",
+        "image": "/lng-tank.png",
+        "url": "https://github.com/Jackie-lab-maker/Cryogenics-Systems-Modeling"
+      },
+      {
+        "title": "Filament Winding Robotic Arm Digital Twin",
+        "about": "Developed a Digital Twin Robotic Arm in KUKA.Sim to perform a Gage R&R study on fibre winding angle, improving the measurement accuracy of the rotary encoders by 10%.",
+        "image": "/robotic-arm.png",
+        "url": "https://github.com/Jackie-lab-maker/KUKA.Sim-Projects/tree/main/OPmobility/Filament%20Winding"
+      }
+    ]
+  },
+  "testimonials": {
+    "testimonials": [
+      {
+        "text": "Jackie's technical expertise in CAD/CAE and automation has been instrumental in improving our manufacturing processes.",
+        "user": "Engineering Manager at OPmobility"
+      },
+      {
+        "text": "An exceptional engineer who combines strong analytical skills with practical manufacturing knowledge.",
+        "user": "Senior Engineer at Chart Industries"
+      }
+    ]
+  }
+}
