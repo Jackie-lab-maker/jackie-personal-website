@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useMemo } from "react"
+import { SplineScene } from "@/components/ui/splite"
 
 interface HeroProps {
   data: {
@@ -85,26 +86,39 @@ export default function Hero({ data }: HeroProps) {
 
   return (
     <section className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
-      <div className="flex flex-col items-center justify-center gap-8">
-        <div className="font-mono leading-tight">
-          <pre className="text-[10px] sm:text-xs md:text-sm lg:text-base neon-text whitespace-pre">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        {/* Left: name */}
+        <div className="flex flex-col items-start gap-6 order-2 md:order-1">
+          <div className="font-mono leading-tight">
+            <pre className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs neon-text whitespace-pre">
 {renderedLines.map((line, i) => (
   <span key={i}>
     {line || " "}
     {i < renderedLines.length - 1 && "\n"}
   </span>
 ))}
-            <span className="animate-pulse">{"█"}</span>
-          </pre>
-        </div>
+              <span className="animate-pulse">{"█"}</span>
+            </pre>
+          </div>
 
-        <div className="text-center space-y-4">
-          <h1 className="font-mono text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{data.name}</h1>
-          <div className="font-mono text-sm md:text-base text-muted-foreground border-t-2 border-b-2 pulse-border py-2 px-4">
-            <span className="neon-cyan">{">"}</span> {data.occupation}
+          <div className="text-left space-y-4">
+            <h1 className="font-mono text-xl md:text-2xl lg:text-3xl font-bold text-foreground">{data.name}</h1>
+            <div className="font-mono text-xs md:text-sm text-muted-foreground border-t-2 border-b-2 pulse-border py-2 px-4 inline-block">
+              <span className="neon-cyan">{">"}</span> {data.occupation}
+            </div>
           </div>
         </div>
 
+        {/* Right: interactive 3D bot */}
+        <div className="relative h-[300px] sm:h-[380px] md:h-[460px] order-1 md:order-2">
+          <SplineScene
+            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center gap-8 mt-8">
         {/* Scroll indicator */}
         <div
           className={`mt-8 transition-all duration-500 ${
