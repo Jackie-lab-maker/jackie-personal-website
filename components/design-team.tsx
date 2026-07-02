@@ -13,7 +13,7 @@ const designTeams = [
 export default function DesignTeam() {
   return (
     <section className="container mx-auto px-4 py-12" id="design-team">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
@@ -28,7 +28,7 @@ export default function DesignTeam() {
               key={index}
               className="border-2 border-border bg-card hover:border-accent transition-all duration-300 group hover-lift"
             >
-              <div className="font-mono p-4 md:p-6">
+              <div className="font-mono p-6 md:p-8">
                 <div className="text-accent text-xs md:text-sm mb-2">╔═════════════════════════════════╗</div>
                 <h3 className="text-foreground font-bold text-sm md:text-base mb-1 pl-2">║ {team.name}</h3>
                 <p className="text-accent text-xs mb-2 pl-2">║ {team.role}</p>
