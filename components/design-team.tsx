@@ -22,7 +22,7 @@ export default function DesignTeam() {
           </div>
         </Reveal>
 
-        <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Stagger className="grid grid-cols-1 gap-4">
           {designTeams.map((team, index) => (
             <StaggerItem
               key={index}
