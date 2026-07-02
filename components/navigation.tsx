@@ -7,8 +7,6 @@ import { useTheme } from "next-themes"
 const NAV_LINKS = [
   { href: "#about", label: "about" },
   { href: "#experience", label: "experience" },
-  { href: "#projects", label: "projects" },
-  { href: "#skills", label: "skills" },
   { href: "#education", label: "education" },
   { href: "#contact", label: "contact" },
 ]
@@ -76,19 +74,21 @@ export function Navigation() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
+        isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-lg shadow-black/20" : "bg-transparent"
       }`}
       role="banner"
     >
       <nav
-        className="container mx-auto px-4 py-3 flex items-center justify-between"
+        className={`container mx-auto px-4 flex items-center justify-between transition-all duration-300 ${
+          isScrolled ? "py-2" : "py-3"
+        }`}
         role="navigation"
         aria-label="Main navigation"
       >
         {/* Menu Toggle Button - Left */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
+          className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all duration-200 hover:bg-secondary hover:text-accent hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
           aria-expanded={isMenuOpen}
           aria-controls="nav-menu"
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -101,7 +101,7 @@ export function Navigation() {
         {mounted && (
           <button
             onClick={toggleTheme}
-            className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all hover:bg-secondary hover:text-accent focus:outline-none focus:ring-2 focus:ring-ring"
+            className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all duration-200 hover:bg-secondary hover:text-accent hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             <span>{theme === "dark" ? "[☀]" : "[☾]"}</span>

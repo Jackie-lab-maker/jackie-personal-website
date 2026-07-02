@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 
 const GALLERY_ITEMS = [
   {
@@ -73,6 +74,7 @@ export default function ChartIndustriesPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
           {/* Title Section */}
+          <Reveal variant="blur-up">
           <div className="font-mono text-center mb-12">
             {/* Company Logos */}
             <div className="flex justify-center items-center gap-6 md:gap-10 mb-6">
@@ -109,9 +111,11 @@ export default function ChartIndustriesPage() {
               Dec 2025 - Mar 2026
             </p>
           </div>
+          </Reveal>
 
           {/* Description Section */}
-          <div className="border border-border bg-card p-6 mb-12">
+          <Reveal delay={0.1}>
+          <div className="border border-border bg-card p-6 mb-12 hover-lift">
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
@@ -119,20 +123,24 @@ export default function ChartIndustriesPage() {
               </p>
             </div>
           </div>
+          </Reveal>
 
           {/* Gallery Section */}
+          <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
             <pre className="text-xs md:text-sm font-bold">║ PROJECT GALLERY ║</pre>
             <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
           </div>
+          </Reveal>
 
           {/* Masonry Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {GALLERY_ITEMS.map((item) => (
-              <div
+              <StaggerItem
                 key={item.id}
-                className="border border-border bg-card hover:border-accent transition-colors duration-300 overflow-hidden group"
+                variant="scale"
+                className="border border-border bg-card hover:border-accent transition-colors duration-300 overflow-hidden group hover-lift"
               >
                 {/* Image Container */}
                 <div 
@@ -160,9 +168,9 @@ export default function ChartIndustriesPage() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
 
           {/* Placeholder for more images */}
           <div className="mt-6 border border-dashed border-border p-8 text-center">

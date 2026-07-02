@@ -4,6 +4,7 @@ import { JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
+import { ReadingProgress } from "@/components/reading-progress"
 import "./globals.css"
 
 const jetbrainsMono = JetBrains_Mono({
@@ -48,6 +49,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <ReadingProgress />
           <Navigation />
           {children}
         </ThemeProvider>

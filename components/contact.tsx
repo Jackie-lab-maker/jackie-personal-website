@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/motion/reveal"
+
 interface ContactProps {
   data: {
     contactmessage: string
@@ -13,13 +15,16 @@ export default function Contact({ data }: ContactProps) {
   return (
     <section className="container mx-auto px-4 py-12" id="contact">
       <div className="max-w-4xl mx-auto">
-        <div className="font-mono text-accent mb-6 flex flex-col items-center">
-          <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
-          <pre className="text-xs md:text-sm font-bold">║ CONTACT ║</pre>
-          <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
-        </div>
+        <Reveal variant="blur-up">
+          <div className="font-mono text-accent mb-6 flex flex-col items-center">
+            <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
+            <pre className="text-xs md:text-sm font-bold">║ CONTACT ║</pre>
+            <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
+          </div>
+        </Reveal>
 
-        <div className="border-2 border-border bg-card p-6 md:p-8 text-center hover:border-accent transition-colors duration-300">
+        <Reveal delay={0.1}>
+        <div className="border-2 border-border bg-card p-6 md:p-8 text-center hover:border-accent transition-colors duration-300 hover-lift">
           <div className="font-mono text-xs md:text-sm space-y-4">
             <p className="text-muted-foreground leading-relaxed">{data.contactmessage}</p>
 
@@ -39,6 +44,7 @@ export default function Contact({ data }: ContactProps) {
             </div>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   )

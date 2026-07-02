@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 
 interface ExperienceProps {
   data: {
@@ -17,7 +18,7 @@ interface ExperienceProps {
 // Map company names to their detail page routes (use unique keys for multiple entries)
 const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?: string }> = {
   "Chart Industries": { route: "/experience/chart-industries", company: "Chart Industries" },
-  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Controls Engineering Intern" },
+  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Engineering Intern" },
   "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "System Design & Automation Engineering Intern" },
   "WISA": { route: "/experience/wisa", company: "Waterloo Institute for Sustainable Aeronautics" },
 }
@@ -56,20 +57,22 @@ export default function Experience({ data }: ExperienceProps) {
   return (
     <section className="container mx-auto px-4 py-12" id="experience">
       <div className="max-w-4xl mx-auto">
-        <div className="font-mono text-accent mb-6 flex flex-col items-center">
-          <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
-          <pre className="text-xs md:text-sm font-bold">║ EXPERIENCE ║</pre>
-          <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
-        </div>
+        <Reveal variant="blur-up">
+          <div className="font-mono text-accent mb-6 flex flex-col items-center">
+            <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
+            <pre className="text-xs md:text-sm font-bold">║ EXPERIENCE ║</pre>
+            <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
+          </div>
+        </Reveal>
 
-        <div className="space-y-4">
+        <Stagger className="space-y-4">
           {data.work?.map((job, index) => {
             const detailPage = getExperiencePage(job.company, job.title)
-            
+
             return (
-              <div
+              <StaggerItem
                 key={index}
-                className="border border-border bg-card hover:border-accent transition-colors duration-300"
+                className="border border-border bg-card hover:border-accent transition-colors duration-300 hover-lift"
               >
                 <div className="font-mono text-xs md:text-sm p-4 md:p-6">
                   <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -81,14 +84,14 @@ export default function Experience({ data }: ExperienceProps) {
                     {detailPage ? (
                       <Link
                         href={detailPage}
-                        className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
                       >
                         [view experience]
                       </Link>
                     ) : (
                       <button
                         onClick={() => toggleExpand(index)}
-                        className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
                         aria-expanded={expandedIndex === index}
                         aria-controls={`experience-details-${index}`}
                       >
@@ -113,10 +116,10 @@ export default function Experience({ data }: ExperienceProps) {
                     </div>
                   )}
                 </div>
-              </div>
+              </StaggerItem>
             )
           })}
-        </div>
+        </Stagger>
       </div>
     </section>
   )

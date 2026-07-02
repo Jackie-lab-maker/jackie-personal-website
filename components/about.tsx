@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/motion/reveal"
+
 interface AboutProps {
   data: {
     bio: string
@@ -20,13 +22,16 @@ export default function About({ data }: AboutProps) {
   return (
     <section className="container mx-auto px-4 py-12" id="about">
       <div className="max-w-4xl mx-auto">
-        <div className="font-mono text-accent mb-6 flex flex-col items-center">
-          <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
-          <pre className="text-xs md:text-sm font-bold">║ ABOUT ME ║</pre>
-          <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
-        </div>
+        <Reveal variant="blur-up">
+          <div className="font-mono text-accent mb-6 flex flex-col items-center">
+            <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
+            <pre className="text-xs md:text-sm font-bold">║ ABOUT ME ║</pre>
+            <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
+          </div>
+        </Reveal>
 
-        <div className="border-2 border-border p-6 md:p-8 bg-card hover:border-accent transition-colors duration-300">
+        <Reveal delay={0.1}>
+        <div className="border-2 border-border p-6 md:p-8 bg-card hover:border-accent transition-colors duration-300 hover-lift">
           <div className="font-mono text-xs md:text-sm leading-relaxed space-y-4">
             <p className="text-foreground">
               <span className="text-accent">{">> "}</span>
@@ -57,7 +62,7 @@ export default function About({ data }: AboutProps) {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10"
+                  className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   [{social.name}]
                 </a>
@@ -68,7 +73,7 @@ export default function About({ data }: AboutProps) {
                   href={profile.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10"
+                  className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   [{profile.name}]
                 </a>
@@ -76,13 +81,14 @@ export default function About({ data }: AboutProps) {
               <a
                 href="/Jackie_Shao_Resume.pdf"
                 download="Jackie_Shao_Resume.pdf"
-                className="font-mono text-xs text-accent hover:text-foreground transition-colors border border-border px-3 py-1 hover:bg-accent/10"
+                className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
               >
                 [resume]
               </a>
             </div>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   )
