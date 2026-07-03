@@ -16,11 +16,11 @@ interface ExperienceProps {
 }
 
 // Map company names to their detail page routes (use unique keys for multiple entries)
-const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?: string }> = {
-  "Chart Industries": { route: "/experience/chart-industries", company: "Chart Industries" },
-  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Engineering Intern" },
-  "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "System Design & Automation Engineering Intern" },
-  "WISA": { route: "/experience/wisa", company: "Waterloo Institute for Sustainable Aeronautics" },
+const EXPERIENCE_PAGES: Record<string, { route: string; projectsRoute: string; company: string; title?: string }> = {
+  "Chart Industries": { route: "/experience/chart-industries", projectsRoute: "/experience/chart-industries/projects", company: "Chart Industries" },
+  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", projectsRoute: "/experience/opmobility-manufacturing/projects", company: "OPmobility", title: "Manufacturing Engineering Intern" },
+  "OPmobility Automation": { route: "/experience/opmobility-automation", projectsRoute: "/experience/opmobility-automation/projects", company: "OPmobility", title: "System Design & Automation Engineering Intern" },
+  "WISA": { route: "/experience/wisa", projectsRoute: "/experience/wisa/projects", company: "Waterloo Institute for Sustainable Aeronautics" },
 }
 
 // Helper to match company and optionally title
@@ -54,6 +54,14 @@ export default function Experience({ data }: ExperienceProps) {
     return null
   }
 
+  const getProjectsPage = (company: string, title: string): string | null => {
+    const key = getExperiencePageKey(company, title)
+    if (key) {
+      return EXPERIENCE_PAGES[key].projectsRoute
+    }
+    return null
+  }
+
   return (
     <section className="container mx-auto px-4 py-12" id="experience">
       <div className="max-w-4xl mx-auto">
@@ -68,6 +76,7 @@ export default function Experience({ data }: ExperienceProps) {
         <Stagger className="space-y-4">
           {data.work?.map((job, index) => {
             const detailPage = getExperiencePage(job.company, job.title)
+            const projectsPage = getProjectsPage(job.company, job.title)
 
             return (
               <StaggerItem
@@ -81,23 +90,33 @@ export default function Experience({ data }: ExperienceProps) {
                       <div className="text-foreground font-semibold pl-4">║ {job.title}</div>
                       <div className="text-muted-foreground pl-4 mt-1">╚═══ {job.years}</div>
                     </div>
-                    {detailPage ? (
-                      <Link
-                        href={detailPage}
-                        className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
-                      >
-                        [view experience]
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => toggleExpand(index)}
-                        className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
-                        aria-expanded={expandedIndex === index}
-                        aria-controls={`experience-details-${index}`}
-                      >
-                        {expandedIndex === index ? "[hide]" : "[view experience]"}
-                      </button>
-                    )}
+                    <div className="flex flex-col items-stretch gap-2">
+                      {detailPage ? (
+                        <Link
+                          href={detailPage}
+                          className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
+                        >
+                          [view experience]
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => toggleExpand(index)}
+                          className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
+                          aria-expanded={expandedIndex === index}
+                          aria-controls={`experience-details-${index}`}
+                        >
+                          {expandedIndex === index ? "[hide]" : "[view experience]"}
+                        </button>
+                      )}
+                      {projectsPage && (
+                        <Link
+                          href={projectsPage}
+                          className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
+                        >
+                          [view projects →]
+                        </Link>
+                      )}
+                    </div>
                   </div>
                   
                   {/* Expandable Description - only for entries without detail pages */}
