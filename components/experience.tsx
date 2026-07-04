@@ -94,24 +94,24 @@ export default function Experience({ data }: ExperienceProps) {
                       {detailPage ? (
                         <Link
                           href={detailPage}
-                          className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
+                          className="w-full font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
                         >
-                          [view experience]
+                          [view experience →]
                         </Link>
                       ) : (
                         <button
                           onClick={() => toggleExpand(index)}
-                          className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
+                          className="w-full font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
                           aria-expanded={expandedIndex === index}
                           aria-controls={`experience-details-${index}`}
                         >
-                          {expandedIndex === index ? "[hide]" : "[view experience]"}
+                          {expandedIndex === index ? "[hide]" : "[view experience →]"}
                         </button>
                       )}
                       {projectsPage && (
                         <Link
                           href={projectsPage}
-                          className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
+                          className="w-full font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
                         >
                           [view projects →]
                         </Link>
