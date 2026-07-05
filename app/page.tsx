@@ -50,7 +50,7 @@ export default function Page() {
 
   return (
     <motion.main
-      className="min-h-screen bg-background"
+      className="min-h-screen bg-background flex flex-col items-center justify-center"
       initial={reducedMotion ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
