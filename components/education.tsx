@@ -1,4 +1,5 @@
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 
 interface EducationProps {
   data: {
@@ -25,8 +26,9 @@ export default function Education({ data }: EducationProps) {
 
         <Stagger className="space-y-4">
           {data.education?.map((edu, index) => (
+            <Tilt3D key={index}>
             <StaggerItem
-              key={index}
+              variant="tilt-up"
               className="border-2 border-border bg-card p-6 md:p-8 hover:border-accent transition-colors duration-300 hover-lift"
             >
               <div className="font-mono text-xs md:text-sm space-y-2">
@@ -39,6 +41,7 @@ export default function Education({ data }: EducationProps) {
                 <div className="text-accent">└──────────────────────────────────┘</div>
               </div>
             </StaggerItem>
+            </Tilt3D>
           ))}
         </Stagger>
       </div>

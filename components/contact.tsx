@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Reveal } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 
 interface ContactProps {
   data: {
@@ -29,7 +30,8 @@ export default function Contact({ data }: ContactProps) {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal variant="tilt-up" delay={0.1}>
+        <Tilt3D>
         <div className="border-2 border-border bg-card p-6 md:p-8 text-center hover:border-accent transition-colors duration-300 hover-lift">
           <div className="font-mono text-xs md:text-sm space-y-4">
             <p className="text-muted-foreground leading-relaxed">{data.contactmessage}</p>
@@ -70,6 +72,7 @@ export default function Contact({ data }: ContactProps) {
             </div>
           </div>
         </div>
+        </Tilt3D>
         </Reveal>
       </div>
     </section>

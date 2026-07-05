@@ -1,4 +1,5 @@
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 
 const designTeams = [
   {
@@ -23,8 +24,9 @@ export default function DesignTeam() {
 
         <Stagger className="grid grid-cols-1 gap-4">
           {designTeams.map((team, index) => (
+            <Tilt3D key={index}>
             <StaggerItem
-              key={index}
+              variant="tilt-up"
               className="border-2 border-border bg-card hover:border-accent transition-all duration-300 group hover-lift"
             >
               <div className="font-mono p-6 md:p-8">
@@ -45,6 +47,7 @@ export default function DesignTeam() {
                 </div>
               </div>
             </StaggerItem>
+            </Tilt3D>
           ))}
         </Stagger>
       </div>

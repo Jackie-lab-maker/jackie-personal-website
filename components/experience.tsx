@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 
 interface ExperienceProps {
   data: {
@@ -70,8 +71,9 @@ export default function Experience({ data }: ExperienceProps) {
             const detailPage = getExperiencePage(job.company, job.title)
 
             return (
+              <Tilt3D key={index}>
               <StaggerItem
-                key={index}
+                variant="tilt-up"
                 className="border border-border bg-card hover:border-accent transition-colors duration-300 hover-lift"
               >
                 <div className="font-mono text-xs md:text-sm p-4 md:p-6">
@@ -119,6 +121,7 @@ export default function Experience({ data }: ExperienceProps) {
                   )}
                 </div>
               </StaggerItem>
+              </Tilt3D>
             )
           })}
         </Stagger>

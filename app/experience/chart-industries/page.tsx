@@ -3,7 +3,9 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion, useReducedMotion } from "framer-motion"
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 
 const GALLERY_ITEMS = [
   {
@@ -52,6 +54,7 @@ const GALLERY_ITEMS = [
 
 export default function ChartIndustriesPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const reducedMotion = useReducedMotion()
 
   return (
     <main className="min-h-screen bg-background">
@@ -114,7 +117,8 @@ export default function ChartIndustriesPage() {
           </Reveal>
 
           {/* Description Section */}
-          <Reveal delay={0.1}>
+          <Reveal variant="tilt-up" delay={0.1}>
+          <Tilt3D>
           <div className="border border-border bg-card p-6 mb-12 hover-lift">
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
@@ -123,6 +127,7 @@ export default function ChartIndustriesPage() {
               </p>
             </div>
           </div>
+          </Tilt3D>
           </Reveal>
 
           {/* Gallery Section */}
@@ -137,9 +142,9 @@ export default function ChartIndustriesPage() {
           {/* Masonry Grid */}
           <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {GALLERY_ITEMS.map((item) => (
+              <Tilt3D key={item.id} maxTilt={3}>
               <StaggerItem
-                key={item.id}
-                variant="scale"
+                variant="swing-in"
                 className="border border-border bg-card hover:border-accent transition-colors duration-300 overflow-hidden group hover-lift"
               >
                 {/* Image Container */}
@@ -169,6 +174,7 @@ export default function ChartIndustriesPage() {
                   </p>
                 </div>
               </StaggerItem>
+              </Tilt3D>
             ))}
           </Stagger>
 
@@ -183,9 +189,12 @@ export default function ChartIndustriesPage() {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div
+        <motion.div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
+          initial={reducedMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           <button
             className="absolute top-4 right-4 font-mono text-white hover:text-accent transition-colors text-sm"
@@ -194,7 +203,12 @@ export default function ChartIndustriesPage() {
           >
             [close]
           </button>
-          <div className="relative max-w-5xl max-h-[90vh] w-full h-full">
+          <motion.div
+            className="relative max-w-5xl max-h-[90vh] w-full h-full"
+            initial={reducedMotion ? false : { opacity: 0, scale: 0.96, rotateX: 5, transformPerspective: 1200 }}
+            animate={{ opacity: 1, scale: 1, rotateX: 0, transformPerspective: 1200 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
             <Image
               src={GALLERY_ITEMS.find((item) => item.id === selectedImage)?.src || ""}
               alt={GALLERY_ITEMS.find((item) => item.id === selectedImage)?.alt || ""}
@@ -202,8 +216,8 @@ export default function ChartIndustriesPage() {
               className="object-contain"
               sizes="100vw"
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </main>
   )

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Reveal } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 
 interface AboutProps {
   data: {
@@ -31,7 +32,8 @@ export default function About({ data }: AboutProps) {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal variant="tilt-up" delay={0.1}>
+        <Tilt3D>
         <div className="border-2 border-border p-6 md:p-8 bg-card hover:border-accent transition-colors duration-300 hover-lift">
           <div className="font-mono text-xs md:text-sm leading-relaxed space-y-4">
             <p className="text-foreground">
@@ -88,6 +90,7 @@ export default function About({ data }: AboutProps) {
             </div>
           </div>
         </div>
+        </Tilt3D>
         </Reveal>
       </div>
     </section>

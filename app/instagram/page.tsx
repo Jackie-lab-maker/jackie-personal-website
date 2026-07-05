@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
 import { Reveal } from "@/components/motion/reveal"
+import { Tilt3D } from "@/components/motion/tilt-3d"
 import Footer from "@/components/footer"
 
 export default function InstagramPage() {
@@ -12,8 +13,9 @@ export default function InstagramPage() {
   return (
     <motion.main
       className="min-h-screen bg-background"
-      initial={reducedMotion ? false : { opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
+      style={{ transformOrigin: "top center" }}
+      initial={reducedMotion ? false : { opacity: 0, y: 8, rotateX: 2, transformPerspective: 1400 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0, transformPerspective: 1400 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <section className="container mx-auto px-4 py-12">
@@ -33,7 +35,8 @@ export default function InstagramPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal variant="tilt-up" delay={0.1}>
+            <Tilt3D>
             <div className="border-2 border-border p-6 md:p-8 bg-card hover-lift flex flex-col items-center gap-6">
               <div className="relative w-64 h-64 md:w-80 md:h-80">
                 <Image
@@ -54,6 +57,7 @@ export default function InstagramPage() {
                 [@jackieeeshao66]
               </a>
             </div>
+            </Tilt3D>
           </Reveal>
         </div>
       </section>

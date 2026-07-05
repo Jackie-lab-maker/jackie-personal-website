@@ -6,7 +6,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion"
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const VIEWPORT = { once: true, margin: "-60px" } as const
 
-type RevealVariant = "fade-up" | "fade" | "scale" | "blur-up"
+type RevealVariant = "fade-up" | "fade" | "scale" | "blur-up" | "tilt-up" | "swing-in"
 
 const variantDefs: Record<RevealVariant, { hidden: object; visible: object }> = {
   "fade-up": {
@@ -24,6 +24,14 @@ const variantDefs: Record<RevealVariant, { hidden: object; visible: object }> = 
   "blur-up": {
     hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
     visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+  },
+  "tilt-up": {
+    hidden: { opacity: 0, y: 24, rotateX: 8, transformPerspective: 900 },
+    visible: { opacity: 1, y: 0, rotateX: 0, transformPerspective: 900 },
+  },
+  "swing-in": {
+    hidden: { opacity: 0, x: -16, rotateY: 12, transformPerspective: 900 },
+    visible: { opacity: 1, x: 0, rotateY: 0, transformPerspective: 900 },
   },
 }
 
@@ -95,6 +103,26 @@ const staggerItemVariants: Record<RevealVariant, Variants> = {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
+      transition: { duration: 0.6, ease: EASE },
+    },
+  },
+  "tilt-up": {
+    hidden: { opacity: 0, y: 24, rotateX: 8, transformPerspective: 900 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transformPerspective: 900,
+      transition: { duration: 0.6, ease: EASE },
+    },
+  },
+  "swing-in": {
+    hidden: { opacity: 0, x: -16, rotateY: 12, transformPerspective: 900 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      rotateY: 0,
+      transformPerspective: 900,
       transition: { duration: 0.6, ease: EASE },
     },
   },

@@ -109,8 +109,10 @@ export function Navigation() {
       {/* Dropdown Menu */}
       <div
         id="nav-menu"
-        className={`fixed left-0 right-0 top-[49px] bg-background/98 backdrop-blur-sm border-b border-border transition-all duration-500 ease-out ${
-          isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4"
+        className={`fixed left-0 right-0 top-[49px] origin-top bg-background/98 backdrop-blur-sm border-b border-border transition-all duration-500 ease-out ${
+          isMenuOpen
+            ? "opacity-100 visible [transform:perspective(1100px)_translateY(0)_rotateX(0deg)]"
+            : "opacity-0 invisible [transform:perspective(1100px)_translateY(-1rem)_rotateX(-7deg)]"
         }`}
         aria-hidden={!isMenuOpen}
       >
