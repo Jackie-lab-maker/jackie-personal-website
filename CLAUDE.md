@@ -30,13 +30,12 @@ Notes on build config (`next.config.mjs`):
 
 The homepage (`app/page.tsx`) is a client component that fetches `public/resumeData.json` at runtime (not at build time) and passes it into `<Hero data={data.main} />`. The JSON has four top-level sections: `main` (bio/contact/social), `resume` (education, work, skills), `portfolio` (projects), `testimonials`. `hooks/use-resume-data.ts` provides a reusable `useResumeData()` hook for the same fetch — components should prefer this hook over duplicating the fetch logic.
 
-By contrast, the `/experience/*`, `/about`, `/education`, `/design-team`, `/contact`, and `/watflight` routes are hand-written static pages (not driven by `resumeData.json`), each with hardcoded content and image galleries.
+By contrast, the `/experience/*`, `/about`, `/education`, `/design-team`, and `/contact` routes are hand-written static pages (not driven by `resumeData.json`), each with hardcoded content and image galleries.
 
 ### Experience section structure
 
-Each employer has its own route with two pages:
+Each employer has its own route with a single page:
 - `app/experience/<company>/page.tsx` — role overview + photo gallery (with lightbox)
-- `app/experience/<company>/projects/page.tsx` — detailed project write-ups
 
 Current companies: `chart-industries`, `opmobility-automation`, `opmobility-manufacturing`, `wisa`. `app/experience/page.tsx` is the index/listing page linking out to each. `app/experience/layout.tsx` is a pass-through layout — the reason it exists is that `Navigation` (in `components/navigation.tsx`) explicitly hides the global nav bar for any path starting with `/experience/` (these detail pages have their own "Back to Portfolio" header instead).
 

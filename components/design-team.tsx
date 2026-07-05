@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 
 const designTeams = [
@@ -43,14 +42,6 @@ export default function DesignTeam() {
                   >
                     [visit team →]
                   </a>
-                  {team.name === "WATFlight" && (
-                    <Link
-                      href="/watflight"
-                      className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
-                    >
-                      [view projects →]
-                    </Link>
-                  )}
                 </div>
               </div>
             </StaggerItem>

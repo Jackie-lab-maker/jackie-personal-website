@@ -60,8 +60,8 @@ export function Navigation() {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
-  // Hide navigation on experience detail pages, the WATFlight projects page, and the Instagram QR page
-  if (pathname?.startsWith("/experience/") || pathname === "/watflight" || pathname === "/instagram") {
+  // Hide navigation on experience detail pages and the Instagram QR page
+  if (pathname?.startsWith("/experience/") || pathname === "/instagram") {
     return null
   }
 
