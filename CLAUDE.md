@@ -41,6 +41,10 @@ Current companies: `chart-industries`, `opmobility-automation`, `opmobility-manu
 
 When adding a new employer, follow the existing pattern: gallery items as a local `GALLERY_ITEMS` array of `{ id, src, alt, description }`, images under `public/images/<company>/`, and the same lightbox/back-link/ASCII-box header conventions as `app/experience/chart-industries/page.tsx`.
 
+### 3D graphics
+
+`components/graphics/wireframe-3d.tsx` exports `Wireframe3D` — a dependency-free canvas renderer for slowly rotating retro-CAD wireframe meshes (`gear`, `aircraft`, `globe`, `atom`, `icosahedron`), used as section-header accents on the about/experience/education/design-team/contact pages. It inherits the theme accent via CSS `currentColor` (works with the dark/light toggle), pauses off-screen via IntersectionObserver, and renders a single static frame under reduced motion.
+
 ### Motion conventions
 
 `components/motion/reveal.tsx` exports `Reveal`, `Stagger`, and `StaggerItem` — scroll-triggered animation wrappers built on Framer Motion, each respecting `useReducedMotion()` (falls back to a plain `div` with no animation). Use these instead of hand-rolling `motion.div` scroll animations so reduced-motion behavior stays consistent. Standard easing curve is `[0.22, 1, 0.36, 1]`.

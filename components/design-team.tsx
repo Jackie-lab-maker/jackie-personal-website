@@ -1,5 +1,6 @@
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 import { Tilt3D } from "@/components/motion/tilt-3d"
+import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 
 const designTeams = [
   {
@@ -14,6 +15,12 @@ export default function DesignTeam() {
   return (
     <section className="container mx-auto px-4 py-12" id="design-team">
       <div className="max-w-4xl mx-auto">
+        <Reveal variant="fade">
+          <div className="flex justify-center mb-4">
+            <Wireframe3D shape="aircraft" size={150} label="> wireframe: aircraft.stl" />
+          </div>
+        </Reveal>
+
         <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>

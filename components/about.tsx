@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Reveal } from "@/components/motion/reveal"
 import { Tilt3D } from "@/components/motion/tilt-3d"
+import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 
 interface AboutProps {
   data: {
@@ -24,6 +25,12 @@ export default function About({ data }: AboutProps) {
   return (
     <section className="container mx-auto px-4 py-12" id="about">
       <div className="max-w-4xl mx-auto">
+        <Reveal variant="fade">
+          <div className="flex justify-center mb-4">
+            <Wireframe3D shape="icosahedron" label="> wireframe: icosahedron.obj" />
+          </div>
+        </Reveal>
+
         <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
