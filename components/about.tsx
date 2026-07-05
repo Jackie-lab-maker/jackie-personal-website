@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Reveal } from "@/components/motion/reveal"
 
 interface AboutProps {
@@ -78,13 +79,12 @@ export default function About({ data }: AboutProps) {
                   [{profile.name}]
                 </a>
               ))}
-              <a
-                href="/Jackie_Shao_Resume.pdf"
-                download="Jackie_Shao_Resume.pdf"
+              <Link
+                href="/instagram"
                 className="font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
               >
-                [resume]
-              </a>
+                [instagram]
+              </Link>
             </div>
           </div>
         </div>
