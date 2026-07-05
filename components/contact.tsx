@@ -1,9 +1,15 @@
+import Link from "next/link"
 import { Reveal } from "@/components/motion/reveal"
 
 interface ContactProps {
   data: {
     contactmessage: string
     email: string
+    social: Array<{
+      name: string
+      url: string
+      className: string
+    }>
     address: {
       city: string
       state: string
@@ -37,6 +43,26 @@ export default function Contact({ data }: ContactProps) {
                 {data.email}
               </a>
               <div className="text-accent mt-2">└───────────────────────┘</div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              {data.social?.filter((social) => social.name === "linkedin").map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-foreground hover:text-accent transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  [{social.name}]
+                </a>
+              ))}
+              <Link
+                href="/instagram"
+                className="font-mono text-xs text-foreground hover:text-accent transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
+              >
+                [instagram]
+              </Link>
             </div>
 
             <div className="text-muted-foreground text-xs">
