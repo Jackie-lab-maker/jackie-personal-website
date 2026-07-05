@@ -26,7 +26,6 @@ const LETTER_COLUMNS = [0, 8, 18, 27, 36, 39, 48, 52, 61, 70, 79, 88]
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Hero({ data }: HeroProps) {
-  const [isVisible, setIsVisible] = useState(true)
   const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
@@ -41,19 +40,6 @@ export default function Hero({ data }: HeroProps) {
   const cornersY = useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : 20])
 
   const totalLetters = LETTER_COLUMNS.length - 1
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsVisible(false)
-      } else {
-        setIsVisible(true)
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     if (isPaused) {
@@ -154,24 +140,6 @@ export default function Hero({ data }: HeroProps) {
             className="w-full h-full"
           />
         </motion.div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center gap-8 mt-8">
-        {/* Scroll indicator */}
-        <div
-          className={`mt-8 transition-all duration-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <div className="flex flex-col items-center gap-2 font-mono text-accent">
-            <span className="text-xs text-muted-foreground tracking-wider">[SCROLL]</span>
-            <div className="flex flex-col items-center animate-bounce">
-              <span className="text-sm">{"▼"}</span>
-              <span className="text-xs opacity-60">{"▼"}</span>
-              <span className="text-[10px] opacity-30">{"▼"}</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <motion.div style={{ y: cornersY }} className="absolute top-4 left-4 text-accent/30 font-mono text-xs md:text-sm">╔═══</motion.div>

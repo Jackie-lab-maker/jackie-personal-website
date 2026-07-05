@@ -3,14 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import Hero from "@/components/hero"
-import About from "@/components/about"
-import Experience from "@/components/experience"
-import DesignTeam from "@/components/design-team"
-import Education from "@/components/education"
-import Contact from "@/components/contact"
-import Footer from "@/components/footer"
 import { LoadingScreen } from "@/components/loading-screen"
-import { ScrollIndicator } from "@/components/scroll-indicator"
 
 interface ResumeData {
   main: any
@@ -62,14 +55,7 @@ export default function Page() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <ScrollIndicator />
       <Hero data={data.main} />
-      <About data={data.main} />
-      <Experience data={data.resume} />
-      <DesignTeam />
-      <Education data={data.resume} />
-      <Contact data={data.main} />
-      <Footer />
     </motion.main>
   )
 }

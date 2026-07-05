@@ -1,10 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 export function ScrollIndicator() {
   const [isVisible, setIsVisible] = useState(true)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,9 @@ export function ScrollIndicator() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Hide the scroll bar + back-to-top button on the Hero-only homepage
+  if (pathname === "/") return null
 
   return (
     <>

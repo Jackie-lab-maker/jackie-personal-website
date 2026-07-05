@@ -1,14 +1,17 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 
 const NAV_LINKS = [
-  { href: "#about", label: "about" },
-  { href: "#experience", label: "experience" },
-  { href: "#education", label: "education" },
-  { href: "#contact", label: "contact" },
+  { href: "/", label: "home" },
+  { href: "/about", label: "about" },
+  { href: "/experience", label: "experience" },
+  { href: "/design-team", label: "design team" },
+  { href: "/education", label: "education" },
+  { href: "/contact", label: "contact" },
 ]
 
 export function Navigation() {
@@ -53,21 +56,12 @@ export function Navigation() {
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [isMenuOpen])
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    const target = document.querySelector(href)
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" })
-      setIsMenuOpen(false)
-    }
-  }
-
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
-  // Hide navigation on experience detail pages
-  if (pathname?.startsWith("/experience/")) {
+  // Hide navigation on experience detail pages and the WATFlight projects page
+  if (pathname?.startsWith("/experience/") || pathname === "/watflight") {
     return null
   }
 
@@ -122,23 +116,27 @@ export function Navigation() {
       >
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`font-mono text-sm text-muted-foreground hover:text-accent hover:bg-accent/10 px-4 py-3 border-l-2 border-transparent hover:border-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring ${
-                  isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-                }`}
-                style={{
-                  transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
-                }}
-                tabIndex={isMenuOpen ? 0 : -1}
-              >
-                <span className="text-accent mr-2">{String(index + 1).padStart(2, "0")}.</span>
-                [{link.label}]
-              </a>
-            ))}
+            {NAV_LINKS.map((link, index) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`font-mono text-sm hover:text-accent hover:bg-accent/10 px-4 py-3 border-l-2 hover:border-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring ${
+                    isActive ? "text-accent border-accent" : "text-muted-foreground border-transparent"
+                  } ${isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"}`}
+                  style={{
+                    transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
+                  }}
+                  tabIndex={isMenuOpen ? 0 : -1}
+                >
+                  <span className="text-accent mr-2">{String(index + 1).padStart(2, "0")}.</span>
+                  [{link.label}]
+                </Link>
+              )
+            })}
           </div>
         </div>
       </div>

@@ -11,10 +11,10 @@ export default function WATFlightProjectsPage() {
       <div className="container mx-auto px-4 py-12 max-w-5xl">
         {/* Back button */}
         <Link
-          href="/"
+          href="/design-team"
           className="inline-flex items-center gap-2 border border-border bg-card px-3 py-1.5 text-xs text-foreground hover:bg-secondary hover:text-accent transition-all mb-10"
         >
-          &lt; Back to Portfolio
+          &lt; Back to Design Team
         </Link>
 
         {/* Header */}
