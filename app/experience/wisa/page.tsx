@@ -71,6 +71,25 @@ export default function WISAPage() {
           </div>
           </Reveal>
 
+          {/* Company Info Section */}
+          <Reveal variant="tilt-up" delay={0.05}>
+          <Tilt3D>
+          <div className="border border-border bg-card p-6 mb-6 hover-lift">
+            <div className="font-mono text-xs md:text-sm">
+              <div className="text-accent mb-2">{">"} COMPANY_INFO</div>
+              <p className="text-muted-foreground pl-4 leading-relaxed">
+                The Waterloo Institute for Sustainable Aeronautics (WISA) is the world&rsquo;s leading hub
+                for sustainable aviation and aerospace research, technology, and education. Based at the
+                University of Waterloo, WISA conducts interdisciplinary research spanning social equity
+                and workforce development, environmental impact reduction, and economic growth, fostering
+                cross-sector partnerships and experiential learning to develop innovative solutions for the
+                future of air transport.
+              </p>
+            </div>
+          </div>
+          </Tilt3D>
+          </Reveal>
+
           {/* Description Section */}
           <Reveal variant="tilt-up" delay={0.1}>
           <Tilt3D>

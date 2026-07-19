@@ -67,6 +67,24 @@ export default function MicronTechnologyPage() {
           </div>
           </Reveal>
 
+          {/* Company Info Section */}
+          <Reveal variant="tilt-up" delay={0.05}>
+          <Tilt3D>
+          <div className="border border-border bg-card p-6 mb-6 hover-lift">
+            <div className="font-mono text-xs md:text-sm">
+              <div className="text-accent mb-2">{">"} COMPANY_INFO</div>
+              <p className="text-muted-foreground pl-4 leading-relaxed">
+                Micron Technology is a global leader in memory and storage solutions, designing and
+                manufacturing DRAM, NAND flash, and solid-state drives that power everything from data
+                centers and AI systems to automotive, mobile, and industrial IoT devices. Positioning
+                itself as &ldquo;the critical layer powering AI,&rdquo; Micron is expanding U.S.
+                semiconductor manufacturing capacity with major new fabs in Idaho, New York, and Virginia.
+              </p>
+            </div>
+          </div>
+          </Tilt3D>
+          </Reveal>
+
           {/* Description Section */}
           <Reveal variant="tilt-up" delay={0.1}>
           <Tilt3D>

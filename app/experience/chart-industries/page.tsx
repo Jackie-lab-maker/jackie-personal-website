@@ -116,6 +116,26 @@ export default function ChartIndustriesPage() {
           </div>
           </Reveal>
 
+          {/* Company Info Section */}
+          <Reveal variant="tilt-up" delay={0.05}>
+          <Tilt3D>
+          <div className="border border-border bg-card p-6 mb-6 hover-lift">
+            <div className="font-mono text-xs md:text-sm">
+              <div className="text-accent mb-2">{">"} COMPANY_INFO</div>
+              <p className="text-muted-foreground pl-4 leading-relaxed">
+                Chart Industries, Inc. (NYSE: GTLS) is a global leader in the design, engineering, and
+                manufacturing of process technologies and equipment for gas and liquid molecule handling
+                — including cryogenic bulk storage tanks, transport trailers, and liquefaction systems for
+                hydrogen, LNG, and industrial gases. In 2025, Baker Hughes, a global industrial technology
+                company operating in 120+ countries under the tagline &ldquo;Rewriting The Energy
+                Equation™,&rdquo; agreed to acquire Chart in a $13.6 billion deal aimed at building fully
+                integrated energy solutions from extraction to storage.
+              </p>
+            </div>
+          </div>
+          </Tilt3D>
+          </Reveal>
+
           {/* Description Section */}
           <Reveal variant="tilt-up" delay={0.1}>
           <Tilt3D>

@@ -81,6 +81,24 @@ export default function OPmobilityManufacturingPage() {
           </div>
           </Reveal>
 
+          {/* Company Info Section */}
+          <Reveal variant="tilt-up" delay={0.05}>
+          <Tilt3D>
+          <div className="border border-border bg-card p-6 mb-6 hover-lift">
+            <div className="font-mono text-xs md:text-sm">
+              <div className="text-accent mb-2">{">"} COMPANY_INFO</div>
+              <p className="text-muted-foreground pl-4 leading-relaxed">
+                OPmobility is a world leader in sustainable mobility and a technology partner to mobility
+                players worldwide, formed from Plastic Omnium in 2024 under the tagline &ldquo;Always on
+                the Move.&rdquo; The group designs intelligent exterior systems, complex modules, lighting,
+                and energy storage solutions, with deep expertise in high-pressure Type IV hydrogen vessels
+                built from a polymer liner encased in a carbon-fiber shell.
+              </p>
+            </div>
+          </div>
+          </Tilt3D>
+          </Reveal>
+
           {/* Description Section */}
           <Reveal variant="tilt-up" delay={0.1}>
           <Tilt3D>
