@@ -85,13 +85,13 @@ export default function Experience({ data }: ExperienceProps) {
                 className="border border-border bg-card hover:border-accent transition-colors duration-300 hover-lift"
               >
                 <div className="font-mono text-xs md:text-sm p-4 md:p-6">
-                  <div className="flex items-start justify-between gap-4 flex-wrap">
-                    <div className="flex-1">
-                      <div className="text-accent mb-1">╔═══ {job.company}</div>
-                      <div className="text-foreground font-semibold pl-4">║ {job.title}</div>
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="text-accent mb-1 break-words">╔═══ {job.company}</div>
+                      <div className="text-foreground font-semibold pl-4 break-words">║ {job.title}</div>
                       <div className="text-muted-foreground pl-4 mt-1">╚═══ {job.years}</div>
                     </div>
-                    <div className="flex flex-col items-stretch gap-2">
+                    <div className="flex flex-col items-stretch gap-2 md:w-auto">
                       {detailPage ? (
                         <Link
                           href={detailPage}
