@@ -143,7 +143,11 @@ export default function ChartIndustriesPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                Description coming soon...
+                As a Mechanical Engineering Intern, I designed SolidWorks 3D models and AutoCAD 2D
+                drawings for bulk cryogenic storage tanks, translating engineering requirements into
+                fabrication-ready documentation. I also conducted pipeline stress analysis and conjugate
+                heat transfer analysis to validate structural and thermal performance across storage and
+                distribution systems.
               </p>
             </div>
           </div>

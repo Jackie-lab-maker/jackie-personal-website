@@ -100,7 +100,10 @@ export default function OPmobilityAutomationPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                Description coming soon...
+                As a System Design & Automation Engineering Intern, I designed CATIA 3D models for
+                thermoplastic liners used in Type IV hydrogen mobility vessels, and developed a Digital
+                Twin Robotic Arm in KUKA.Sim to run a Gage R&amp;R study on fibre winding angle, improving
+                rotary encoder measurement accuracy by 10%.
               </p>
             </div>
           </div>

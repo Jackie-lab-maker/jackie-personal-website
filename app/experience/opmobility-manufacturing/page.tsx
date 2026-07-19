@@ -106,7 +106,10 @@ export default function OPmobilityManufacturingPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                Description coming soon...
+                As a Manufacturing Engineering Intern, I worked on automating the filament winding process
+                for Type IV hydrogen mobility vessels, programming robotic winding paths using RAPID and
+                KUKA Robot Language (KRL) to improve repeatability and reduce manual setup time on the
+                production line.
               </p>
             </div>
           </div>
