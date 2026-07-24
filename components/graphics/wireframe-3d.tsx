@@ -11,7 +11,7 @@ interface Mesh {
   edges: Edge[]
 }
 
-export type WireframeShape = "robotArm" | "aircraft" | "globe" | "school" | "icosahedron" | "drone"
+export type WireframeShape = "chip" | "aircraft" | "globe" | "school" | "icosahedron" | "drone"
 
 interface Wireframe3DProps {
   shape: WireframeShape
@@ -43,85 +43,61 @@ const icosahedron = (): Mesh => {
   return { vertices, edges }
 }
 
-const robotArm = (): Mesh => {
+const chip = (): Mesh => {
+  const hw = 0.6, hd = 0.6, ht = 0.1
   const vertices: Vec3[] = []
   const edges: Edge[] = []
 
-  const addCollar = (center: Vec3, r: number, seg = 10) => {
-    const start = vertices.length
-    for (let i = 0; i < seg; i++) {
-      const a = (i / seg) * Math.PI * 2
-      vertices.push([center[0] + r * Math.cos(a), center[1] + r * Math.sin(a), center[2]])
-    }
-    for (let i = 0; i < seg; i++) edges.push([start + i, start + ((i + 1) % seg)])
-  }
-
-  // rotating base plate
-  const baseY = -0.95, baseR = 0.4, baseSeg = 8
-  const baseRingStart = vertices.length
-  for (let i = 0; i < baseSeg; i++) {
-    const a = (i / baseSeg) * Math.PI * 2
-    vertices.push([baseR * Math.cos(a), baseY, baseR * Math.sin(a)])
-  }
-  for (let i = 0; i < baseSeg; i++) edges.push([baseRingStart + i, baseRingStart + ((i + 1) % baseSeg)])
-
-  const baseCenter = vertices.length
-  vertices.push([0, baseY, 0])
-
-  // articulated arm: base -> shoulder -> elbow -> wrist -> gripper, bending up and outward.
-  // Each joint sweeps a different angle around the base axis (not just distance) so the
-  // silhouette never collapses to a flat line at any yaw angle as the shape spins.
-  const shoulder: Vec3 = [0, -0.55, 0]
-  const elbow: Vec3 = [0.46 * Math.cos(0.33), 0.05, 0.46 * Math.sin(0.33)]
-  const wrist: Vec3 = [0.72 * Math.cos(0.62), 0.48, 0.72 * Math.sin(0.62)]
-  const gripperBase: Vec3 = [0.85 * Math.cos(0.72), 0.66, 0.85 * Math.sin(0.72)]
-
-  const shoulderIdx = vertices.length
-  vertices.push(shoulder)
-  edges.push([baseCenter, shoulderIdx])
-  addCollar(shoulder, 0.14)
-
-  const elbowIdx = vertices.length
-  vertices.push(elbow)
-  edges.push([shoulderIdx, elbowIdx])
-  addCollar(elbow, 0.12)
-
-  const wristIdx = vertices.length
-  vertices.push(wrist)
-  edges.push([elbowIdx, wristIdx])
-  addCollar(wrist, 0.1)
-
-  const gripperBaseIdx = vertices.length
-  vertices.push(gripperBase)
-  edges.push([wristIdx, gripperBaseIdx])
-
-  // tool-mount block at the wrist
-  const [gx, gy, gz] = gripperBase
-  const bs = 0.07
-  const toolBase = vertices.length
-  const toolCorners: [number, number][] = [[bs, bs], [bs, -bs], [-bs, -bs], [-bs, bs]]
-  for (const y of [gy + bs, gy - bs]) {
-    for (const [dx, dz] of toolCorners) vertices.push([gx + dx, y, gz + dz])
+  // chip body (thin box)
+  const bodyCorners: [number, number][] = [[hw, hd], [hw, -hd], [-hw, -hd], [-hw, hd]]
+  for (const y of [ht, -ht]) {
+    for (const [x, z] of bodyCorners) vertices.push([x, y, z])
   }
   for (let i = 0; i < 4; i++) {
-    edges.push([toolBase + i, toolBase + ((i + 1) % 4)])
-    edges.push([toolBase + 4 + i, toolBase + 4 + ((i + 1) % 4)])
-    edges.push([toolBase + i, toolBase + 4 + i])
+    edges.push([i, (i + 1) % 4])
+    edges.push([4 + i, 4 + ((i + 1) % 4)])
+    edges.push([i, 4 + i])
   }
 
-  // open two-finger gripper, with a small pad tick at each fingertip
-  const tips: Vec3[] = [
-    [gx + 0.32 * Math.cos(0.55), gy + 0.22, gz + 0.32 * Math.sin(0.55)],
-    [gx + 0.32 * Math.cos(1.0), gy + 0.22, gz + 0.32 * Math.sin(1.0)],
+  // gull-wing pins on all 4 sides
+  const pinsPerSide = 4
+  const pinOut = 0.18
+  const pinDrop = 0.15
+  const spread = 0.42
+  type Side = { axis: "x" | "z"; sign: 1 | -1 }
+  const sides: Side[] = [
+    { axis: "x", sign: 1 },
+    { axis: "x", sign: -1 },
+    { axis: "z", sign: 1 },
+    { axis: "z", sign: -1 },
   ]
-  for (const tip of tips) {
-    const tipIdx = vertices.length
-    vertices.push(tip)
-    edges.push([gripperBaseIdx, tipIdx])
-    const padStart = vertices.length
-    vertices.push([tip[0] - 0.05, tip[1] - 0.05, tip[2]], [tip[0] + 0.05, tip[1] - 0.05, tip[2]])
-    edges.push([padStart, padStart + 1])
+  for (const { axis, sign } of sides) {
+    for (let i = 0; i < pinsPerSide; i++) {
+      const t = (i / (pinsPerSide - 1) - 0.5) * spread
+      const attach = vertices.length
+      const tip = attach + 1
+      const bend = attach + 2
+      if (axis === "x") {
+        vertices.push([sign * hw, 0, t], [sign * (hw + pinOut), 0, t], [sign * (hw + pinOut), -pinDrop, t])
+      } else {
+        vertices.push([t, 0, sign * hd], [t, 0, sign * (hd + pinOut)], [t, -pinDrop, sign * (hd + pinOut)])
+      }
+      edges.push([attach, tip], [tip, bend])
+    }
   }
+
+  // pin-1 index mark (small X) near one corner of the top face
+  const nx = -hw + 0.15, nz = hd - 0.15, ns = 0.06
+  const markBase = vertices.length
+  vertices.push([nx - ns, ht, nz - ns], [nx + ns, ht, nz + ns], [nx - ns, ht, nz + ns], [nx + ns, ht, nz - ns])
+  edges.push([markBase, markBase + 1], [markBase + 2, markBase + 3])
+
+  // die outline inset on the top face
+  const dw = 0.3
+  const dieBase = vertices.length
+  const dieCorners: [number, number][] = [[dw, dw], [dw, -dw], [-dw, -dw], [-dw, dw]]
+  for (const [x, z] of dieCorners) vertices.push([x, ht, z])
+  for (let i = 0; i < 4; i++) edges.push([dieBase + i, dieBase + ((i + 1) % 4)])
 
   return { vertices, edges }
 }
@@ -296,7 +272,7 @@ const drone = (): Mesh => {
 
 const SHAPES: Record<WireframeShape, { build: () => Mesh; rotate: (t: number) => Vec3 }> = {
   icosahedron: { build: icosahedron, rotate: (t) => [0.35 + Math.sin(t * 0.4) * 0.15, t * 0.5, 0] },
-  robotArm: { build: robotArm, rotate: (t) => [0.28 + Math.sin(t * 0.5) * 0.06, t * 0.35, 0] },
+  chip: { build: chip, rotate: (t) => [0.5, t * 0.4, 0] },
   aircraft: { build: aircraft, rotate: (t) => [0.3 + Math.sin(t * 0.5) * 0.08, t * 0.4, 0] },
   globe: { build: globe, rotate: (t) => [0.35, t * 0.35, 0] },
   school: { build: school, rotate: (t) => [0.32, t * 0.4, 0] },

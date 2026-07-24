@@ -43,7 +43,7 @@ When adding a new employer, follow the existing pattern: gallery items as a loca
 
 ### 3D graphics
 
-`components/graphics/wireframe-3d.tsx` exports `Wireframe3D` — a dependency-free canvas renderer for slowly rotating retro-CAD wireframe meshes (`robotArm`, `aircraft`, `globe`, `school`, `icosahedron`, `drone`), used as section-header accents on the about/projects/experience/education/design-team/contact pages. It inherits the theme accent via CSS `currentColor` (works with the dark/light toggle), pauses off-screen via IntersectionObserver, and renders a single static frame under reduced motion. Each page uses a distinct shape — pick a new one (or extend `wireframe-3d.tsx` with another primitive) rather than reusing a shape from another page.
+`components/graphics/wireframe-3d.tsx` exports `Wireframe3D` — a dependency-free canvas renderer for slowly rotating retro-CAD wireframe meshes (`chip`, `aircraft`, `globe`, `school`, `icosahedron`, `drone`), used as section-header accents on the about/projects/experience/education/design-team/contact pages. It inherits the theme accent via CSS `currentColor` (works with the dark/light toggle), pauses off-screen via IntersectionObserver, and renders a single static frame under reduced motion. Each page uses a distinct shape — pick a new one (or extend `wireframe-3d.tsx` with another primitive) rather than reusing a shape from another page.
 
 ### Motion conventions
 
