@@ -3,13 +3,9 @@
 import { motion, useReducedMotion } from "framer-motion"
 import Projects from "@/components/projects"
 import Footer from "@/components/footer"
-import { useResumeData } from "@/hooks/use-resume-data"
 
 export default function ProjectsPage() {
-  const data = useResumeData()
   const reducedMotion = useReducedMotion()
-
-  if (!data) return null
 
   return (
     <motion.main
@@ -19,7 +15,7 @@ export default function ProjectsPage() {
       animate={{ opacity: 1, y: 0, rotateX: 0, transformPerspective: 1400 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Projects data={data.portfolio} />
+      <Projects />
       <Footer />
     </motion.main>
   )
