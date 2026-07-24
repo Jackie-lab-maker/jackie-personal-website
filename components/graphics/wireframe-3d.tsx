@@ -11,7 +11,7 @@ interface Mesh {
   edges: Edge[]
 }
 
-export type WireframeShape = "gear" | "aircraft" | "globe" | "atom" | "icosahedron"
+export type WireframeShape = "gear" | "aircraft" | "globe" | "atom" | "icosahedron" | "drone"
 
 interface Wireframe3DProps {
   shape: WireframeShape
@@ -178,12 +178,66 @@ const atom = (): Mesh => {
   return { vertices, edges }
 }
 
+const drone = (): Mesh => {
+  const vertices: Vec3[] = []
+  const edges: Edge[] = []
+
+  // central hub
+  const hx = 0.16, hy = 0.16, hz = 0.09
+  const hubBase = vertices.length
+  const hubCorners: [number, number][] = [[hx, hy], [-hx, hy], [-hx, -hy], [hx, -hy]]
+  for (const z of [hz, -hz]) {
+    for (const [x, y] of hubCorners) vertices.push([x, y, z])
+  }
+  for (let i = 0; i < 4; i++) {
+    edges.push([hubBase + i, hubBase + ((i + 1) % 4)])
+    edges.push([hubBase + 4 + i, hubBase + 4 + ((i + 1) % 4)])
+    edges.push([hubBase + i, hubBase + 4 + i])
+  }
+
+  // 4 arms in X configuration, each ending in an enclosed propeller ring + landing leg
+  const armLen = 1.05
+  const propR = 0.4
+  const propSeg = 12
+  const legDrop = 0.35
+
+  for (let k = 0; k < 4; k++) {
+    const a = Math.PI / 4 + k * (Math.PI / 2)
+    const ex = Math.cos(a) * armLen
+    const ey = Math.sin(a) * armLen
+
+    const armTop = vertices.length
+    vertices.push([ex, ey, hz * 0.6])
+    const armBot = vertices.length
+    vertices.push([ex, ey, -hz * 0.6])
+    edges.push([hubBase + k, armTop])
+    edges.push([hubBase + 4 + k, armBot])
+    edges.push([armTop, armBot])
+
+    const ringBase = vertices.length
+    for (let i = 0; i < propSeg; i++) {
+      const t = (i / propSeg) * Math.PI * 2
+      vertices.push([ex + propR * Math.cos(t), ey + propR * Math.sin(t), 0])
+    }
+    for (let i = 0; i < propSeg; i++) edges.push([ringBase + i, ringBase + ((i + 1) % propSeg)])
+    edges.push([armTop, ringBase])
+    edges.push([armBot, ringBase + Math.floor(propSeg / 2)])
+
+    const legBot = vertices.length
+    vertices.push([ex, ey, -hz * 0.6 - legDrop])
+    edges.push([armBot, legBot])
+  }
+
+  return { vertices, edges }
+}
+
 const SHAPES: Record<WireframeShape, { build: () => Mesh; rotate: (t: number) => Vec3 }> = {
   icosahedron: { build: icosahedron, rotate: (t) => [0.35 + Math.sin(t * 0.4) * 0.15, t * 0.5, 0] },
   gear: { build: gear, rotate: (t) => [1.0, 0.3, t * 0.6] },
   aircraft: { build: aircraft, rotate: (t) => [0.3 + Math.sin(t * 0.5) * 0.08, t * 0.4, 0] },
   globe: { build: globe, rotate: (t) => [0.35, t * 0.35, 0] },
   atom: { build: atom, rotate: (t) => [0.3 + Math.sin(t * 0.4) * 0.12, t * 0.55, 0] },
+  drone: { build: drone, rotate: (t) => [0.85, t * 0.45, 0.1] },
 }
 
 export function Wireframe3D({ shape, size = 130, label, className }: Wireframe3DProps) {

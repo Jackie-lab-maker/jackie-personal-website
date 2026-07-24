@@ -30,7 +30,7 @@ Notes on build config (`next.config.mjs`):
 
 The homepage (`app/page.tsx`) is a client component that fetches `public/resumeData.json` at runtime (not at build time) and passes it into `<Hero data={data.main} />`. The JSON has four top-level sections: `main` (bio/contact/social), `resume` (education, work, skills), `portfolio` (projects), `testimonials`. `hooks/use-resume-data.ts` provides a reusable `useResumeData()` hook for the same fetch — components should prefer this hook over duplicating the fetch logic.
 
-By contrast, the `/experience/*`, `/about`, `/education`, `/design-team`, and `/contact` routes are hand-written static pages (not driven by `resumeData.json`), each with hardcoded content and image galleries.
+By contrast, `/about`, `/projects`, `/education`, `/contact`, and the `/experience` index page are each hand-written pages that independently call `useResumeData()` to render their content (rather than receiving it as props from the homepage). `/design-team` and the `/experience/<company>` detail pages are fully hand-written with hardcoded content and image galleries, not driven by `resumeData.json` at all.
 
 ### Experience section structure
 
@@ -43,7 +43,7 @@ When adding a new employer, follow the existing pattern: gallery items as a loca
 
 ### 3D graphics
 
-`components/graphics/wireframe-3d.tsx` exports `Wireframe3D` — a dependency-free canvas renderer for slowly rotating retro-CAD wireframe meshes (`gear`, `aircraft`, `globe`, `atom`, `icosahedron`), used as section-header accents on the about/experience/education/design-team/contact pages. It inherits the theme accent via CSS `currentColor` (works with the dark/light toggle), pauses off-screen via IntersectionObserver, and renders a single static frame under reduced motion.
+`components/graphics/wireframe-3d.tsx` exports `Wireframe3D` — a dependency-free canvas renderer for slowly rotating retro-CAD wireframe meshes (`gear`, `aircraft`, `globe`, `atom`, `icosahedron`, `drone`), used as section-header accents on the about/projects/experience/education/design-team/contact pages. It inherits the theme accent via CSS `currentColor` (works with the dark/light toggle), pauses off-screen via IntersectionObserver, and renders a single static frame under reduced motion. Each page uses a distinct shape — pick a new one (or extend `wireframe-3d.tsx` with another primitive) rather than reusing a shape from another page.
 
 ### Motion conventions
 
