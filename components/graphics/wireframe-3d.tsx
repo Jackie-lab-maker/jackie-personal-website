@@ -11,7 +11,7 @@ interface Mesh {
   edges: Edge[]
 }
 
-export type WireframeShape = "gear" | "aircraft" | "globe" | "atom" | "icosahedron" | "drone"
+export type WireframeShape = "chip" | "aircraft" | "globe" | "school" | "icosahedron" | "drone"
 
 interface Wireframe3DProps {
   shape: WireframeShape
@@ -43,43 +43,122 @@ const icosahedron = (): Mesh => {
   return { vertices, edges }
 }
 
-const gear = (): Mesh => {
-  const teeth = 8
-  const rOut = 1.28
-  const rIn = 0.96
-  const rHole = 0.42
-  const h = 0.2
-  const step = (Math.PI * 2) / teeth
-  const profile: [number, number][] = []
-  for (let i = 0; i < teeth; i++) {
-    const a = i * step
-    profile.push([rIn, a], [rIn, a + step * 0.18], [rOut, a + step * 0.3], [rOut, a + step * 0.6], [rIn, a + step * 0.72])
-  }
+const chip = (): Mesh => {
+  const hw = 0.6, hd = 0.6, ht = 0.1
   const vertices: Vec3[] = []
   const edges: Edge[] = []
-  const n = profile.length
-  for (const z of [h, -h]) {
-    for (const [r, a] of profile) vertices.push([r * Math.cos(a), r * Math.sin(a), z])
+
+  // chip body (thin box)
+  const bodyCorners: [number, number][] = [[hw, hd], [hw, -hd], [-hw, -hd], [-hw, hd]]
+  for (const y of [ht, -ht]) {
+    for (const [x, z] of bodyCorners) vertices.push([x, y, z])
   }
-  for (let i = 0; i < n; i++) {
-    edges.push([i, (i + 1) % n])
-    edges.push([n + i, n + ((i + 1) % n)])
-    // vertical edges only on tooth flanks so the wireframe stays readable
-    if (i % 5 === 2 || i % 5 === 3) edges.push([i, n + i])
+  for (let i = 0; i < 4; i++) {
+    edges.push([i, (i + 1) % 4])
+    edges.push([4 + i, 4 + ((i + 1) % 4)])
+    edges.push([i, 4 + i])
   }
-  const hn = 12
-  const base = vertices.length
-  for (const z of [h, -h]) {
-    for (let i = 0; i < hn; i++) {
-      const a = (i / hn) * Math.PI * 2
-      vertices.push([rHole * Math.cos(a), rHole * Math.sin(a), z])
+
+  // gull-wing pins on all 4 sides
+  const pinsPerSide = 4
+  const pinOut = 0.18
+  const pinDrop = 0.15
+  const spread = 0.42
+  type Side = { axis: "x" | "z"; sign: 1 | -1 }
+  const sides: Side[] = [
+    { axis: "x", sign: 1 },
+    { axis: "x", sign: -1 },
+    { axis: "z", sign: 1 },
+    { axis: "z", sign: -1 },
+  ]
+  for (const { axis, sign } of sides) {
+    for (let i = 0; i < pinsPerSide; i++) {
+      const t = (i / (pinsPerSide - 1) - 0.5) * spread
+      const attach = vertices.length
+      const tip = attach + 1
+      const bend = attach + 2
+      if (axis === "x") {
+        vertices.push([sign * hw, 0, t], [sign * (hw + pinOut), 0, t], [sign * (hw + pinOut), -pinDrop, t])
+      } else {
+        vertices.push([t, 0, sign * hd], [t, 0, sign * (hd + pinOut)], [t, -pinDrop, sign * (hd + pinOut)])
+      }
+      edges.push([attach, tip], [tip, bend])
     }
   }
-  for (let i = 0; i < hn; i++) {
-    edges.push([base + i, base + ((i + 1) % hn)])
-    edges.push([base + hn + i, base + hn + ((i + 1) % hn)])
-    if (i % 3 === 0) edges.push([base + i, base + hn + i])
+
+  // pin-1 index mark (small X) near one corner of the top face
+  const nx = -hw + 0.15, nz = hd - 0.15, ns = 0.06
+  const markBase = vertices.length
+  vertices.push([nx - ns, ht, nz - ns], [nx + ns, ht, nz + ns], [nx - ns, ht, nz + ns], [nx + ns, ht, nz - ns])
+  edges.push([markBase, markBase + 1], [markBase + 2, markBase + 3])
+
+  // die outline inset on the top face
+  const dw = 0.3
+  const dieBase = vertices.length
+  const dieCorners: [number, number][] = [[dw, dw], [dw, -dw], [-dw, -dw], [-dw, dw]]
+  for (const [x, z] of dieCorners) vertices.push([x, ht, z])
+  for (let i = 0; i < 4; i++) edges.push([dieBase + i, dieBase + ((i + 1) % 4)])
+
+  return { vertices, edges }
+}
+
+const school = (): Mesh => {
+  const hw = 0.75, hd = 0.55
+  const yBase = -0.75, yWall = 0.15, yRidge = 0.65
+  const vertices: Vec3[] = []
+  const edges: Edge[] = []
+
+  // walls: base rectangle (0-3) + wall-top rectangle (4-7)
+  const corners: [number, number][] = [[hw, hd], [hw, -hd], [-hw, -hd], [-hw, hd]]
+  for (const y of [yBase, yWall]) {
+    for (const [x, z] of corners) vertices.push([x, y, z])
   }
+  for (let i = 0; i < 4; i++) {
+    edges.push([i, (i + 1) % 4])
+    edges.push([4 + i, 4 + ((i + 1) % 4)])
+    edges.push([i, 4 + i])
+  }
+
+  // gable roof ridge (8 front, 9 back) + sloped roof panels
+  const ridgeFront = vertices.length
+  const ridgeBack = ridgeFront + 1
+  vertices.push([0, yRidge, hd], [0, yRidge, -hd])
+  edges.push([ridgeFront, ridgeBack])
+  edges.push([4, ridgeFront], [7, ridgeFront], [5, ridgeBack], [6, ridgeBack])
+
+  // front door
+  const doorBase = vertices.length
+  const doorTop = -0.15
+  vertices.push([0.11, yBase, hd], [0.11, doorTop, hd], [-0.11, doorTop, hd], [-0.11, yBase, hd])
+  for (let i = 0; i < 4; i++) edges.push([doorBase + i, doorBase + ((i + 1) % 4)])
+
+  // front windows (right + left)
+  for (const side of [1, -1]) {
+    const wBase = vertices.length
+    const x0 = side * 0.30, x1 = side * 0.54
+    vertices.push([x0, -0.10, hd], [x0, -0.35, hd], [x1, -0.35, hd], [x1, -0.10, hd])
+    for (let i = 0; i < 4; i++) edges.push([wBase + i, wBase + ((i + 1) % 4)])
+  }
+
+  // chimney
+  const cx = 0.35, cz = -0.25, cs = 0.09
+  const cyBot = 0.30, cyTop = 0.60
+  const chimBase = vertices.length
+  const chimCorners: [number, number][] = [[cx - cs, cz - cs], [cx + cs, cz - cs], [cx + cs, cz + cs], [cx - cs, cz + cs]]
+  for (const y of [cyBot, cyTop]) {
+    for (const [x, z] of chimCorners) vertices.push([x, y, z])
+  }
+  for (let i = 0; i < 4; i++) {
+    edges.push([chimBase + i, chimBase + ((i + 1) % 4)])
+    edges.push([chimBase + 4 + i, chimBase + 4 + ((i + 1) % 4)])
+    edges.push([chimBase + i, chimBase + 4 + i])
+  }
+
+  // flagpole on the ridge
+  const poleBase = vertices.length
+  vertices.push([0, yRidge, 0], [0, yRidge + 0.35, 0], [0.15, yRidge + 0.35, 0], [0.15, yRidge + 0.22, 0])
+  edges.push([poleBase, poleBase + 1], [poleBase + 1, poleBase + 2], [poleBase + 2, poleBase + 3], [poleBase + 3, poleBase + 1])
+
   return { vertices, edges }
 }
 
@@ -138,46 +217,6 @@ const globe = (): Mesh => {
   return { vertices, edges }
 }
 
-const atom = (): Mesh => {
-  const vertices: Vec3[] = []
-  const edges: Edge[] = []
-  const seg = 26
-  const R = 1.25
-  const tilt = (72 * Math.PI) / 180
-  // three orbital rings, each tilted then spun 60° apart around Y
-  for (let k = 0; k < 3; k++) {
-    const spin = (k * Math.PI) / 3
-    const base = vertices.length
-    for (let i = 0; i < seg; i++) {
-      const t = (i / seg) * Math.PI * 2
-      const x = R * Math.cos(t)
-      const z = R * Math.sin(t)
-      const y1 = -z * Math.sin(tilt)
-      const z1 = z * Math.cos(tilt)
-      const x2 = x * Math.cos(spin) + z1 * Math.sin(spin)
-      const z2 = -x * Math.sin(spin) + z1 * Math.cos(spin)
-      vertices.push([x2, y1, z2])
-    }
-    for (let i = 0; i < seg; i++) edges.push([base + i, base + ((i + 1) % seg)])
-  }
-  // electrons: a small diamond marker on each ring
-  for (let k = 0; k < 3; k++) {
-    const [ex, ey, ez] = vertices[k * seg + ((k * 9 + 3) % seg)]
-    const s = 0.08
-    const b = vertices.length
-    vertices.push([ex + s, ey, ez], [ex, ey + s, ez], [ex - s, ey, ez], [ex, ey - s, ez])
-    edges.push([b, b + 1], [b + 1, b + 2], [b + 2, b + 3], [b + 3, b])
-  }
-  // nucleus: small octahedron
-  const r = 0.22
-  const nb = vertices.length
-  const oct: Vec3[] = [[r, 0, 0], [-r, 0, 0], [0, r, 0], [0, -r, 0], [0, 0, r], [0, 0, -r]]
-  for (const v of oct) vertices.push(v)
-  const octEdges: Edge[] = [[0, 2], [0, 3], [0, 4], [0, 5], [1, 2], [1, 3], [1, 4], [1, 5], [2, 4], [4, 3], [3, 5], [5, 2]]
-  for (const [a, c] of octEdges) edges.push([nb + a, nb + c])
-  return { vertices, edges }
-}
-
 const drone = (): Mesh => {
   const vertices: Vec3[] = []
   const edges: Edge[] = []
@@ -233,10 +272,10 @@ const drone = (): Mesh => {
 
 const SHAPES: Record<WireframeShape, { build: () => Mesh; rotate: (t: number) => Vec3 }> = {
   icosahedron: { build: icosahedron, rotate: (t) => [0.35 + Math.sin(t * 0.4) * 0.15, t * 0.5, 0] },
-  gear: { build: gear, rotate: (t) => [1.0, 0.3, t * 0.6] },
+  chip: { build: chip, rotate: (t) => [0.5, t * 0.4, 0] },
   aircraft: { build: aircraft, rotate: (t) => [0.3 + Math.sin(t * 0.5) * 0.08, t * 0.4, 0] },
   globe: { build: globe, rotate: (t) => [0.35, t * 0.35, 0] },
-  atom: { build: atom, rotate: (t) => [0.3 + Math.sin(t * 0.4) * 0.12, t * 0.55, 0] },
+  school: { build: school, rotate: (t) => [0.32, t * 0.4, 0] },
   drone: { build: drone, rotate: (t) => [0.85, t * 0.45, 0.1] },
 }
 

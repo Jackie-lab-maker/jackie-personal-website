@@ -62,7 +62,7 @@ export default function Experience({ data }: ExperienceProps) {
       <div className="max-w-4xl mx-auto">
         <Reveal variant="fade">
           <div className="flex justify-center mb-4">
-            <Wireframe3D shape="gear" label="> wireframe: gear_assembly.stl" />
+            <Wireframe3D shape="chip" label="> wireframe: cpu_chip.stl" />
           </div>
         </Reveal>
 
