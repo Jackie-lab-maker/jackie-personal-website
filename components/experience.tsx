@@ -75,7 +75,8 @@ export default function Experience({ data }: ExperienceProps) {
         </Reveal>
 
         <Stagger className="space-y-4">
-          {data.work?.map((job, index) => {
+          {/* TODO: Micron Technology temporarily hidden from the listing — unhide by removing this filter. */}
+          {data.work?.filter((job) => job.company !== "Micron Technology").map((job, index) => {
             const detailPage = getExperiencePage(job.company, job.title)
 
             return (
