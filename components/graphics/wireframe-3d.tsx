@@ -11,7 +11,7 @@ interface Mesh {
   edges: Edge[]
 }
 
-export type WireframeShape = "chip" | "aircraft" | "globe" | "school" | "icosahedron" | "drone"
+export type WireframeShape = "chip" | "aircraft" | "globe" | "gradCap" | "icosahedron" | "drone"
 
 interface Wireframe3DProps {
   shape: WireframeShape
@@ -102,62 +102,58 @@ const chip = (): Mesh => {
   return { vertices, edges }
 }
 
-const school = (): Mesh => {
-  const hw = 0.75, hd = 0.55
-  const yBase = -0.75, yWall = 0.15, yRidge = 0.65
+const gradCap = (): Mesh => {
   const vertices: Vec3[] = []
   const edges: Edge[] = []
 
-  // walls: base rectangle (0-3) + wall-top rectangle (4-7)
-  const corners: [number, number][] = [[hw, hd], [hw, -hd], [-hw, -hd], [-hw, hd]]
-  for (const y of [yBase, yWall]) {
-    for (const [x, z] of corners) vertices.push([x, y, z])
+  // flat square mortarboard, with both diagonals for a bit of surface detail
+  const yBoard = 0.15, sw = 0.85
+  const boardStart = vertices.length
+  vertices.push([sw, yBoard, sw], [sw, yBoard, -sw], [-sw, yBoard, -sw], [-sw, yBoard, sw])
+  for (let i = 0; i < 4; i++) edges.push([boardStart + i, boardStart + ((i + 1) % 4)])
+  edges.push([boardStart, boardStart + 2], [boardStart + 1, boardStart + 3])
+
+  const centerIdx = vertices.length
+  vertices.push([0, yBoard, 0])
+
+  // skull cap band beneath the board
+  const rBase = 0.32, capSeg = 10
+  const capTopY = -0.02, capBotY = -0.42
+  const capTopStart = vertices.length
+  for (let i = 0; i < capSeg; i++) {
+    const a = (i / capSeg) * Math.PI * 2
+    vertices.push([rBase * Math.cos(a), capTopY, rBase * Math.sin(a)])
   }
-  for (let i = 0; i < 4; i++) {
-    edges.push([i, (i + 1) % 4])
-    edges.push([4 + i, 4 + ((i + 1) % 4)])
-    edges.push([i, 4 + i])
+  const capBotStart = vertices.length
+  for (let i = 0; i < capSeg; i++) {
+    const a = (i / capSeg) * Math.PI * 2
+    vertices.push([rBase * Math.cos(a), capBotY, rBase * Math.sin(a)])
   }
-
-  // gable roof ridge (8 front, 9 back) + sloped roof panels
-  const ridgeFront = vertices.length
-  const ridgeBack = ridgeFront + 1
-  vertices.push([0, yRidge, hd], [0, yRidge, -hd])
-  edges.push([ridgeFront, ridgeBack])
-  edges.push([4, ridgeFront], [7, ridgeFront], [5, ridgeBack], [6, ridgeBack])
-
-  // front door
-  const doorBase = vertices.length
-  const doorTop = -0.15
-  vertices.push([0.11, yBase, hd], [0.11, doorTop, hd], [-0.11, doorTop, hd], [-0.11, yBase, hd])
-  for (let i = 0; i < 4; i++) edges.push([doorBase + i, doorBase + ((i + 1) % 4)])
-
-  // front windows (right + left)
-  for (const side of [1, -1]) {
-    const wBase = vertices.length
-    const x0 = side * 0.30, x1 = side * 0.54
-    vertices.push([x0, -0.10, hd], [x0, -0.35, hd], [x1, -0.35, hd], [x1, -0.10, hd])
-    for (let i = 0; i < 4; i++) edges.push([wBase + i, wBase + ((i + 1) % 4)])
+  for (let i = 0; i < capSeg; i++) {
+    edges.push([capTopStart + i, capTopStart + ((i + 1) % capSeg)])
+    edges.push([capBotStart + i, capBotStart + ((i + 1) % capSeg)])
+    if (i % 2 === 0) edges.push([capTopStart + i, capBotStart + i])
   }
 
-  // chimney
-  const cx = 0.35, cz = -0.25, cs = 0.09
-  const cyBot = 0.30, cyTop = 0.60
-  const chimBase = vertices.length
-  const chimCorners: [number, number][] = [[cx - cs, cz - cs], [cx + cs, cz - cs], [cx + cs, cz + cs], [cx - cs, cz + cs]]
-  for (const y of [cyBot, cyTop]) {
-    for (const [x, z] of chimCorners) vertices.push([x, y, z])
-  }
-  for (let i = 0; i < 4; i++) {
-    edges.push([chimBase + i, chimBase + ((i + 1) % 4)])
-    edges.push([chimBase + 4 + i, chimBase + 4 + ((i + 1) % 4)])
-    edges.push([chimBase + i, chimBase + 4 + i])
-  }
+  // center post connecting the board to the cap
+  edges.push([centerIdx, capTopStart])
 
-  // flagpole on the ridge
-  const poleBase = vertices.length
-  vertices.push([0, yRidge, 0], [0, yRidge + 0.35, 0], [0.15, yRidge + 0.35, 0], [0.15, yRidge + 0.22, 0])
-  edges.push([poleBase, poleBase + 1], [poleBase + 1, poleBase + 2], [poleBase + 2, poleBase + 3], [poleBase + 3, poleBase + 1])
+  // button + tassel cord hanging to one side, ending in a fringe
+  const buttonIdx = vertices.length
+  vertices.push([0, yBoard + 0.06, 0])
+  edges.push([centerIdx, buttonIdx])
+
+  const cordEndIdx = vertices.length
+  const cordEnd: Vec3 = [sw * 0.75, yBoard - 0.4, sw * 0.55]
+  vertices.push(cordEnd)
+  edges.push([buttonIdx, cordEndIdx])
+
+  const fringeDirs: [number, number][] = [[-0.08, -0.05], [-0.03, 0.02], [0.03, 0.03], [0.08, -0.02], [0, -0.08]]
+  for (const [dx, dz] of fringeDirs) {
+    const tipIdx = vertices.length
+    vertices.push([cordEnd[0] + dx, cordEnd[1] - 0.18, cordEnd[2] + dz])
+    edges.push([cordEndIdx, tipIdx])
+  }
 
   return { vertices, edges }
 }
@@ -275,7 +271,7 @@ const SHAPES: Record<WireframeShape, { build: () => Mesh; rotate: (t: number) =>
   chip: { build: chip, rotate: (t) => [0.5, t * 0.4, 0] },
   aircraft: { build: aircraft, rotate: (t) => [0.3 + Math.sin(t * 0.5) * 0.08, t * 0.4, 0] },
   globe: { build: globe, rotate: (t) => [0.35, t * 0.35, 0] },
-  school: { build: school, rotate: (t) => [0.32, t * 0.4, 0] },
+  gradCap: { build: gradCap, rotate: (t) => [0.45, t * 0.4, 0] },
   drone: { build: drone, rotate: (t) => [0.85, t * 0.45, 0.1] },
 }
 

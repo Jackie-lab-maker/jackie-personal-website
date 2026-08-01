@@ -19,7 +19,7 @@ export default function Education({ data }: EducationProps) {
       <div className="max-w-4xl mx-auto">
         <Reveal variant="fade">
           <div className="flex justify-center mb-4">
-            <Wireframe3D shape="school" label="> wireframe: school_building.stl" />
+            <Wireframe3D shape="gradCap" label="> wireframe: grad_cap.stl" />
           </div>
         </Reveal>
 
