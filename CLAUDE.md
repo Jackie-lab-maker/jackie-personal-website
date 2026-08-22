@@ -30,14 +30,14 @@ Notes on build config (`next.config.mjs`):
 
 The homepage (`app/page.tsx`) is a client component that fetches `public/resumeData.json` at runtime (not at build time) and passes it into `<Hero data={data.main} />`. The JSON has four top-level sections: `main` (bio/contact/social), `resume` (education, work, skills), `portfolio` (projects), `testimonials`. `hooks/use-resume-data.ts` provides a reusable `useResumeData()` hook for the same fetch — components should prefer this hook over duplicating the fetch logic.
 
-By contrast, `/about`, `/projects`, `/education`, `/contact`, and the `/experience` index page are each hand-written pages that independently call `useResumeData()` to render their content (rather than receiving it as props from the homepage). `/design-team` and the `/experience/<company>` detail pages are fully hand-written with hardcoded content and image galleries, not driven by `resumeData.json` at all.
+By contrast, `/about`, `/projects`, `/education`, `/contact`, and the `/experience` index page are each hand-written pages that independently call `useResumeData()` to render their content (rather than receiving it as props from the homepage). `/design-team`, `/instagram`, and the `/experience/<company>` detail pages are fully hand-written with hardcoded content, not driven by `resumeData.json` at all.
 
 ### Experience section structure
 
 Each employer has its own route with a single page:
 - `app/experience/<company>/page.tsx` — role overview + photo gallery (with lightbox)
 
-Current companies: `chart-industries`, `opmobility-automation`, `opmobility-manufacturing`, `wisa`. `app/experience/page.tsx` is the index/listing page linking out to each. `app/experience/layout.tsx` is a pass-through layout — the reason it exists is that `Navigation` (in `components/navigation.tsx`) explicitly hides the global nav bar for any path starting with `/experience/` (these detail pages have their own "Back to Portfolio" header instead).
+Current companies: `chart-industries`, `micron-technology`, `opmobility-automation`, `opmobility-manufacturing`, `wisa`. `app/experience/page.tsx` is the index/listing page linking out to each. `app/experience/layout.tsx` is a pass-through layout — the reason it exists is that `Navigation` (in `components/navigation.tsx`) explicitly hides the global nav bar for any path starting with `/experience/`, and for the standalone `/instagram` page (a QR-code page linked from About) — these all have their own "Back to ..." header instead of the global nav.
 
 When adding a new employer, follow the existing pattern: gallery items as a local `GALLERY_ITEMS` array of `{ id, src, alt, description }`, images under `public/images/<company>/`, and the same lightbox/back-link/ASCII-box header conventions as `app/experience/chart-industries/page.tsx`.
 
@@ -47,7 +47,7 @@ When adding a new employer, follow the existing pattern: gallery items as a loca
 
 ### Motion conventions
 
-`components/motion/reveal.tsx` exports `Reveal`, `Stagger`, and `StaggerItem` — scroll-triggered animation wrappers built on Framer Motion, each respecting `useReducedMotion()` (falls back to a plain `div` with no animation). Use these instead of hand-rolling `motion.div` scroll animations so reduced-motion behavior stays consistent. Standard easing curve is `[0.22, 1, 0.36, 1]`.
+`components/motion/reveal.tsx` exports `Reveal`, `Stagger`, and `StaggerItem` — scroll-triggered animation wrappers built on Framer Motion, each respecting `useReducedMotion()` (falls back to a plain `div` with no animation). Use these instead of hand-rolling `motion.div` scroll animations so reduced-motion behavior stays consistent. Standard easing curve is `[0.22, 1, 0.36, 1]`. `components/motion/tilt-3d.tsx` exports `Tilt3D`, a pointer-tracking hover-tilt wrapper (critically-damped spring, auto-disabled without a hover-capable pointer or under reduced motion) used to wrap most cards site-wide.
 
 ### Theming
 
