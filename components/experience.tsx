@@ -21,7 +21,7 @@ interface ExperienceProps {
 const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?: string }> = {
   "Chart Industries": { route: "/experience/chart-industries", company: "Chart Industries" },
   "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Engineering Intern" },
-  "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "System Design & Automation Engineering Intern" },
+  "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "System Design Engineering Intern" },
   "WISA": { route: "/experience/wisa", company: "Waterloo Institute for Sustainable Aeronautics" },
   "Micron Technology": { route: "/experience/micron-technology", company: "Micron Technology" },
 }

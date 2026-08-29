@@ -67,7 +67,7 @@ export default function OPmobilityAutomationPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              System Design & Automation Engineering Intern
+              System Design Engineering Intern
             </h1>
             <p className="text-muted-foreground text-sm">
               May 2025 - Aug 2025
@@ -100,7 +100,7 @@ export default function OPmobilityAutomationPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                As a System Design & Automation Engineering Intern, I designed CATIA 3D models for
+                As a System Design Engineering Intern, I designed CATIA 3D models for
                 thermoplastic liners used in Type IV hydrogen mobility vessels, and developed a Digital
                 Twin Robotic Arm in KUKA.Sim to run a Gage R&amp;R study on fibre winding angle, improving
                 rotary encoder measurement accuracy by 10%.
