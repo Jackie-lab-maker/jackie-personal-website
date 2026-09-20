@@ -5,7 +5,7 @@ import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 const designTeams = [
   {
     name: "WATFlight",
-    role: "Team Director & Propulsion Lead",
+    role: "Founder & Team Director",
     description: "University of Waterloo's student design team that focus on sustainable aviation.",
     url: "https://watflight.com/",
   },
