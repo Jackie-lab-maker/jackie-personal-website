@@ -23,6 +23,15 @@ const PROJECTS = [
     about:
       "Designed a jig with spring-loaded hold-down clamps (DFA) and a fixture with single-motion clamping (DFM) in SolidWorks, reducing manufacturing cost by 10%.",
   },
+  {
+    href: "/projects/watflight-project-management",
+    image: "/images/watflight-project-management/logo.png",
+    imageAlt: "WATFlight Launch Control Center logo",
+    title: "WATFlight Launch Control Center",
+    status: "Built for WATFlight — Founder & Team Director",
+    about:
+      "Full-stack task-management platform for the WATFlight design team: a Kanban board per sub-team with drag-and-drop, realtime Supabase-backed collaboration, and row-level security.",
+  },
 ]
 
 export default function Projects() {

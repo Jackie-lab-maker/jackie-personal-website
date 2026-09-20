@@ -132,6 +132,12 @@
         "about": "Developed a Digital Twin Robotic Arm in KUKA.Sim to perform a Gage R&R study on fibre winding angle, improving the measurement accuracy of the rotary encoders by 10%.",
         "image": "/robotic-arm.png",
         "url": "https://github.com/Jackie-lab-maker/KUKA.Sim-Projects/tree/main/OPmobility/Filament%20Winding"
+      },
+      {
+        "title": "WATFlight Launch Control Center",
+        "about": "Full-stack task-management platform for the WATFlight design team: a Kanban board per sub-team with drag-and-drop, realtime Supabase-backed collaboration, and row-level security.",
+        "image": "/images/watflight-project-management/logo.png",
+        "url": "/projects/watflight-project-management"
       }
     ]
   },
