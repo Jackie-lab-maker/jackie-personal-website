@@ -128,7 +128,7 @@ export default function ChartIndustriesPage() {
           <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
-            <pre className="text-xs md:text-sm font-bold">║ PROJECT GALLERY ║</pre>
+            <pre className="text-xs md:text-sm font-bold">║ PHOTO GALLERY ║</pre>
             <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
           </div>
           </Reveal>
