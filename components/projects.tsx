@@ -40,7 +40,7 @@ export default function Projects() {
       <div className="max-w-4xl mx-auto">
         <Reveal variant="fade">
           <div className="flex justify-center mb-4">
-            <Wireframe3D shape="drone" label="> wireframe: quadcopter.stl" />
+            <Wireframe3D shape="gear" label="> wireframe: gear.stl" />
           </div>
         </Reveal>
 

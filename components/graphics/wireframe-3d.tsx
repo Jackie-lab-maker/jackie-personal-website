@@ -11,7 +11,7 @@ interface Mesh {
   edges: Edge[]
 }
 
-export type WireframeShape = "chip" | "aircraft" | "globe" | "gradCap" | "icosahedron" | "drone"
+export type WireframeShape = "chip" | "aircraft" | "globe" | "gradCap" | "icosahedron" | "drone" | "gear"
 
 interface Wireframe3DProps {
   shape: WireframeShape
@@ -266,6 +266,69 @@ const drone = (): Mesh => {
   return { vertices, edges }
 }
 
+const gear = (): Mesh => {
+  const vertices: Vec3[] = []
+  const edges: Edge[] = []
+
+  const teeth = 12
+  const rOuter = 1.0
+  const rRoot = 0.78
+  const rHub = 0.32
+  const ht = 0.18
+
+  // gear profile: root -> rising edge -> tip -> falling edge -> root, per tooth
+  const profile: [number, number][] = []
+  for (let i = 0; i < teeth; i++) {
+    const a0 = (i / teeth) * Math.PI * 2
+    const step = (Math.PI * 2) / teeth
+    profile.push([a0, rRoot])
+    profile.push([a0 + step * 0.15, rOuter])
+    profile.push([a0 + step * 0.5, rOuter])
+    profile.push([a0 + step * 0.65, rRoot])
+  }
+
+  const n = profile.length
+  const frontBase = vertices.length
+  for (const [a, r] of profile) vertices.push([r * Math.cos(a), r * Math.sin(a), ht])
+  const backBase = vertices.length
+  for (const [a, r] of profile) vertices.push([r * Math.cos(a), r * Math.sin(a), -ht])
+  for (let i = 0; i < n; i++) {
+    edges.push([frontBase + i, frontBase + ((i + 1) % n)])
+    edges.push([backBase + i, backBase + ((i + 1) % n)])
+    if (i % 2 === 0) edges.push([frontBase + i, backBase + i])
+  }
+
+  // center hub (front + back rings)
+  const hubSeg = 12
+  const hubFrontBase = vertices.length
+  for (let i = 0; i < hubSeg; i++) {
+    const a = (i / hubSeg) * Math.PI * 2
+    vertices.push([rHub * Math.cos(a), rHub * Math.sin(a), ht])
+  }
+  const hubBackBase = vertices.length
+  for (let i = 0; i < hubSeg; i++) {
+    const a = (i / hubSeg) * Math.PI * 2
+    vertices.push([rHub * Math.cos(a), rHub * Math.sin(a), -ht])
+  }
+  for (let i = 0; i < hubSeg; i++) {
+    edges.push([hubFrontBase + i, hubFrontBase + ((i + 1) % hubSeg)])
+    edges.push([hubBackBase + i, hubBackBase + ((i + 1) % hubSeg)])
+    edges.push([hubFrontBase + i, hubBackBase + i])
+  }
+
+  // spokes connecting the hub to the root circle
+  const spokeCount = 4
+  for (let k = 0; k < spokeCount; k++) {
+    const a = (k / spokeCount) * Math.PI * 2
+    const hubIdx = hubFrontBase + Math.round((a / (Math.PI * 2)) * hubSeg) % hubSeg
+    const rimIdx = vertices.length
+    vertices.push([rRoot * Math.cos(a), rRoot * Math.sin(a), ht])
+    edges.push([hubIdx, rimIdx])
+  }
+
+  return { vertices, edges }
+}
+
 const SHAPES: Record<WireframeShape, { build: () => Mesh; rotate: (t: number) => Vec3 }> = {
   icosahedron: { build: icosahedron, rotate: (t) => [0.35 + Math.sin(t * 0.4) * 0.15, t * 0.5, 0] },
   chip: { build: chip, rotate: (t) => [0.5, t * 0.4, 0] },
@@ -273,6 +336,7 @@ const SHAPES: Record<WireframeShape, { build: () => Mesh; rotate: (t: number) =>
   globe: { build: globe, rotate: (t) => [0.35, t * 0.35, 0] },
   gradCap: { build: gradCap, rotate: (t) => [0.45, t * 0.4, 0] },
   drone: { build: drone, rotate: (t) => [0.85, t * 0.45, 0.1] },
+  gear: { build: gear, rotate: (t) => [0.55, t * 0.4, 0] },
 }
 
 export function Wireframe3D({ shape, size = 130, label, className }: Wireframe3DProps) {
