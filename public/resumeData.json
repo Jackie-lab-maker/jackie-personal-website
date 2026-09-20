@@ -110,6 +110,12 @@
   "portfolio": {
     "projects": [
       {
+        "title": "Humanoid Packaging Robot",
+        "about": "In progress — modifying the open-source AlohaMini dual-arm mobile robot for Micron Technology's Robotics & Manufacturing Automation team, to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
+        "image": "/images/micron-humanoid-robot/alohamini-base.png",
+        "url": "/projects/micron-humanoid-robot"
+      },
+      {
         "title": "Quad-X-Cage (A quadcopter built for Indoor Inspection)",
         "about": "X-frame quadrotor platform featuring enclosed propeller cages, central avionics stack, and modular landing gear designed for indoor inspection of warehouses, factories, and infrastructure.",
         "image": "/quad-x-cage.png",

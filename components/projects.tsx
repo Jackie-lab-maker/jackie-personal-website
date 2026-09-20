@@ -6,6 +6,16 @@ import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 
 const PROJECTS = [
   {
+    href: "/projects/micron-humanoid-robot",
+    image: "/images/micron-humanoid-robot/alohamini-base.png",
+    imageAlt: "AlohaMini open-source dual-arm mobile robot, the base platform for this project",
+    title: "Humanoid Packaging Robot",
+    status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
+    inProgress: true,
+    about:
+      "Modifying the open-source AlohaMini dual-arm mobile robot to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
+  },
+  {
     href: "/projects/cryogenics-systems-modeling",
     image: "/images/cryogenics-systems-modeling/lng-isometric-view-1.png",
     imageAlt: "Isometric view of an LNG cryogenic storage tank",
@@ -70,7 +80,9 @@ export default function Projects() {
               <div className="font-mono p-6 md:p-8">
                 <div className="text-accent text-xs md:text-sm mb-2">╔═════════════════════════════════╗</div>
                 <h3 className="text-foreground font-bold text-sm md:text-base mb-1 pl-2">║ {project.title}</h3>
-                <p className="text-accent text-xs mb-2 pl-2">║ {project.status}</p>
+                <p className={`text-xs mb-2 pl-2 ${project.inProgress ? "text-yellow-500" : "text-accent"}`}>
+                  ║ {project.status}
+                </p>
                 <p className="text-muted-foreground text-xs leading-relaxed mb-3 pl-2">║ {project.about}</p>
                 <div className="text-accent text-xs md:text-sm mb-2">╚═════════════════════════════════╝</div>
                 <span className="inline-block font-mono text-xs text-accent border border-border px-3 py-1">
