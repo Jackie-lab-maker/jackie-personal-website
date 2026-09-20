@@ -44,6 +44,18 @@ const GALLERY_ITEMS = [
     alt: "Isometric view of an LNG cryogenic storage tank, configuration 2",
     description: "LNG storage tank — isometric view (2).",
   },
+  {
+    id: 7,
+    src: "/images/cryogenics-systems-modeling/triflex-pipe-modeling.png",
+    alt: "TRIFLEX 3D pipe stress model of the bulk tank's internal piping",
+    description: "TRIFLEX pipe stress model — bulk tank internal piping routing and node layout.",
+  },
+  {
+    id: 8,
+    src: "/images/cryogenics-systems-modeling/triflex-calc-conditions.png",
+    alt: "TRIFLEX thermal stress calculation input conditions for the bulk tank internal piping",
+    description: "TRIFLEX calculation conditions — thermal stress inputs for the bulk tank's internal piping.",
+  },
 ]
 
 export default function CryogenicsSystemsModelingPage() {
@@ -91,10 +103,11 @@ export default function CryogenicsSystemsModelingPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} PROJECT_INFO</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                A collection of cryogenic storage system design projects completed during an internship at
-                Chart Industries, one of the world&rsquo;s leading manufacturers of industrial equipment
-                and cryogenic systems, now part of Baker Hughes. The work covers liquefied natural gas
-                (LNG) tanks and industrial bulk cryogenic storage systems.
+                A collection of cryogenic storage system design and analysis projects completed during an
+                internship at Chart Industries, one of the world&rsquo;s leading manufacturers of industrial
+                equipment and cryogenic systems, now part of Baker Hughes. The work spans 3D modeling of
+                liquefied natural gas (LNG) and industrial bulk cryogenic storage tanks, plus a TRIFLEX
+                thermal stress analysis of the bulk tank&rsquo;s internal piping.
               </p>
             </div>
           </div>
@@ -111,7 +124,9 @@ export default function CryogenicsSystemsModelingPage() {
                 Designed 3D models of LNG cryogenic storage tanks and industrial bulk cryogenic tanks in
                 SolidWorks, including external piping layouts (fill, withdrawal, and pressure-building
                 circuits) and section views of the internal vessel geometry, to give clients and
-                technicians clear engineering visualization of the completed systems.
+                technicians clear engineering visualization of the completed systems. Also performed a
+                TRIFLEX pipe stress analysis on the bulk tank&rsquo;s internal piping, evaluating thermal
+                expansion, sustained loads, and displacement against ASME B31.3 allowable stress criteria.
               </p>
             </div>
           </div>
