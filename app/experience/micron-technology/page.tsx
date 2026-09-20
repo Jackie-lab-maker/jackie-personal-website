@@ -12,7 +12,20 @@ const GALLERY_ITEMS: Array<{
   src: string
   alt: string
   description: string
-}> = []
+}> = [
+  {
+    id: 1,
+    src: "/images/micron-technology/fab-equipment.jpg",
+    alt: "Micron cleanroom technicians in bunny suits walking past semiconductor fab process equipment",
+    description: "Photo courtesy of Micron Technology — cleanroom technicians among fab process equipment.",
+  },
+  {
+    id: 2,
+    src: "/images/micron-technology/memory-module.jpg",
+    alt: "Micron DDR5 RDIMM 128GB memory module",
+    description: "Photo courtesy of Micron Technology — a DDR5 RDIMM 128GB memory module.",
+  },
+]
 
 export default function MicronTechnologyPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
@@ -59,7 +72,7 @@ export default function MicronTechnologyPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              Process Engineering Intern
+              Equipment Engineering Intern
             </h1>
             <p className="text-muted-foreground text-sm">
               September 2026 - January 2027
