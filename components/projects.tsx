@@ -17,8 +17,8 @@ const PROJECTS = [
   },
   {
     href: "/projects/automation-digital-brain",
-    image: "/images/micron-technology/banner.png",
-    imageAlt: "Micron Technology semiconductor wafer banner",
+    image: "/images/automation-digital-brain/micron-banner.jpg",
+    imageAlt: "Micron logo with the tagline Intelligence Accelerated",
     title: "Automation Digital Brain",
     status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
     inProgress: true,
@@ -58,7 +58,7 @@ const PROJECTS = [
     image: "/images/watflight-project-management/wordmark-banner.png",
     imageAlt: "WATFlight wordmark logo",
     title: "WATFlight Launch Control Center",
-    status: "Built for WATFlight — Founder & Team Director",
+    status: "Completed — WATFlight, Founder & Team Director",
     about:
       "Full-stack task-management platform for the WATFlight design team: a Kanban board per sub-team with drag-and-drop, realtime Supabase-backed collaboration, and row-level security.",
   },

@@ -24,10 +24,10 @@ export default function AutomationDigitalBrainPage() {
       </header>
 
       {/* Banner */}
-      <div className="relative w-full aspect-[4/1]">
+      <div className="relative w-full aspect-[2/1]">
         <Image
-          src="/images/micron-technology/banner.png"
-          alt="Micron Technology semiconductor wafer banner"
+          src="/images/automation-digital-brain/micron-banner.jpg"
+          alt="Micron logo with the tagline Intelligence Accelerated"
           fill
           className="object-cover"
           sizes="100vw"
