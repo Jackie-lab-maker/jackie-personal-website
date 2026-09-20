@@ -142,24 +142,6 @@ export default function ChartIndustriesPage() {
           </Tilt3D>
           </Reveal>
 
-          {/* Description Section */}
-          <Reveal variant="tilt-up" delay={0.1}>
-          <Tilt3D>
-          <div className="border border-border bg-card p-6 mb-12 hover-lift">
-            <div className="font-mono text-xs md:text-sm">
-              <div className="text-accent mb-2">{">"} ROLE_OVERVIEW</div>
-              <p className="text-muted-foreground pl-4 leading-relaxed">
-                As a Mechanical Engineering Intern, I designed SolidWorks 3D models and AutoCAD 2D
-                drawings for bulk cryogenic storage tanks, translating engineering requirements into
-                fabrication-ready documentation. I also conducted pipeline stress analysis and conjugate
-                heat transfer analysis to validate structural and thermal performance across storage and
-                distribution systems.
-              </p>
-            </div>
-          </div>
-          </Tilt3D>
-          </Reveal>
-
           {/* Gallery Section */}
           <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
