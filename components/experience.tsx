@@ -97,7 +97,7 @@ export default function Experience({ data }: ExperienceProps) {
                           href={detailPage}
                           className="w-full font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring text-center"
                         >
-                          [view projects →]
+                          [view →]
                         </Link>
                       ) : (
                         <button
@@ -106,7 +106,7 @@ export default function Experience({ data }: ExperienceProps) {
                           aria-expanded={expandedIndex === index}
                           aria-controls={`experience-details-${index}`}
                         >
-                          {expandedIndex === index ? "[hide]" : "[view projects →]"}
+                          {expandedIndex === index ? "[hide]" : "[view →]"}
                         </button>
                       )}
                     </div>
