@@ -28,9 +28,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 4,
-    src: "/images/opmobility-automation/reservoir-manufacturing.jpeg",
-    alt: "OPmobility reservoir manufacturing plant in Ningbo",
-    description: "Photo courtesy of OPmobility — thermoplastic reservoir manufacturing.",
+    src: "/images/opmobility-automation/hydrogen-tank-lineup.png",
+    alt: "Lineup of OPmobility Type IV composite hydrogen storage tanks in different sizes",
+    description: "Photo courtesy of OPmobility — a lineup of Type IV composite hydrogen storage tanks.",
   },
   {
     id: 5,

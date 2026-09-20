@@ -22,9 +22,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 3,
-    src: "/images/chart-industries/bulk-tanks-lineup.jpg",
-    alt: "Lineup of Chart Industries bulk cryogenic storage tanks",
-    description: "Photo courtesy of Chart Industries — a lineup of bulk storage tanks.",
+    src: "/images/chart-industries/vip-piping.jpg",
+    alt: "Close-up of Chart Industries vacuum insulated cryogenic pipe",
+    description: "Photo courtesy of Chart Industries — vacuum insulated (vacuum jacketed) cryogenic pipe.",
   },
   {
     id: 4,
@@ -40,9 +40,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 6,
-    src: "/images/chart-industries/baker-hughes-lng-header.webp",
-    alt: "Baker Hughes LNG production solutions facility",
-    description: "Photo courtesy of Baker Hughes — LNG production solutions.",
+    src: "/images/chart-industries/baker-hughes-refinery.webp",
+    alt: "Technicians working among piping at a Baker Hughes refinery and petrochemical plant",
+    description: "Photo courtesy of Baker Hughes — technicians at a downstream refinery and petrochemical plant.",
   },
 ]
 
