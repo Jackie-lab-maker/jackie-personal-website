@@ -50,6 +50,12 @@ const GALLERY_ITEMS = [
     alt: "Cryogenic tank being lifted by multiple cranes",
     description: "Description coming soon...",
   },
+  {
+    id: 8,
+    src: "/images/chart-industries/chart-facility.jpg",
+    alt: "Row of Chart-branded bulk cryogenic storage tanks at a Chart Industries facility",
+    description: "Photo courtesy of Chart Industries — bulk cryogenic storage tanks at a Chart facility.",
+  },
 ]
 
 export default function ChartIndustriesPage() {

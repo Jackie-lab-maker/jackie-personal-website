@@ -26,6 +26,12 @@ const GALLERY_ITEMS = [
     alt: "Composite hydrogen pressure vessel with filament winding",
     description: "Description coming soon...",
   },
+  {
+    id: 4,
+    src: "/images/opmobility-manufacturing/manufacturing-line.jpg",
+    alt: "Automated OPmobility manufacturing line handling a fuel tank with robotic gripper tooling",
+    description: "Photo courtesy of OPmobility — automated tooling on a manufacturing line.",
+  },
 ]
 
 export default function OPmobilityManufacturingPage() {

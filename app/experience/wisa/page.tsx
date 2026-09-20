@@ -14,6 +14,12 @@ const GALLERY_ITEMS = [
     alt: "ALSIM Flight Simulator with University of Waterloo branding",
     description: "Description coming soon...",
   },
+  {
+    id: 2,
+    src: "/images/wisa/research-lab.jpg",
+    alt: "Researchers in lab coats working with additive manufacturing equipment in a WISA research lab",
+    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — researchers in the lab.",
+  },
 ]
 
 export default function WISAPage() {

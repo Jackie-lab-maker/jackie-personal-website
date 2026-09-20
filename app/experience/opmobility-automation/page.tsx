@@ -20,6 +20,12 @@ const GALLERY_ITEMS = [
     alt: "Hydrogen storage module with four Type IV composite pressure vessels",
     description: "Description coming soon...",
   },
+  {
+    id: 3,
+    src: "/images/opmobility-automation/manufacturing-line.jpg",
+    alt: "Automated OPmobility manufacturing line handling a fuel tank with robotic gripper tooling",
+    description: "Photo courtesy of OPmobility — automated tooling on a manufacturing line.",
+  },
 ]
 
 export default function OPmobilityAutomationPage() {
