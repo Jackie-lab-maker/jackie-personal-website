@@ -19,6 +19,7 @@ const PROJECTS = [
     href: "/projects/automation-digital-brain",
     image: "/images/automation-digital-brain/micron-banner.jpg",
     imageAlt: "Micron logo with the tagline Intelligence Accelerated",
+    imageFit: "contain" as const,
     title: "Automation Digital Brain",
     status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
     inProgress: true,
@@ -88,12 +89,12 @@ export default function Projects() {
             <StaggerItem variant="tilt-up">
             <Link href={project.href} className="block">
             <div className="border-2 border-border bg-card hover:border-accent transition-all duration-300 hover-lift overflow-hidden">
-              <div className="relative aspect-video">
+              <div className={`relative aspect-video ${project.imageFit === "contain" ? "bg-black" : ""}`}>
                 <Image
                   src={project.image}
                   alt={project.imageAlt}
                   fill
-                  className="object-cover"
+                  className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
                   sizes="(max-width: 768px) 100vw, 768px"
                 />
               </div>

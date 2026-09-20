@@ -24,15 +24,17 @@ export default function AutomationDigitalBrainPage() {
       </header>
 
       {/* Banner */}
-      <div className="relative w-full aspect-[2/1]">
-        <Image
-          src="/images/automation-digital-brain/micron-banner.jpg"
-          alt="Micron logo with the tagline Intelligence Accelerated"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
+      <div className="w-full bg-black flex justify-center py-8">
+        <div className="relative w-full max-w-[617px] aspect-[617/324]">
+          <Image
+            src="/images/automation-digital-brain/micron-banner.jpg"
+            alt="Micron logo with the tagline Intelligence Accelerated"
+            fill
+            className="object-contain"
+            sizes="617px"
+            priority
+          />
+        </div>
       </div>
 
       {/* Page Content */}
