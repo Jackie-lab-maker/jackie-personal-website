@@ -10,51 +10,15 @@ import { Tilt3D } from "@/components/motion/tilt-3d"
 const GALLERY_ITEMS = [
   {
     id: 1,
-    src: "/images/chart-industries/intern-portrait.png",
-    alt: "Jackie at Chart Industries facility with hard hat",
-    description: "Description coming soon...",
-  },
-  {
-    id: 2,
-    src: "/images/chart-industries/chart-branded-tank.png",
-    alt: "Chart Industries branded cryogenic storage tank with Cooler By Design tagline",
-    description: "Description coming soon...",
-  },
-  {
-    id: 3,
-    src: "/images/chart-industries/tank-row.jpg",
-    alt: "Row of horizontal cryogenic storage tanks with piping and instrumentation",
-    description: "Description coming soon...",
-  },
-  {
-    id: 4,
-    src: "/images/chart-industries/tank-piping.jpg",
-    alt: "Cryogenic tank base with valve assemblies and piping connections",
-    description: "Description coming soon...",
-  },
-  {
-    id: 5,
-    src: "/images/chart-industries/tank-cad-model.png",
-    alt: "3D CAD model of vertical cryogenic storage tank",
-    description: "Description coming soon...",
-  },
-  {
-    id: 6,
-    src: "/images/chart-industries/tank-installation-1.jpg",
-    alt: "Cryogenic storage tank installation with crane",
-    description: "Description coming soon...",
-  },
-  {
-    id: 7,
-    src: "/images/chart-industries/tank-installation-2.jpg",
-    alt: "Cryogenic tank being lifted by multiple cranes",
-    description: "Description coming soon...",
-  },
-  {
-    id: 8,
     src: "/images/chart-industries/chart-facility.jpg",
     alt: "Row of Chart-branded bulk cryogenic storage tanks at a Chart Industries facility",
     description: "Photo courtesy of Chart Industries — bulk cryogenic storage tanks at a Chart facility.",
+  },
+  {
+    id: 2,
+    src: "/images/chart-industries/baker-hughes-lng-facility.webp",
+    alt: "LNG facility at dusk with storage tanks and process piping",
+    description: "Photo courtesy of Baker Hughes — an LNG production facility.",
   },
 ]
 

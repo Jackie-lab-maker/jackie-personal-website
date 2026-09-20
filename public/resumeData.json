@@ -125,7 +125,7 @@
         "title": "Cryogenics Systems Modeling",
         "about": "Designed a 3D Model of LNG Cryogenic Storage Tank in SolidWorks with instrumentation panels (HMI + gauges) and piping functions (valves + regulators + reliefs), providing clear visualization to clients and technicians.",
         "image": "/images/cryogenics-systems-modeling/lng-isometric-view-1.png",
-        "url": "https://github.com/Jackie-lab-maker/Cryogenics-Systems-Modeling"
+        "url": "/projects/cryogenics-systems-modeling"
       },
       {
         "title": "Filament Winding Robotic Arm Digital Twin",

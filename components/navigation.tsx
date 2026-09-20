@@ -61,8 +61,8 @@ export function Navigation() {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
-  // Hide navigation on experience detail pages and the Instagram QR page
-  if (pathname?.startsWith("/experience/") || pathname === "/instagram") {
+  // Hide navigation on experience/project detail pages and the Instagram QR page
+  if (pathname?.startsWith("/experience/") || pathname?.startsWith("/projects/") || pathname === "/instagram") {
     return null
   }
 
