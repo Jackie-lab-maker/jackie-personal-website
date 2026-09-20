@@ -16,6 +16,26 @@ const PROJECTS = [
       "Modifying the open-source AlohaMini dual-arm mobile robot to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
   },
   {
+    href: "/projects/automation-digital-brain",
+    image: "/images/micron-technology/banner.png",
+    imageAlt: "Micron Technology semiconductor wafer banner",
+    title: "Automation Digital Brain",
+    status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
+    inProgress: true,
+    about:
+      "A unified project-execution, engineering-knowledge, and AI-agent web app for the team, meant to replace checking across all its other existing software. Currently connecting the AI agent panel to real agent logic.",
+  },
+  {
+    href: "/projects/watflight-gv-01",
+    image: "/images/watflight-project-management/wordmark-banner.png",
+    imageAlt: "WATFlight wordmark logo",
+    title: "GV-01",
+    status: "In Progress — WATFlight, Founder & Team Director",
+    inProgress: true,
+    about:
+      "A WATFlight sustainable aviation vehicle project. Very early stage — currently writing the Engineering Design Specification document.",
+  },
+  {
     href: "/projects/cryogenics-systems-modeling",
     image: "/images/cryogenics-systems-modeling/lng-isometric-view-1.png",
     imageAlt: "Isometric view of an LNG cryogenic storage tank",
