@@ -32,6 +32,18 @@ const GALLERY_ITEMS = [
     alt: "Automated OPmobility manufacturing line handling a fuel tank with robotic gripper tooling",
     description: "Photo courtesy of OPmobility — automated tooling on a manufacturing line.",
   },
+  {
+    id: 5,
+    src: "/images/opmobility-manufacturing/industrial-capacity-2.jpg",
+    alt: "OPmobility industrial manufacturing capacity",
+    description: "Photo courtesy of OPmobility — industrial manufacturing capacity.",
+  },
+  {
+    id: 6,
+    src: "/images/opmobility-manufacturing/fuel-system-component.jpeg",
+    alt: "OPmobility fuel system filler pipe component manufacturing",
+    description: "Photo courtesy of OPmobility — fuel system component manufacturing.",
+  },
 ]
 
 export default function OPmobilityManufacturingPage() {

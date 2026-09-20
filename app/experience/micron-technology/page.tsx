@@ -25,6 +25,30 @@ const GALLERY_ITEMS: Array<{
     alt: "Micron DDR5 RDIMM 128GB memory module",
     description: "Photo courtesy of Micron Technology — a DDR5 RDIMM 128GB memory module.",
   },
+  {
+    id: 3,
+    src: "/images/micron-technology/boise-campus.jpg",
+    alt: "Micron's Boise, Idaho campus facility",
+    description: "Photo courtesy of Micron Technology — the Boise, Idaho campus.",
+  },
+  {
+    id: 4,
+    src: "/images/micron-technology/manufacturing-technician.jpg",
+    alt: "Micron manufacturing technician building a component in the fab",
+    description: "Photo courtesy of Micron Technology — a technician working in the fab.",
+  },
+  {
+    id: 5,
+    src: "/images/micron-technology/lab-console-collaboration.jpg",
+    alt: "Micron engineers collaborating at a computer console in a lab",
+    description: "Photo courtesy of Micron Technology — engineers collaborating at a lab console.",
+  },
+  {
+    id: 6,
+    src: "/images/micron-technology/semiconductor-wafer.jpg",
+    alt: "Close-up of a Micron semiconductor wafer",
+    description: "Photo courtesy of Micron Technology — a close-up of a semiconductor wafer.",
+  },
 ]
 
 export default function MicronTechnologyPage() {

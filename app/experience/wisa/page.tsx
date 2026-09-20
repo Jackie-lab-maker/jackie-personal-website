@@ -20,6 +20,30 @@ const GALLERY_ITEMS = [
     alt: "Researchers in lab coats working with additive manufacturing equipment in a WISA research lab",
     description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — researchers in the lab.",
   },
+  {
+    id: 3,
+    src: "/images/wisa/sim-lab.jpg",
+    alt: "WISA flight simulation lab with multiple simulator stations",
+    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — the WISA Sim Lab.",
+  },
+  {
+    id: 4,
+    src: "/images/wisa/aircraft-sunrise.jpg",
+    alt: "Aircraft taking flight from a runway at sunrise",
+    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — sustainable aviation in flight.",
+  },
+  {
+    id: 5,
+    src: "/images/wisa/aircraft-contrails.png",
+    alt: "Aircraft flying with visible contrails",
+    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — studying aviation's environmental footprint.",
+  },
+  {
+    id: 6,
+    src: "/images/wisa/control-room.jpeg",
+    alt: "Researchers working together in an aircraft control room",
+    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — researchers in a control room setting.",
+  },
 ]
 
 export default function WISAPage() {

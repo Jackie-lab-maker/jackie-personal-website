@@ -26,6 +26,24 @@ const GALLERY_ITEMS = [
     alt: "Automated OPmobility manufacturing line handling a fuel tank with robotic gripper tooling",
     description: "Photo courtesy of OPmobility — automated tooling on a manufacturing line.",
   },
+  {
+    id: 4,
+    src: "/images/opmobility-automation/reservoir-manufacturing.jpeg",
+    alt: "OPmobility reservoir manufacturing plant in Ningbo",
+    description: "Photo courtesy of OPmobility — thermoplastic reservoir manufacturing.",
+  },
+  {
+    id: 5,
+    src: "/images/opmobility-automation/fuel-cell-truck.png",
+    alt: "OPmobility hydrogen fuel cell system mounted on a truck",
+    description: "Photo courtesy of OPmobility — a hydrogen fuel cell system for mobility.",
+  },
+  {
+    id: 6,
+    src: "/images/opmobility-automation/industrial-capacity.jpg",
+    alt: "OPmobility industrial manufacturing capacity",
+    description: "Photo courtesy of OPmobility — industrial manufacturing capacity.",
+  },
 ]
 
 export default function OPmobilityAutomationPage() {

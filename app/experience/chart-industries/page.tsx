@@ -20,6 +20,30 @@ const GALLERY_ITEMS = [
     alt: "LNG facility at dusk with storage tanks and process piping",
     description: "Photo courtesy of Baker Hughes — an LNG production facility.",
   },
+  {
+    id: 3,
+    src: "/images/chart-industries/bulk-tanks-lineup.jpg",
+    alt: "Lineup of Chart Industries bulk cryogenic storage tanks",
+    description: "Photo courtesy of Chart Industries — a lineup of bulk storage tanks.",
+  },
+  {
+    id: 4,
+    src: "/images/chart-industries/bulk-tank-closeup.jpg",
+    alt: "Close-up view of a Chart Industries bulk cryogenic storage tank",
+    description: "Photo courtesy of Chart Industries — a close-up of a bulk storage tank.",
+  },
+  {
+    id: 5,
+    src: "/images/chart-industries/lng-engineered-system.jpg",
+    alt: "Chart Industries cryogenic engineered system for LNG-to-power applications",
+    description: "Photo courtesy of Chart Industries — a cryogenic engineered system for LNG-to-power.",
+  },
+  {
+    id: 6,
+    src: "/images/chart-industries/baker-hughes-lng-header.webp",
+    alt: "Baker Hughes LNG production solutions facility",
+    description: "Photo courtesy of Baker Hughes — LNG production solutions.",
+  },
 ]
 
 export default function ChartIndustriesPage() {
