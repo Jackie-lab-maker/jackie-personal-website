@@ -62,9 +62,9 @@ export default function WATFlightGV01Page() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} PROJECT_INFO</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                GV-01 is a WATFlight vehicle project for sustainable aviation, built by the team&rsquo;s
-                sub-teams (Mechanical, Propulsion, Software, Business, Electrical) under the same design
-                team documented on this site.
+                GV-01 is a WATFlight vehicle project for sustainable aviation, currently being built by the
+                Mechanical, Electrical, and Software sub-teams under the same design team documented on
+                this site.
               </p>
             </div>
           </div>
