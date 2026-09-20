@@ -31,18 +31,16 @@ export default function WATFlightProjectManagementPage() {
         </div>
       </header>
 
-      {/* Logo Banner */}
-      <div className="flex justify-center py-8 bg-black">
-        <div className="relative w-24 h-24 md:w-32 md:h-32">
-          <Image
-            src="/images/watflight-project-management/logo.png"
-            alt="WATFlight Launch Control Center logo"
-            fill
-            className="object-contain"
-            sizes="128px"
-            priority
-          />
-        </div>
+      {/* Wordmark Banner */}
+      <div className="relative w-full aspect-[16/9] max-h-96 bg-black">
+        <Image
+          src="/images/watflight-project-management/wordmark-banner.png"
+          alt="WATFlight wordmark logo"
+          fill
+          className="object-contain"
+          sizes="100vw"
+          priority
+        />
       </div>
 
       {/* Page Content */}

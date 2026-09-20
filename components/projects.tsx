@@ -25,8 +25,8 @@ const PROJECTS = [
   },
   {
     href: "/projects/watflight-project-management",
-    image: "/images/watflight-project-management/logo.png",
-    imageAlt: "WATFlight Launch Control Center logo",
+    image: "/images/watflight-project-management/wordmark-banner.png",
+    imageAlt: "WATFlight wordmark logo",
     title: "WATFlight Launch Control Center",
     status: "Built for WATFlight — Founder & Team Director",
     about:
