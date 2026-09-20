@@ -101,6 +101,24 @@ export default function ChartIndustriesPage() {
                 Equation™,&rdquo; agreed to acquire Chart in a $13.6 billion deal aimed at building fully
                 integrated energy solutions from extraction to storage.
               </p>
+              <div className="flex flex-wrap gap-2 mt-3 pl-4">
+                <a
+                  href="https://www.chartindustries.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  [visit chartindustries.com →]
+                </a>
+                <a
+                  href="https://www.bakerhughes.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  [visit bakerhughes.com →]
+                </a>
+              </div>
             </div>
           </div>
           </Tilt3D>

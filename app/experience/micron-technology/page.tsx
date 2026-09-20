@@ -93,6 +93,16 @@ export default function MicronTechnologyPage() {
                 itself as &ldquo;the critical layer powering AI,&rdquo; Micron is expanding U.S.
                 semiconductor manufacturing capacity with major new fabs in Idaho, New York, and Virginia.
               </p>
+              <div className="flex flex-wrap gap-2 mt-3 pl-4">
+                <a
+                  href="https://www.micron.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  [visit micron.com →]
+                </a>
+              </div>
             </div>
           </div>
           </Tilt3D>

@@ -94,6 +94,16 @@ export default function OPmobilityAutomationPage() {
                 and energy storage solutions, with deep expertise in high-pressure Type IV hydrogen vessels
                 built from a polymer liner encased in a carbon-fiber shell.
               </p>
+              <div className="flex flex-wrap gap-2 mt-3 pl-4">
+                <a
+                  href="https://www.opmobility.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  [visit opmobility.com →]
+                </a>
+              </div>
             </div>
           </div>
           </Tilt3D>
