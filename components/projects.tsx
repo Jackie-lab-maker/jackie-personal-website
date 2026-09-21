@@ -16,17 +16,6 @@ const PROJECTS = [
       "Modifying the open-source AlohaMini dual-arm mobile robot to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
   },
   {
-    href: "/projects/automation-digital-brain",
-    image: "/images/automation-digital-brain/micron-banner.jpg",
-    imageAlt: "Micron logo with the tagline Intelligence Accelerated",
-    imageFit: "contain" as const,
-    title: "Automation Digital Brain",
-    status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
-    inProgress: true,
-    about:
-      "A unified project-execution, engineering-knowledge, and AI-agent web app for the team, meant to replace checking across all its other existing software. Currently connecting the AI agent panel to real agent logic.",
-  },
-  {
     href: "/projects/watflight-gv-01",
     image: "/images/watflight-project-management/wordmark-banner.png",
     imageAlt: "WATFlight wordmark logo",
@@ -89,12 +78,12 @@ export default function Projects() {
             <StaggerItem variant="tilt-up">
             <Link href={project.href} className="block">
             <div className="border-2 border-border bg-card hover:border-accent transition-all duration-300 hover-lift overflow-hidden">
-              <div className={`relative aspect-video ${project.imageFit === "contain" ? "bg-black" : ""}`}>
+              <div className="relative aspect-video">
                 <Image
                   src={project.image}
                   alt={project.imageAlt}
                   fill
-                  className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+                  className="object-cover"
                   sizes="(max-width: 768px) 100vw, 768px"
                 />
               </div>
