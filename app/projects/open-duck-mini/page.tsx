@@ -47,7 +47,7 @@ export default function OpenDuckMiniPage() {
             <h1 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">
               [IN PROGRESS]
             </h1>
-            <p className="text-muted-foreground text-sm">Personal Project</p>
+            <p className="text-muted-foreground text-sm">Personal</p>
           </div>
           </Reveal>
 
