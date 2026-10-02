@@ -43,7 +43,7 @@ export default function About({ data }: AboutProps) {
         <Tilt3D>
         <div className="border-2 border-border p-6 md:p-8 bg-card hover:border-accent transition-colors duration-300 hover-lift">
           <div className="font-mono text-xs md:text-sm leading-relaxed space-y-4">
-            <p className="text-foreground">
+            <p className="text-foreground whitespace-pre-line">
               <span className="text-accent">{">> "}</span>
               {data.bio}
             </p>
