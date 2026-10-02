@@ -11,7 +11,7 @@ const PROJECTS = [
     imageAlt: "Open Duck Mini, a miniature 3D-printed BDX droid",
     imagePosition: "object-top",
     title: "Open Duck Mini",
-    status: "In Progress — based on the open-source Open Duck Mini",
+    status: "In Progress — Personal Project",
     inProgress: true,
     about:
       "Building a miniature, 3D-printed version of Disney's BDX droid (about 42 cm tall, under $400 BOM) that walks using reinforcement learning.",
