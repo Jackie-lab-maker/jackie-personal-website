@@ -6,6 +6,17 @@ import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 
 const PROJECTS = [
   {
+    href: "/projects/open-duck-mini",
+    image: "/images/open-duck-mini/duck.png",
+    imageAlt: "Open Duck Mini, a miniature 3D-printed BDX droid",
+    imagePosition: "object-top",
+    title: "Open Duck Mini",
+    status: "In Progress — based on the open-source Open Duck Mini",
+    inProgress: true,
+    about:
+      "Building a miniature, 3D-printed version of Disney's BDX droid (about 42 cm tall, under $400 BOM) that walks using reinforcement learning.",
+  },
+  {
     href: "/projects/micron-humanoid-robot",
     image: "/images/micron-humanoid-robot/alohamini-base.png",
     imageAlt: "AlohaMini open-source dual-arm mobile robot, the base platform for this project",
@@ -14,6 +25,17 @@ const PROJECTS = [
     inProgress: true,
     about:
       "Modifying the open-source AlohaMini dual-arm mobile robot to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
+  },
+  {
+    href: "/projects/automation-digital-brain",
+    image: "/images/automation-digital-brain/micron-banner.jpg",
+    imageAlt: "Micron logo with the tagline Intelligence Accelerated",
+    imageFit: "contain" as const,
+    title: "Automation Digital Brain",
+    status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
+    inProgress: true,
+    about:
+      "A unified project-execution, engineering-knowledge, and AI-agent web app for the team, meant to replace checking across all its other existing software. Currently connecting the AI agent panel to real agent logic.",
   },
   {
     href: "/projects/watflight-gv-01",
@@ -78,12 +100,12 @@ export default function Projects() {
             <StaggerItem variant="tilt-up">
             <Link href={project.href} className="block">
             <div className="border-2 border-border bg-card hover:border-accent transition-all duration-300 hover-lift overflow-hidden">
-              <div className="relative aspect-video">
+              <div className={`relative aspect-video ${project.imageFit === "contain" ? "bg-black" : ""}`}>
                 <Image
                   src={project.image}
                   alt={project.imageAlt}
                   fill
-                  className="object-cover"
+                  className={project.imageFit === "contain" ? "object-contain" : `object-cover ${project.imagePosition ?? ""}`}
                   sizes="(max-width: 768px) 100vw, 768px"
                 />
               </div>
