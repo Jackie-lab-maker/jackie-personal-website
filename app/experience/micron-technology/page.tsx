@@ -96,7 +96,7 @@ export default function MicronTechnologyPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              Equipment Engineering Intern
+              Member of Technical Staff
             </h1>
             <p className="text-muted-foreground text-sm">
               September 2026 - January 2027

@@ -91,7 +91,7 @@ export default function OPmobilityAutomationPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              System Design Engineering Intern
+              Mechanical Engineering Intern
             </h1>
             <p className="text-muted-foreground text-sm">
               May 2025 - Aug 2025

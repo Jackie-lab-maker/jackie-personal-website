@@ -93,7 +93,7 @@ export default function WISAPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              System Design Engineering Researcher
+              Undergraduate Research Assistant
             </h1>
             <p className="text-muted-foreground text-sm">
               May 2026 - Present
