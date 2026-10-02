@@ -20,11 +20,11 @@ const PROJECTS = [
     href: "/projects/micron-humanoid-robot",
     image: "/images/micron-humanoid-robot/alohamini-base.png",
     imageAlt: "AlohaMini open-source dual-arm mobile robot, the base platform for this project",
-    title: "Humanoid Packaging Robot",
+    title: "Humanoid Robot",
     status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
     inProgress: true,
     about:
-      "Modifying the open-source AlohaMini dual-arm mobile robot to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
+      "Modifying the open-source AlohaMini dual-arm mobile robot for the warehouse and the CR1, CR2, CR3, and Post Electrical sections of Micron's assembly and testing production line in MXA.",
   },
   {
     href: "/projects/automation-digital-brain",

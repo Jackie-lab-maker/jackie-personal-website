@@ -116,8 +116,8 @@
         "url": "/projects/open-duck-mini"
       },
       {
-        "title": "Humanoid Packaging Robot",
-        "about": "In progress — modifying the open-source AlohaMini dual-arm mobile robot for Micron Technology's Robotics & Manufacturing Automation team, to pack small boxes into a larger shipping box at the output lot of the LPA production line.",
+        "title": "Humanoid Robot",
+        "about": "In progress — modifying the open-source AlohaMini dual-arm mobile robot for Micron Technology's Robotics & Manufacturing Automation team, for use in the warehouse and the CR1, CR2, CR3, and Post Electrical sections of the assembly and testing production line in MXA.",
         "image": "/images/micron-humanoid-robot/alohamini-base.png",
         "url": "/projects/micron-humanoid-robot"
       },

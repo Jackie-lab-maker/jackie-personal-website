@@ -43,7 +43,7 @@ export default function MicronHumanoidRobotPage() {
           <div className="font-mono text-center mb-12">
             <div className="text-accent mb-4 flex flex-col items-center">
               <pre className="text-xs md:text-sm">╔══════════════════════════════════════════════════════════════╗</pre>
-              <pre className="text-xs md:text-sm font-bold">║ HUMANOID PACKAGING ROBOT ║</pre>
+              <pre className="text-xs md:text-sm font-bold">║ HUMANOID ROBOT ║</pre>
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">
@@ -63,8 +63,8 @@ export default function MicronHumanoidRobotPage() {
               <div className="text-accent mb-2">{">"} PROJECT_INFO</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
                 A dual-arm mobile robot for Micron&rsquo;s Robotics &amp; Manufacturing Automation team, built
-                by modifying the open-source AlohaMini platform for a factory packaging task rather than
-                its original teleoperation/research use case.
+                by modifying the open-source AlohaMini platform for use on a factory floor rather than its
+                original teleoperation/research use case.
               </p>
             </div>
           </div>
@@ -78,10 +78,10 @@ export default function MicronHumanoidRobotPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} PROJECT_OVERVIEW</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                At the output lot of the LPA (Line Packaging Automation) production line, the robot picks
-                small boxes and packs them into a larger shipping box — automating a step currently done by
-                hand. Work in progress: adapting the AlohaMini hardware/software stack (dual-arm
-                manipulation, LeRobot-based control) to this pick-and-pack task.
+                Intended for use in the warehouse and in the CR1, CR2, CR3, and Post Electrical sections of
+                Micron&rsquo;s assembly and testing production line in MXA. Work in progress: adapting the
+                AlohaMini hardware/software stack (dual-arm manipulation, LeRobot-based control) to these
+                areas. The specific use case is still to be defined.
               </p>
             </div>
           </div>
