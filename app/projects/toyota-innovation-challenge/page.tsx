@@ -14,7 +14,6 @@ const COLLABORATORS = [
   { name: "Woojae Kim", login: "woojae-k" },
   { name: "Hurayrah Butt", login: "HurayrahB" },
   { name: "Jingkai (Jackie) Shao", login: "Jackie-lab-maker" },
-  { name: "WATFlight", login: "watflight66" },
 ]
 
 const GALLERY_ITEMS = [

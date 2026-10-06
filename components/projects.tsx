@@ -38,8 +38,9 @@ const PROJECTS = [
   },
   {
     href: "/projects/toyota-innovation-challenge",
-    image: "/images/toyota-innovation-challenge/gripper-and-targets.jpg",
-    imageAlt: "Dobot Magician gripper next to red velcro tags and red 3D-printed brake calipers",
+    image: "/images/toyota-innovation-challenge/tmmc-logo.png",
+    imageAlt: "Toyota Motor Manufacturing Canada Inc. logo",
+    imageFit: "logo" as const,
     title: "Collaborative Robotic Arm",
     status: "Completed — Toyota Innovation Challenge, University of Waterloo (3 days)",
     about:
@@ -98,15 +99,21 @@ export default function Projects() {
             <StaggerItem variant="tilt-up">
             <Link href={project.href} className="block">
             <div className="border-2 border-border bg-card hover:border-accent transition-all duration-300 hover-lift overflow-hidden">
-              <div className={`relative aspect-video ${project.imageFit === "contain" ? "bg-black" : ""}`}>
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
-                  className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
-                  sizes="(max-width: 768px) 100vw, 768px"
-                />
-              </div>
+              {project.imageFit === "logo" ? (
+                <div className="relative aspect-video bg-black flex items-center justify-center">
+                  <Image src={project.image} alt={project.imageAlt} width={268} height={102} className="w-[268px] h-auto" />
+                </div>
+              ) : (
+                <div className={`relative aspect-video ${project.imageFit === "contain" ? "bg-black" : ""}`}>
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+                    sizes="(max-width: 768px) 100vw, 768px"
+                  />
+                </div>
+              )}
               <div className="font-mono p-6 md:p-8">
                 <div className="text-accent text-xs md:text-sm mb-2">╔═════════════════════════════════╗</div>
                 <h3 className="text-foreground font-bold text-sm md:text-base mb-1 pl-2">║ {project.title}</h3>
