@@ -110,12 +110,6 @@
   "portfolio": {
     "projects": [
       {
-        "title": "Open Duck Mini",
-        "about": "In progress — building a miniature, 3D-printed version of Disney's BDX droid (about 42 cm tall, under $400 BOM) that walks using reinforcement learning, based on the open-source Open Duck Mini project.",
-        "image": "/images/open-duck-mini/duck.png",
-        "url": "/projects/open-duck-mini"
-      },
-      {
         "title": "Humanoid Robot",
         "about": "In progress — modifying the open-source AlohaMini dual-arm mobile robot for Micron Technology's Robotics & Manufacturing Automation team, for use in the warehouse and the CR1, CR2, CR3, and Post Electrical sections of the assembly and testing production line in MXA.",
         "image": "/images/micron-humanoid-robot/alohamini-base.png",
@@ -132,6 +126,12 @@
         "about": "In progress, very early stage — a WATFlight sustainable aviation vehicle project. Currently writing the Engineering Design Specification document.",
         "image": "/images/watflight-project-management/wordmark-banner.png",
         "url": "/projects/watflight-gv-01"
+      },
+      {
+        "title": "Collaborative Robotic Arm",
+        "about": "Completed in 3 days for the Toyota Innovation Challenge at the University of Waterloo, sponsored by Toyota Motor Manufacturing Canada — a vision-guided pick-and-place Dobot arm that works alongside people, with hand-detection safety override and gesture control.",
+        "image": "/images/toyota-innovation-challenge/gripper-and-targets.jpg",
+        "url": "/projects/toyota-innovation-challenge"
       },
       {
         "title": "Quad-X-Cage (A quadcopter built for Indoor Inspection)",

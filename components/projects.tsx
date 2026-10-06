@@ -6,17 +6,6 @@ import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 
 const PROJECTS = [
   {
-    href: "/projects/open-duck-mini",
-    image: "/images/open-duck-mini/duck.png",
-    imageAlt: "Open Duck Mini, a miniature 3D-printed BDX droid",
-    imagePosition: "object-top",
-    title: "Open Duck Mini",
-    status: "In Progress — Personal",
-    inProgress: true,
-    about:
-      "Building a miniature, 3D-printed version of Disney's BDX droid (about 42 cm tall, under $400 BOM) that walks using reinforcement learning.",
-  },
-  {
     href: "/projects/micron-humanoid-robot",
     image: "/images/micron-humanoid-robot/alohamini-base.png",
     imageAlt: "AlohaMini open-source dual-arm mobile robot, the base platform for this project",
@@ -46,6 +35,15 @@ const PROJECTS = [
     inProgress: true,
     about:
       "A WATFlight sustainable aviation vehicle project. Very early stage — currently writing the Engineering Design Specification document.",
+  },
+  {
+    href: "/projects/toyota-innovation-challenge",
+    image: "/images/toyota-innovation-challenge/gripper-and-targets.jpg",
+    imageAlt: "Dobot Magician gripper next to red velcro tags and red 3D-printed brake calipers",
+    title: "Collaborative Robotic Arm",
+    status: "Completed — Toyota Innovation Challenge, University of Waterloo (3 days)",
+    about:
+      "A vision-guided pick-and-place Dobot arm that works alongside people, with hand-detection safety override and gesture control. Sponsored by Toyota Motor Manufacturing Canada.",
   },
   {
     href: "/projects/cryogenics-systems-modeling",
@@ -105,7 +103,7 @@ export default function Projects() {
                   src={project.image}
                   alt={project.imageAlt}
                   fill
-                  className={project.imageFit === "contain" ? "object-contain" : `object-cover ${project.imagePosition ?? ""}`}
+                  className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
                   sizes="(max-width: 768px) 100vw, 768px"
                 />
               </div>
