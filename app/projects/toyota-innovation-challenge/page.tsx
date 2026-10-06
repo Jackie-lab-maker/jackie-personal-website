@@ -120,10 +120,37 @@ export default function ToyotaInnovationChallengePage() {
               </p>
               <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
                 For working near people, MediaPipe hand detection overrides every command to HOLD when a
-                hand enters the arm&rsquo;s workspace, and a gesture mode lets a person drive the arm by hand.
+                hand enters the arm&rsquo;s workspace. A gesture mode, described below, lets a person drive
+                the arm by hand instead.
               </p>
               <p className="text-accent pl-4 text-[11px] md:text-xs">
                 Python · OpenCV · MediaPipe · Dobot Magician
+              </p>
+            </div>
+          </div>
+          </Tilt3D>
+          </Reveal>
+
+          <Reveal variant="tilt-up" delay={0.1}>
+          <Tilt3D>
+          <div className="border border-border bg-card p-6 mb-6 hover-lift">
+            <div className="font-mono text-xs md:text-sm">
+              <div className="text-accent mb-2">{">"} GESTURE_CONTROL</div>
+              <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
+                Gesture control lets an operator drive the arm by hand from a distance instead of standing
+                next to it. The intended application is hazardous areas of an automotive production line,
+                such as a welding line, where a person can direct a robot arm without being in the work
+                area.
+              </p>
+              <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
+                A camera tracks the hand with MediaPipe. An open palm makes the arm follow the hand&rsquo;s
+                position, one finger raises it and two lower it, a fist opens or closes the gripper, and a
+                thumbs-up sends it home. A gesture has to be held for about 18 frames before it fires, so a
+                stray movement doesn&rsquo;t command the arm, and every command is clamped to safe workspace
+                bounds. If a hand enters the arm&rsquo;s own workspace, all gestures are overridden to HOLD.
+              </p>
+              <p className="text-muted-foreground pl-4 leading-relaxed">
+                The demo video below shows this gesture-control mode.
               </p>
             </div>
           </div>
@@ -198,7 +225,7 @@ export default function ToyotaInnovationChallengePage() {
               Your browser does not support the video tag.
             </video>
             <p className="p-4 font-mono text-xs md:text-sm text-muted-foreground italic">
-              The arm picking targets from the workspace while the team works around it.
+              Demo of gesture control: the operator directs the arm with hand gestures captured by the camera.
             </p>
           </div>
           </Reveal>

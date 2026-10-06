@@ -43,7 +43,7 @@ const PROJECTS = [
     title: "Collaborative Robotic Arm",
     status: "Completed — Toyota Innovation Challenge, University of Waterloo (3 days)",
     about:
-      "A vision-guided pick-and-place Dobot arm that works alongside people, with hand-detection safety override and gesture control. Sponsored by Toyota Motor Manufacturing Canada.",
+      "A vision-guided pick-and-place Dobot arm with hand-gesture control, intended for operating robots in hazardous areas of automotive production such as welding lines. Sponsored by Toyota Motor Manufacturing Canada.",
   },
   {
     href: "/projects/cryogenics-systems-modeling",

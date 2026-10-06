@@ -4,7 +4,7 @@
     "occupation": "Mechanical Engineering Student",
     "description": "",
     "image": "profilepic.jpg",
-    "bio": "Hi, I'm Jackie! I'm a Mechanical Engineering student at the University of Waterloo who grew up in Montreal and has been looking up at the sky ever since. I'm a pilot, so I keep a very healthy respect for things that fly (and for the checklists that keep them that way).\n\nMy favorite corner of engineering is the one where chips, data centers, and robots overlap. AI runs on memory, memory gets made in fabs, and fabs run on equipment, automation, and a lot of very careful engineering. I'm a Member of Technical Staff at Micron, where I work on exactly that stack, and I'm teaching a humanoid robot to be useful on a factory floor.\n\nOn the aerial side, I founded WATFlight, a student design team at Waterloo working toward a sustainable aircraft. And for fun, I once spent three days at a Toyota challenge teaching a robot arm to pick things up without hitting the humans working next to it.\n\nAsk me about memory chips, aircraft, robots, or how to make a robot arm stay out of your way.",
+    "bio": "Hi, I'm Jackie! I'm a Mechanical Engineering student at the University of Waterloo who grew up in Montreal and has been looking up at the sky ever since. I'm a pilot, so I keep a very healthy respect for things that fly (and for the checklists that keep them that way).\n\nMy favorite corner of engineering is the one where chips, data centers, and robots overlap. AI runs on memory, memory gets made in fabs, and fabs run on equipment, automation, and a lot of very careful engineering. I'm a Member of Technical Staff at Micron, where I work on exactly that stack, and I'm teaching a humanoid robot to be useful on a factory floor.\n\nOn the aerial side, I founded WATFlight, a student design team at Waterloo working toward a sustainable aircraft.\n\nAsk me about memory chips, aircraft, or robots.",
     "contactmessage": "Let's build something amazing together!",
     "email": "j66shao@uwaterloo.ca",
     "phone": "(+1) 514-562-8684",
@@ -129,7 +129,7 @@
       },
       {
         "title": "Collaborative Robotic Arm",
-        "about": "Completed in 3 days for the Toyota Innovation Challenge at the University of Waterloo, sponsored by Toyota Motor Manufacturing Canada — a vision-guided pick-and-place Dobot arm that works alongside people, with hand-detection safety override and gesture control.",
+        "about": "Completed in 3 days for the Toyota Innovation Challenge at the University of Waterloo, sponsored by Toyota Motor Manufacturing Canada — a vision-guided pick-and-place Dobot arm with hand-gesture control, intended for operating robots in hazardous areas of automotive production such as welding lines.",
         "image": "/images/toyota-innovation-challenge/gripper-and-targets.jpg",
         "url": "/projects/toyota-innovation-challenge"
       },
