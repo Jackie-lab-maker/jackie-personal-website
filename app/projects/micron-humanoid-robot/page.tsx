@@ -23,18 +23,16 @@ export default function MicronHumanoidRobotPage() {
         </div>
       </header>
 
-      {/* Micron logo banner (official vector logo, crisp at any size) */}
-      <div className="w-full bg-black flex justify-center py-12">
-        <div className="relative w-[320px] h-[69px]">
-          <Image
-            src="/images/micron-logo/micron-logo-white.svg"
-            alt="Micron logo"
-            fill
-            className="object-contain"
-            sizes="320px"
-            priority
-          />
-        </div>
+      {/* Base Platform Image */}
+      <div className="relative w-full aspect-[3/2] max-h-96 bg-white">
+        <Image
+          src="/images/micron-humanoid-robot/alohamini-base.png"
+          alt="AlohaMini open-source dual-arm mobile robot with motorized lift, the base platform for this project"
+          fill
+          className="object-contain"
+          sizes="100vw"
+          priority
+        />
       </div>
 
       {/* Page Content */}

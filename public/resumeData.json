@@ -112,13 +112,13 @@
       {
         "title": "Humanoid Robot",
         "about": "In progress — modifying the open-source AlohaMini dual-arm mobile robot for Micron Technology's Robotics & Manufacturing Automation team, for use in the warehouse and the CR1, CR2, CR3, and Post Electrical sections of the assembly and testing production line in MXA.",
-        "image": "/images/micron-humanoid-robot/alohamini-base.png",
+        "image": "/images/micron-logo/micron-logo-white.svg",
         "url": "/projects/micron-humanoid-robot"
       },
       {
         "title": "Automation Digital Brain",
         "about": "In progress — a unified project-execution, engineering-knowledge, and AI-agent web app for Micron Technology's Robotics & Manufacturing Automation team, meant to replace checking across all its other existing software. Currently connecting the AI agent panel to real agent logic.",
-        "image": "/images/automation-digital-brain/micron-banner.jpg",
+        "image": "/images/micron-logo/micron-logo-white.svg",
         "url": "/projects/automation-digital-brain"
       },
       {

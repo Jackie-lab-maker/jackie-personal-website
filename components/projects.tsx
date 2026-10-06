@@ -7,8 +7,11 @@ import { Wireframe3D } from "@/components/graphics/wireframe-3d"
 const PROJECTS = [
   {
     href: "/projects/micron-humanoid-robot",
-    image: "/images/micron-humanoid-robot/alohamini-base.png",
-    imageAlt: "AlohaMini open-source dual-arm mobile robot, the base platform for this project",
+    image: "/images/micron-logo/micron-logo-white.svg",
+    imageAlt: "Micron logo",
+    imageFit: "logo" as const,
+    imageWidth: 320,
+    imageHeight: 69,
     title: "Humanoid Robot",
     status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
     inProgress: true,
@@ -17,9 +20,11 @@ const PROJECTS = [
   },
   {
     href: "/projects/automation-digital-brain",
-    image: "/images/automation-digital-brain/micron-banner.jpg",
-    imageAlt: "Micron logo with the tagline Intelligence Accelerated",
-    imageFit: "contain" as const,
+    image: "/images/micron-logo/micron-logo-white.svg",
+    imageAlt: "Micron logo",
+    imageFit: "logo" as const,
+    imageWidth: 320,
+    imageHeight: 69,
     title: "Automation Digital Brain",
     status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
     inProgress: true,
@@ -101,7 +106,7 @@ export default function Projects() {
             <div className="border-2 border-border bg-card hover:border-accent transition-all duration-300 hover-lift overflow-hidden">
               {project.imageFit === "logo" ? (
                 <div className="relative aspect-video bg-black flex items-center justify-center">
-                  <Image src={project.image} alt={project.imageAlt} width={268} height={102} className="w-[268px] h-auto" />
+                  <Image src={project.image} alt={project.imageAlt} width={project.imageWidth ?? 268} height={project.imageHeight ?? 102} style={{ width: project.imageWidth ?? 268, height: "auto" }} />
                 </div>
               ) : (
                 <div className={`relative aspect-video ${project.imageFit === "contain" ? "bg-black" : ""}`}>
