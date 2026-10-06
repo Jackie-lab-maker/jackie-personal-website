@@ -180,6 +180,32 @@ export default function ToyotaInnovationChallengePage() {
           <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
+            <pre className="text-xs md:text-sm font-bold">║ DEMO VIDEO ║</pre>
+            <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
+          </div>
+          </Reveal>
+
+          <Reveal variant="tilt-up" delay={0.05}>
+          <div className="border border-border bg-card mb-12 overflow-hidden">
+            <video
+              className="w-full aspect-video bg-black"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/images/toyota-innovation-challenge/demo-poster.jpg"
+            >
+              <source src="/images/toyota-innovation-challenge/demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <p className="p-4 font-mono text-xs md:text-sm text-muted-foreground italic">
+              The arm picking targets from the workspace while the team works around it.
+            </p>
+          </div>
+          </Reveal>
+
+          <Reveal variant="blur-up">
+          <div className="font-mono text-accent mb-6 flex flex-col items-center">
+            <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
             <pre className="text-xs md:text-sm font-bold">║ PHOTO GALLERY ║</pre>
             <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
           </div>
