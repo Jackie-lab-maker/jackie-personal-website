@@ -23,6 +23,7 @@ const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?:
   "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Engineering Intern" },
   "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "Mechanical Engineering Intern" },
   "WISA": { route: "/experience/wisa", company: "Waterloo Institute for Sustainable Aeronautics" },
+  "WATFlight": { route: "/experience/watflight", company: "WATFlight" },
   "Micron Technology": { route: "/experience/micron-technology", company: "Micron Technology" },
 }
 
