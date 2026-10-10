@@ -47,7 +47,7 @@ export default function WATFlightPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              Founder &amp; Team Director
+              Co-Founder &amp; Team Director
             </h1>
             <p className="text-muted-foreground text-sm">
               April 2026 - Present
@@ -63,7 +63,7 @@ export default function WATFlightPage() {
               <div className="text-accent mb-2">{">"} COMPANY_INFO</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
                 WATFlight is the University of Waterloo&rsquo;s student design team focused on sustainable
-                aviation. I founded the team and direct it, working across its Mechanical, Electrical, and
+                aviation. I co-founded the team and direct it, working across its Mechanical, Electrical, and
                 Software sub-teams.
               </p>
               <div className="flex flex-wrap gap-2 mt-3 pl-4">

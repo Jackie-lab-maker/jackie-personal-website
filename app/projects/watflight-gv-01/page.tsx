@@ -50,7 +50,7 @@ export default function WATFlightGV01Page() {
               [IN PROGRESS — EARLY STAGE]
             </h1>
             <p className="text-muted-foreground text-sm">
-              WATFlight — Founder &amp; Team Director
+              WATFlight — Co-Founder &amp; Team Director
             </p>
           </div>
           </Reveal>
@@ -64,7 +64,7 @@ export default function WATFlightGV01Page() {
               <p className="text-muted-foreground pl-4 leading-relaxed">
                 GV-01 is a WATFlight vehicle project for sustainable aviation, currently being built by the
                 Mechanical, Electrical, and Software sub-teams of WATFlight, the student design team I
-                founded and direct.
+                co-founded and direct.
               </p>
             </div>
           </div>

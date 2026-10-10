@@ -55,7 +55,7 @@ export default function WATFlightProjectManagementPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              Completed — WATFlight, Founder &amp; Team Director
+              Completed — WATFlight, Co-Founder &amp; Team Director
             </h1>
           </div>
           </Reveal>

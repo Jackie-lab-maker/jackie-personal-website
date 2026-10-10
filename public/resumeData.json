@@ -4,7 +4,7 @@
     "occupation": "Mechanical Engineering Student",
     "description": "",
     "image": "profilepic.jpg",
-    "bio": "Hi, I'm Jackie! I'm a Mechanical Engineering student at the University of Waterloo who grew up in Montreal and has been looking up at the sky ever since. I'm a pilot, so I keep a very healthy respect for things that fly (and for the checklists that keep them that way).\n\nMy favorite corner of engineering is the one where chips, data centers, and robots overlap. AI runs on memory, memory gets made in fabs, and fabs run on equipment, automation, and a lot of very careful engineering. I'm a Member of Technical Staff at Micron, where I work on exactly that stack, and I'm teaching a humanoid robot to be useful on a factory floor.\n\nOn the aerial side, I founded WATFlight, a student design team at Waterloo working toward a sustainable aircraft.\n\nAsk me about memory chips, aircraft, or robots.",
+    "bio": "Hi, I'm Jackie! I'm a Mechanical Engineering student at the University of Waterloo who grew up in Montreal and has been looking up at the sky ever since. I'm a pilot, so I keep a very healthy respect for things that fly (and for the checklists that keep them that way).\n\nMy favorite corner of engineering is the one where chips, data centers, and robots overlap. AI runs on memory, memory gets made in fabs, and fabs run on equipment, automation, and a lot of very careful engineering. I'm a Member of Technical Staff at Micron, where I work on exactly that stack, and I'm teaching a humanoid robot to be useful on a factory floor.\n\nOn the aerial side, I co-founded WATFlight, a student design team at Waterloo working toward a sustainable aircraft.\n\nAsk me about memory chips, aircraft, or robots.",
     "contactmessage": "Let's build something amazing together!",
     "email": "j66shao@uwaterloo.ca",
     "phone": "(+1) 514-562-8684",
@@ -55,7 +55,7 @@
       },
       {
         "company": "WATFlight",
-        "title": "Founder & Team Director",
+        "title": "Co-Founder & Team Director",
         "years": "April 2026 - Present",
         "description": ""
       },

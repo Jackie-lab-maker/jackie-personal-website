@@ -36,7 +36,7 @@ const PROJECTS = [
     image: "/images/watflight-project-management/wordmark-banner.png",
     imageAlt: "WATFlight wordmark logo",
     title: "GV-01",
-    status: "In Progress — WATFlight, Founder & Team Director",
+    status: "In Progress — WATFlight, Co-Founder & Team Director",
     inProgress: true,
     about:
       "A WATFlight sustainable aviation vehicle project. Very early stage — currently writing the Engineering Design Specification document.",
@@ -74,7 +74,7 @@ const PROJECTS = [
     image: "/images/watflight-project-management/wordmark-banner.png",
     imageAlt: "WATFlight wordmark logo",
     title: "WATFlight Launch Control Center",
-    status: "Completed — WATFlight, Founder & Team Director",
+    status: "Completed — WATFlight, Co-Founder & Team Director",
     about:
       "Full-stack task-management platform for the WATFlight design team: a Kanban board per sub-team with drag-and-drop, realtime Supabase-backed collaboration, and row-level security.",
   },
