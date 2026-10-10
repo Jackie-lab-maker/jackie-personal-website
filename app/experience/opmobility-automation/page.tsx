@@ -28,9 +28,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 4,
-    src: "/images/opmobility-automation/hydrogen-tank-lineup.png",
-    alt: "Lineup of OPmobility Type IV composite hydrogen storage tanks in different sizes",
-    description: "Photo courtesy of OPmobility — a lineup of Type IV composite hydrogen storage tanks.",
+    src: "/images/opmobility-automation/tanktronic-fuel-system.jpg",
+    alt: "Cutaway render of an OPmobility Tanktronic fuel tank system with integrated components",
+    description: "Photo courtesy of OPmobility — a cutaway of an integrated fuel tank system.",
   },
   {
     id: 5,
@@ -40,9 +40,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 6,
-    src: "/images/opmobility-automation/industrial-capacity.jpg",
-    alt: "OPmobility industrial manufacturing capacity",
-    description: "Photo courtesy of OPmobility — industrial manufacturing capacity.",
+    src: "/images/opmobility-automation/concept-vehicle-charging.jpg",
+    alt: "OPmobility concept vehicle beside a charging station at night",
+    description: "Photo courtesy of OPmobility — a concept vehicle for cleaner mobility.",
   },
 ]
 

@@ -34,9 +34,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 5,
-    src: "/images/chart-industries/lng-engineered-system.jpg",
-    alt: "Chart Industries cryogenic engineered system for LNG-to-power applications",
-    description: "Photo courtesy of Chart Industries — a cryogenic engineered system for LNG-to-power.",
+    src: "/images/chart-industries/hydrogen-test-site.jpg",
+    alt: "Aerial view of a Chart Industries hydrogen test site with cryogenic trailers and storage tanks",
+    description: "Photo courtesy of Chart Industries — a hydrogen test site with cryogenic storage and trailers.",
   },
   {
     id: 6,
@@ -167,7 +167,7 @@ export default function ChartIndustriesPage() {
               >
                 {/* Image Container */}
                 <div 
-                  className="relative aspect-[3/4] cursor-pointer overflow-hidden"
+                  className="relative aspect-[4/3] cursor-pointer overflow-hidden"
                   onClick={() => setSelectedImage(item.id)}
                 >
                   <Image

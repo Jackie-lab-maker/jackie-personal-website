@@ -22,9 +22,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 3,
-    src: "/images/wisa/sim-lab.jpg",
-    alt: "WISA flight simulation lab with multiple simulator stations",
-    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — the WISA Sim Lab.",
+    src: "/images/wisa/flight-centre-tail.jpg",
+    alt: "Aircraft tail fin carrying Waterloo Wellington Flight Centre, WISA and University of Waterloo logos",
+    description: "Photo courtesy of the Waterloo Institute for Sustainable Aeronautics — the WISA and Waterloo Wellington Flight Centre training aircraft.",
   },
   {
     id: 4,

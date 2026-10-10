@@ -28,15 +28,15 @@ const GALLERY_ITEMS = [
   },
   {
     id: 4,
-    src: "/images/opmobility-manufacturing/manufacturing-line.jpg",
-    alt: "Automated OPmobility manufacturing line handling a fuel tank with robotic gripper tooling",
-    description: "Photo courtesy of OPmobility — automated tooling on a manufacturing line.",
+    src: "/images/opmobility-manufacturing/scr-components.jpg",
+    alt: "Close-up of OPmobility SCR emissions-control system components",
+    description: "Photo courtesy of OPmobility — emissions-control system components.",
   },
   {
     id: 5,
-    src: "/images/opmobility-manufacturing/industrial-capacity-2.jpg",
-    alt: "OPmobility industrial manufacturing capacity",
-    description: "Photo courtesy of OPmobility — industrial manufacturing capacity.",
+    src: "/images/opmobility-manufacturing/concept-vehicle-lighting.jpg",
+    alt: "Rear view of an OPmobility concept vehicle with integrated lighting",
+    description: "Photo courtesy of OPmobility — a concept vehicle with integrated lighting.",
   },
   {
     id: 6,
