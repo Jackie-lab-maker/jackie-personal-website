@@ -21,8 +21,8 @@ const GALLERY_ITEMS = [
   {
     id: 1,
     src: "/images/toyota-innovation-challenge/workspace.jpg",
-    alt: "Dobot Magician arm on a workbench with an overhead camera mounted above it",
-    description: "The workspace: a Dobot Magician arm with an overhead depth camera.",
+    alt: "Dobot Magician arm on a workbench, gripper above a red 3D-printed brake caliper",
+    description: "The workspace: a Dobot Magician arm on the bench, gripper over a red brake caliper target.",
   },
   {
     id: 2,
