@@ -23,15 +23,24 @@ export default function AutomationDigitalBrainPage() {
         </div>
       </header>
 
-      {/* Banner: Micron's LinkedIn cover image (1128px wide; capped at native width to stay sharp) */}
-      <div className="w-full bg-black flex justify-center">
-        <div className="relative w-full max-w-[1128px] aspect-[1128/191]">
+      {/* Banner: Micron brand artwork under the official white Micron logo (vector, so it stays sharp) */}
+      <div className="relative w-full h-44 md:h-64 overflow-hidden bg-black">
+        <Image
+          src="/images/automation-digital-brain/micron-banner-bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 flex items-center justify-center">
           <Image
-            src="/images/automation-digital-brain/micron-linkedin-banner.jpg"
-            alt="Micron Technology LinkedIn cover image: a silicon wafer in blue and purple light"
-            fill
-            className="object-cover"
-            sizes="(max-width: 1128px) 100vw, 1128px"
+            src="/images/micron-logo/micron-logo-white.svg"
+            alt="Micron"
+            width={320}
+            height={69}
+            className="w-56 md:w-80 h-auto"
             priority
           />
         </div>
