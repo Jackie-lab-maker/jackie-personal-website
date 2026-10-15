@@ -35,6 +35,25 @@ const GALLERY_ITEMS = [
     alt: "Camera mounted on a clamped articulated arm under a table",
     description: "The camera mount holding the vision system above the workspace.",
   },
+  {
+    id: 4,
+    src: "/images/toyota-innovation-challenge/hand-slowdown.jpg",
+    alt: "Camera view with hand tracking overlay reading Hand Detected and Speed 50% Slow",
+    description: "Hand detected in the camera view: the arm slows to 50% of its normal speed.",
+  },
+]
+
+const DEMO_VIDEOS = [
+  {
+    src: "/images/toyota-innovation-challenge/pick-and-place-demo.mp4",
+    poster: "/images/toyota-innovation-challenge/pick-and-place-poster.jpg",
+    caption: "Demo of object detection and pick-and-place: the camera detects the target items and the arm picks and places them.",
+  },
+  {
+    src: "/images/toyota-innovation-challenge/demo.mp4",
+    poster: "/images/toyota-innovation-challenge/demo-poster.jpg",
+    caption: "Demo of gesture control: the operator directs the arm with hand gestures captured by the camera.",
+  },
 ]
 
 export default function ToyotaInnovationChallengePage() {
@@ -118,9 +137,10 @@ export default function ToyotaInnovationChallengePage() {
                 pose rather than waiting on fixed delays.
               </p>
               <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
-                For working near people, MediaPipe hand detection overrides every command to HOLD when a
-                hand enters the arm&rsquo;s workspace. A gesture mode, described below, lets a person drive
-                the arm by hand instead.
+                For working near people, MediaPipe hand detection slows the arm to 50% of its normal speed
+                whenever a hand appears in the camera view (see the last photo in the gallery), and a hand
+                inside the arm&rsquo;s workspace overrides every command to HOLD. A gesture mode, described
+                below, lets a person drive the arm by hand instead.
               </p>
               <p className="text-accent pl-4 text-[11px] md:text-xs">
                 Python · OpenCV · MediaPipe · Dobot Magician
@@ -149,7 +169,7 @@ export default function ToyotaInnovationChallengePage() {
                 bounds. If a hand enters the arm&rsquo;s own workspace, all gestures are overridden to HOLD.
               </p>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                The demo video below shows this gesture-control mode.
+                The second demo video below shows this gesture-control mode.
               </p>
             </div>
           </div>
@@ -206,28 +226,28 @@ export default function ToyotaInnovationChallengePage() {
           <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
             <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
-            <pre className="text-xs md:text-sm font-bold">║ DEMO VIDEO ║</pre>
+            <pre className="text-xs md:text-sm font-bold">║ DEMO VIDEOS ║</pre>
             <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
           </div>
           </Reveal>
 
-          <Reveal variant="tilt-up" delay={0.05}>
-          <div className="border border-border bg-card mb-12 overflow-hidden">
-            <video
-              className="w-full aspect-video bg-black"
-              controls
-              playsInline
-              preload="metadata"
-              poster="/images/toyota-innovation-challenge/demo-poster.jpg"
-            >
-              <source src="/images/toyota-innovation-challenge/demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <p className="p-4 font-mono text-xs md:text-sm text-muted-foreground italic">
-              Demo of gesture control: the operator directs the arm with hand gestures captured by the camera.
-            </p>
-          </div>
-          </Reveal>
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {DEMO_VIDEOS.map((video) => (
+              <StaggerItem key={video.src} variant="tilt-up" className="border border-border bg-card overflow-hidden">
+                <video
+                  className="w-full aspect-video bg-black"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={video.poster}
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <p className="p-4 font-mono text-xs md:text-sm text-muted-foreground italic">{video.caption}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
 
           <Reveal variant="blur-up">
           <div className="font-mono text-accent mb-6 flex flex-col items-center">
@@ -237,7 +257,7 @@ export default function ToyotaInnovationChallengePage() {
           </div>
           </Reveal>
 
-          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {GALLERY_ITEMS.map((item) => (
               <Tilt3D key={item.id} maxTilt={3}>
               <StaggerItem
@@ -253,7 +273,7 @@ export default function ToyotaInnovationChallengePage() {
                     alt={item.alt}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                     <span className="font-mono text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-3 py-1">
