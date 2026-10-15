@@ -8,6 +8,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 import { Tilt3D } from "@/components/motion/tilt-3d"
 
 const REPO_URL = "https://github.com/HurayrahB/Toyota-Innovation-Challenge"
+const COLLAB_URL = `${REPO_URL}/tree/whole-claude-4`
 const STARTER_URL = "https://github.com/IdeasClinicUWaterloo/S26-toyota-innovation-challenge"
 
 const COLLABORATORS = [
@@ -34,12 +35,6 @@ const GALLERY_ITEMS = [
     src: "/images/toyota-innovation-challenge/camera-mount.jpg",
     alt: "Camera mounted on a clamped articulated arm under a table",
     description: "The camera mount holding the vision system above the workspace.",
-  },
-  {
-    id: 4,
-    src: "/images/toyota-innovation-challenge/hand-slowdown.jpg",
-    alt: "Camera view with hand tracking overlay reading Hand Detected and Speed 50% Slow",
-    description: "Hand detected in the camera view: the arm slows to 50% of its normal speed.",
   },
 ]
 
@@ -137,10 +132,8 @@ export default function ToyotaInnovationChallengePage() {
                 pose rather than waiting on fixed delays.
               </p>
               <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
-                For working near people, MediaPipe hand detection slows the arm to 50% of its normal speed
-                whenever a hand appears in the camera view (see the last photo in the gallery), and a hand
-                inside the arm&rsquo;s workspace overrides every command to HOLD. A gesture mode, described
-                below, lets a person drive the arm by hand instead.
+                Working alongside people is covered by two features described below: hand safety, and a
+                gesture mode that lets a person drive the arm by hand.
               </p>
               <p className="text-accent pl-4 text-[11px] md:text-xs">
                 Python · OpenCV · MediaPipe · Dobot Magician
@@ -166,10 +159,71 @@ export default function ToyotaInnovationChallengePage() {
                 position, one finger raises it and two lower it, a fist opens or closes the gripper, and a
                 thumbs-up sends it home. A gesture has to be held for about 18 frames before it fires, so a
                 stray movement doesn&rsquo;t command the arm, and every command is clamped to safe workspace
-                bounds. If a hand enters the arm&rsquo;s own workspace, all gestures are overridden to HOLD.
+                bounds.
               </p>
               <p className="text-muted-foreground pl-4 leading-relaxed">
                 The second demo video below shows this gesture-control mode.
+              </p>
+            </div>
+          </div>
+          </Tilt3D>
+          </Reveal>
+
+          <Reveal variant="tilt-up" delay={0.1}>
+          <Tilt3D>
+          <div className="border border-border bg-card p-6 mb-6 hover-lift">
+            <div className="font-mono text-xs md:text-sm">
+              <div className="text-accent mb-2">{">"} HAND_SAFETY</div>
+              <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
+                The challenge is a robot that works next to people, so MediaPipe hand detection protects
+                the person in two ways, one in each mode.
+              </p>
+              <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
+                <span className="text-foreground">Collaborative pick-and-place: slow down.</span> A single
+                Orbbec Astra camera watches the workspace, and MediaPipe Hands runs on every frame in
+                every phase of the cycle: scanning for plates, scanning for red blocks, and waiting for the
+                next pick. The moment a hand is visible, the arm&rsquo;s velocity and acceleration are cut to
+                half of normal, and they return to normal as soon as the hand leaves the frame. This layer
+                only changes the speed setting; it never moves the arm itself.
+              </p>
+              <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
+                <span className="text-foreground">Gesture mode: hold.</span> The hand&rsquo;s wrist landmark is
+                projected through the same homography into the arm&rsquo;s coordinates. If it lands inside the
+                arm&rsquo;s table zone (X 150 to 310 mm, Y &minus;140 to 140 mm), the gesture is discarded and the
+                arm holds its position, with a SAFETY HOLD banner on screen, so it never moves toward a hand
+                that is already near it.
+              </p>
+              <p className="text-muted-foreground pl-4 leading-relaxed">
+                The photo below is the live camera view in the second phase (scanning for red blocks) with a
+                hand in frame: the hand skeleton is tracked, the on-screen readout shows HAND DETECTED and
+                SPEED 50% SLOW, and target locking carries on at 35%.
+              </p>
+              <figure className="pl-4 mt-4 max-w-[480px]">
+                <div className="relative aspect-[4/3] border border-border bg-black">
+                  <Image
+                    src="/images/toyota-innovation-challenge/hand-slowdown.jpg"
+                    alt="Camera view with a tracked hand skeleton and an overlay reading Hand Detected and Speed 50% Slow"
+                    fill
+                    className="object-cover"
+                    sizes="480px"
+                  />
+                </div>
+                <figcaption className="mt-2 text-muted-foreground italic">
+                  Hand detected in frame: the arm slows to 50% of its normal speed.
+                </figcaption>
+              </figure>
+              <p className="text-muted-foreground pl-4 mt-4 leading-relaxed">
+                As the repo&rsquo;s own safety notes say, this software override is an extra layer and not a
+                substitute for the arm&rsquo;s safety training. The collaborative mode lives on the{" "}
+                <a
+                  href={COLLAB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:text-foreground underline"
+                >
+                  whole-claude-4 branch
+                </a>
+                .
               </p>
             </div>
           </div>
@@ -257,7 +311,7 @@ export default function ToyotaInnovationChallengePage() {
           </div>
           </Reveal>
 
-          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {GALLERY_ITEMS.map((item) => (
               <Tilt3D key={item.id} maxTilt={3}>
               <StaggerItem
@@ -273,7 +327,7 @@ export default function ToyotaInnovationChallengePage() {
                     alt={item.alt}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                     <span className="font-mono text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-3 py-1">
