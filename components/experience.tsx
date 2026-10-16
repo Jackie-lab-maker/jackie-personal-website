@@ -20,7 +20,7 @@ interface ExperienceProps {
 // Map company names to their detail page routes (use unique keys for multiple entries)
 const EXPERIENCE_PAGES: Record<string, { route: string; company: string; title?: string }> = {
   "Chart Industries": { route: "/experience/chart-industries", company: "Chart Industries" },
-  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Manufacturing Engineering Intern" },
+  "OPmobility Manufacturing": { route: "/experience/opmobility-manufacturing", company: "OPmobility", title: "Technical Program Manager" },
   "OPmobility Automation": { route: "/experience/opmobility-automation", company: "OPmobility", title: "Mechanical Engineering Intern" },
   "WISA": { route: "/experience/wisa", company: "Waterloo Institute for Sustainable Aeronautics" },
   "WATFlight": { route: "/experience/watflight", company: "WATFlight" },

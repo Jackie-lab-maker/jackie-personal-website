@@ -91,7 +91,7 @@ export default function OPmobilityManufacturingPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              Manufacturing Engineering Intern
+              Technical Program Manager
             </h1>
             <p className="text-muted-foreground text-sm">
               April 2026 - May 2026
