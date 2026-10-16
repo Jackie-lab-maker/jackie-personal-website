@@ -10,21 +10,21 @@ import { Tilt3D } from "@/components/motion/tilt-3d"
 const GALLERY_ITEMS = [
   {
     id: 1,
-    src: "/images/opmobility/kuka-controller.png",
-    alt: "KUKA robot teach pendant displaying KRL programming code",
-    description: "Description coming soon...",
+    src: "/images/opmobility-manufacturing/robotic-cell.jpg",
+    alt: "Robot arms handling a plastic fuel tank in a production cell",
+    description: "Photo courtesy of OPmobility — robotic handling of a fuel tank in a production cell.",
   },
   {
     id: 2,
-    src: "/images/opmobility/kuka-robot.png",
-    alt: "KUKA industrial robot arm in manufacturing cell",
-    description: "Description coming soon...",
+    src: "/images/opmobility-manufacturing/autonomous-shuttle.jpg",
+    alt: "White autonomous shuttle concept parked in front of a city skyline",
+    description: "Photo courtesy of OPmobility — a shuttle concept from the group's innovation strategy.",
   },
   {
     id: 3,
-    src: "/images/opmobility/hydrogen-tank.png",
-    alt: "Composite hydrogen pressure vessel with filament winding",
-    description: "Description coming soon...",
+    src: "/images/opmobility-manufacturing/one4you-modules.jpg",
+    alt: "Exploded view of a vehicle showing bumper, body panel and tailgate modules with the One4You logo",
+    description: "Photo courtesy of OPmobility — the One4You all-in-one exterior solution.",
   },
   {
     id: 4,
@@ -146,7 +146,7 @@ export default function OPmobilityManufacturingPage() {
               >
                 {/* Image Container */}
                 <div 
-                  className="relative aspect-[3/4] cursor-pointer overflow-hidden"
+                  className="relative aspect-[4/3] cursor-pointer overflow-hidden"
                   onClick={() => setSelectedImage(item.id)}
                 >
                   <Image
