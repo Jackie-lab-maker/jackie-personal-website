@@ -37,7 +37,7 @@ By contrast, `/about`, `/projects`, `/education`, `/contact`, and the `/experien
 Each employer has its own route with a single page:
 - `app/experience/<company>/page.tsx` — role overview + photo gallery (with lightbox)
 
-Current companies: `chart-industries`, `micron-technology`, `opmobility-automation`, `opmobility-manufacturing`, `watflight`, `wisa`. `app/experience/page.tsx` is the index/listing page linking out to each. `app/experience/layout.tsx` is a pass-through layout — the reason it exists is that `Navigation` (in `components/navigation.tsx`) explicitly hides the global nav bar for any path starting with `/experience/`, and for the standalone `/instagram` page (a QR-code page linked from About) — these all have their own "Back to ..." header instead of the global nav.
+Current companies: `chart-industries`, `micron-technology`, `opmobility-automation`, `opmobility-manufacturing`, `stealth-ai-startup`, `watflight`, `wisa`. `app/experience/page.tsx` is the index/listing page linking out to each. `app/experience/layout.tsx` is a pass-through layout — the reason it exists is that `Navigation` (in `components/navigation.tsx`) explicitly hides the global nav bar for any path starting with `/experience/`, and for the standalone `/instagram` page (a QR-code page linked from About) — these all have their own "Back to ..." header instead of the global nav.
 
 When adding a new employer, follow the existing pattern: gallery items as a local `GALLERY_ITEMS` array of `{ id, src, alt, description }`, images under `public/images/<company>/`, and the same lightbox/back-link/ASCII-box header conventions as `app/experience/chart-industries/page.tsx`.
 
