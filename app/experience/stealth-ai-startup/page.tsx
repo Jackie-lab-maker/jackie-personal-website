@@ -23,18 +23,17 @@ export default function StealthAIStartupPage() {
         </div>
       </header>
 
-      {/* Banner: cover image (752px wide at source, so it is capped at native width to stay sharp) */}
-      <div className="w-full bg-black flex justify-center px-4 py-8">
-        <div className="relative w-full max-w-[752px] aspect-[752/127]">
-          <Image
-            src="/images/stealth-ai-startup/banner.jpg"
-            alt="Stealth AI Startup banner: a laptop, a head with a gear and circuits, a robot arm and a chip drawn in white line art"
-            fill
-            className="object-cover"
-            sizes="(max-width: 752px) 100vw, 752px"
-            priority
-          />
-        </div>
+      {/* Banner: company logo centered on black (logo is 200px at source, so it is shown at native size to stay sharp) */}
+      <div className="relative w-full bg-black flex justify-center py-12">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.10),transparent_65%)]" />
+        <Image
+          src="/images/stealth-ai-startup/logo.jpg"
+          alt="Stealth AI Startup logo"
+          width={200}
+          height={200}
+          className="relative rounded-full ring-1 ring-white/20"
+          priority
+        />
       </div>
 
       {/* Page Content */}
@@ -52,7 +51,7 @@ export default function StealthAIStartupPage() {
               Founding Engineer
             </h1>
             <p className="text-muted-foreground text-sm">
-              Present
+              October 2026 - Present
             </p>
           </div>
           </Reveal>
