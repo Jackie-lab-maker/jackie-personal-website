@@ -128,12 +128,6 @@
         "url": "/projects/micron-humanoid-robot"
       },
       {
-        "title": "Automation Digital Brain",
-        "about": "In progress — a unified project-execution, engineering-knowledge, and AI-agent web app for Micron Technology's Robotics & Manufacturing Automation team, meant to replace checking across all its other existing software. Currently connecting the AI agent panel to real agent logic.",
-        "image": "/images/micron-logo/micron-logo-white.svg",
-        "url": "/projects/automation-digital-brain"
-      },
-      {
         "title": "GV-01",
         "about": "In progress, very early stage — a WATFlight sustainable aviation vehicle project. Currently writing the Engineering Design Specification document.",
         "image": "/images/watflight-project-management/wordmark-banner.png",

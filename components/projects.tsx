@@ -19,19 +19,6 @@ const PROJECTS = [
       "Modifying the open-source AlohaMini dual-arm mobile robot for the warehouse and the CR1, CR2, CR3, and Post Electrical sections of Micron's assembly and testing production line in MXA.",
   },
   {
-    href: "/projects/automation-digital-brain",
-    image: "/images/micron-logo/micron-logo-white.svg",
-    imageAlt: "Micron logo",
-    imageFit: "logo" as const,
-    imageWidth: 320,
-    imageHeight: 69,
-    title: "Automation Digital Brain",
-    status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
-    inProgress: true,
-    about:
-      "A unified project-execution, engineering-knowledge, and AI-agent web app for the team, meant to replace checking across all its other existing software. Currently connecting the AI agent panel to real agent logic.",
-  },
-  {
     href: "/projects/watflight-gv-01",
     image: "/images/watflight-project-management/wordmark-banner.png",
     imageAlt: "WATFlight wordmark logo",
