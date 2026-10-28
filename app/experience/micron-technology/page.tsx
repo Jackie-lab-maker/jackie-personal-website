@@ -99,7 +99,7 @@ export default function MicronTechnologyPage() {
               Member of Technical Staff
             </h1>
             <p className="text-muted-foreground text-sm">
-              September 2026 - January 2027
+              September 2026 - Present
             </p>
           </div>
           </Reveal>
