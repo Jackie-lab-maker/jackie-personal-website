@@ -48,7 +48,7 @@ export default function StealthAIStartupPage() {
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              Founding Engineer
+              Co-Founder and CEO
             </h1>
             <p className="text-muted-foreground text-sm">
               October 2026 - Present
@@ -63,7 +63,7 @@ export default function StealthAIStartupPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} ROLE</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                Founding engineer at an AI startup that is still in stealth. Details are not public yet and
+                Co-founder and CEO of an AI startup that is still in stealth. Details are not public yet and
                 will be added here once the company launches.
               </p>
             </div>
