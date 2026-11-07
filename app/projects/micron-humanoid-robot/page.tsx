@@ -43,7 +43,7 @@ export default function MicronHumanoidRobotPage() {
           <div className="font-mono text-center mb-12">
             <div className="text-accent mb-4 flex flex-col items-center">
               <pre className="text-xs md:text-sm">╔══════════════════════════════════════════════════════════════╗</pre>
-              <pre className="text-xs md:text-sm font-bold">║ HUMANOID ROBOT ║</pre>
+              <pre className="text-xs md:text-sm font-bold">║ MICRONBOT ║</pre>
               <pre className="text-xs md:text-sm">╚══════════════════════════════════════════════════════════════╝</pre>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">

@@ -12,7 +12,7 @@ const PROJECTS = [
     imageFit: "logo" as const,
     imageWidth: 320,
     imageHeight: 69,
-    title: "Humanoid Robot",
+    title: "MicronBot",
     status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
     inProgress: true,
     about:
