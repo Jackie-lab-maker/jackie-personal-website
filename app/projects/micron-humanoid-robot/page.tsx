@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 import { Tilt3D } from "@/components/motion/tilt-3d"
 
@@ -23,17 +22,8 @@ export default function MicronHumanoidRobotPage() {
         </div>
       </header>
 
-      {/* Base Platform Image */}
-      <div className="relative w-full aspect-[3/2] max-h-96 bg-white">
-        <Image
-          src="/images/micron-humanoid-robot/alohamini-base.png"
-          alt="AlohaMini open-source dual-arm mobile robot with motorized lift, the base platform for this project"
-          fill
-          className="object-contain"
-          sizes="100vw"
-          priority
-        />
-      </div>
+      {/* Banner: intentionally blank until a photo of the assembled robot is added */}
+      <div className="relative w-full aspect-[3/2] max-h-96 bg-card border-b border-border" />
 
       {/* Page Content */}
       <div className="container mx-auto px-4 py-12">
