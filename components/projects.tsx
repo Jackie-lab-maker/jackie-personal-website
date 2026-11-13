@@ -12,7 +12,7 @@ const PROJECTS = [
     imageFit: "logo" as const,
     imageWidth: 320,
     imageHeight: 69,
-    title: "MicronBot",
+    title: "micronbot",
     status: "In Progress — Micron Technology, SMAI and Physical Automation",
     inProgress: true,
     about:

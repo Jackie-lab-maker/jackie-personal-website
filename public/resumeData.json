@@ -110,7 +110,7 @@
   "portfolio": {
     "projects": [
       {
-        "title": "MicronBot",
+        "title": "micronbot",
         "about": "In progress — modifying the open-source AlohaMini dual-arm mobile robot for Micron Technology's SMAI and Physical Automation team, for use in the warehouse and the CR1, CR2, CR3, and Post Electrical sections of the assembly and testing production line in MXA.",
         "image": "/images/micron-logo/micron-logo-white.svg",
         "url": "/projects/micron-humanoid-robot"
