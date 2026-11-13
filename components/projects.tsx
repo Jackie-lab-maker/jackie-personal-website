@@ -13,7 +13,7 @@ const PROJECTS = [
     imageWidth: 320,
     imageHeight: 69,
     title: "MicronBot",
-    status: "In Progress — Micron Technology, Robotics & Manufacturing Automation",
+    status: "In Progress — Micron Technology, Physical Automation",
     inProgress: true,
     about:
       "Modifying the open-source AlohaMini dual-arm mobile robot for the warehouse and the CR1, CR2, CR3, and Post Electrical sections of Micron's assembly and testing production line in MXA.",

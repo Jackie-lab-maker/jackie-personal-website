@@ -50,7 +50,7 @@ export default function MicronHumanoidRobotPage() {
               [IN PROGRESS]
             </h1>
             <p className="text-muted-foreground text-sm">
-              Micron Technology — Robotics &amp; Manufacturing Automation Team
+              Micron Technology — Physical Automation Team
             </p>
           </div>
           </Reveal>
@@ -62,7 +62,7 @@ export default function MicronHumanoidRobotPage() {
             <div className="font-mono text-xs md:text-sm">
               <div className="text-accent mb-2">{">"} PROJECT_INFO</div>
               <p className="text-muted-foreground pl-4 leading-relaxed">
-                A dual-arm mobile robot for Micron&rsquo;s Robotics &amp; Manufacturing Automation team, built
+                A dual-arm mobile robot for Micron&rsquo;s Physical Automation team, built
                 by modifying the open-source AlohaMini platform for use on a factory floor rather than its
                 original teleoperation/research use case.
               </p>
