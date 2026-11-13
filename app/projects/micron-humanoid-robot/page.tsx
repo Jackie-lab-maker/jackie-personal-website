@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal"
 import { Tilt3D } from "@/components/motion/tilt-3d"
 
@@ -22,8 +23,27 @@ export default function MicronHumanoidRobotPage() {
         </div>
       </header>
 
-      {/* Banner: intentionally blank until a photo of the assembled robot is added */}
-      <div className="relative w-full aspect-[3/2] max-h-96 bg-card border-b border-border" />
+      {/* Banner: Micron wafer artwork under the official white Micron logo, centered (vector, so it stays sharp) */}
+      <div className="relative w-full h-40 md:h-56 overflow-hidden bg-card">
+        <Image
+          src="/images/micron-humanoid-robot/banner-bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src="/images/micron-logo/micron-logo-white.svg"
+            alt="Micron"
+            width={320}
+            height={69}
+            className="w-48 md:w-72 h-auto"
+            priority
+          />
+        </div>
+      </div>
 
       {/* Page Content */}
       <div className="container mx-auto px-4 py-12">
