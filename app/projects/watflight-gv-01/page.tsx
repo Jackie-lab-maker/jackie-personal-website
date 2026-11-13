@@ -86,6 +86,34 @@ export default function WATFlightGV01Page() {
           </div>
           </Tilt3D>
           </Reveal>
+
+          {/* Concept Demo: not confirmed, placeholder visualization */}
+          <Reveal variant="blur-up">
+          <div className="font-mono text-accent mb-6 flex flex-col items-center">
+            <pre className="text-xs md:text-sm">╔════════════════════════════════════════════════╗</pre>
+            <pre className="text-xs md:text-sm font-bold">║ CONCEPT DEMO ║</pre>
+            <pre className="text-xs md:text-sm">╚════════════════════════════════════════════════╝</pre>
+          </div>
+          </Reveal>
+
+          <Reveal variant="tilt-up" delay={0.05}>
+          <div className="border border-border bg-card mb-12 overflow-hidden">
+            <video
+              className="w-full aspect-video bg-black"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/images/watflight-gv-01/concept-demo-poster.jpg"
+            >
+              <source src="/images/watflight-gv-01/concept-demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <p className="p-4 font-mono text-xs md:text-sm text-muted-foreground italic">
+              Concept demo, not confirmed: a 3D simulation of a fuel-cell electric fixed-wing UAV built around a
+              Type 4 hydrogen tank. A placeholder visualization for now, not the final GV-01 design.
+            </p>
+          </div>
+          </Reveal>
         </div>
       </div>
     </main>
