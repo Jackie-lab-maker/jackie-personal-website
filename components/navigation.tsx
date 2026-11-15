@@ -41,7 +41,7 @@ export function Navigation() {
           (globals.css `body > *`), so page overlays such as lightboxes still cover it. */}
       <nav
         aria-label="Main navigation"
-        className="site-menu fixed inset-y-0 left-0 z-[2] flex w-[52px] flex-col justify-center overflow-y-auto md:w-56"
+        className="site-menu fixed inset-y-0 left-0 z-[2] flex bg-background w-[52px] flex-col justify-center overflow-y-auto md:w-56"
       >
         <ul className="flex flex-col items-center md:items-start md:pl-10">
           {NAV_LINKS.map((link, index) => {

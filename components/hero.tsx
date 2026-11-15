@@ -83,7 +83,7 @@ export default function Hero({ data }: HeroProps) {
   }, [currentLetterIndex])
 
   return (
-    <section ref={sectionRef} className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
+    <section ref={sectionRef} className="container mx-auto px-4 pt-4 pb-12 md:pt-6 md:pb-16 relative scan-line">
       <div className="flex flex-col items-center gap-8 md:gap-10">
         {/* Bottom: name, centered */}
         <motion.div
