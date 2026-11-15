@@ -15,8 +15,6 @@ const NAV_LINKS = [
 ]
 
 export function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
@@ -25,132 +23,62 @@ export function Navigation() {
     setMounted(true)
   }, [])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
-    return () => {
-      document.body.style.overflow = ""
-    }
-  }, [isMenuOpen])
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isMenuOpen) {
-        setIsMenuOpen(false)
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [isMenuOpen])
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
-
-  // Hide navigation on experience/project detail pages and the Instagram QR page
-  if (pathname?.startsWith("/experience/") || pathname?.startsWith("/projects/") || pathname === "/instagram") {
+  // The Instagram QR page is a standalone page without site navigation
+  if (pathname === "/instagram") {
     return null
   }
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-lg shadow-black/20" : "bg-transparent"
-      }`}
-      role="banner"
-    >
-      <nav
-        className={`container mx-auto px-4 flex items-center justify-between transition-all duration-300 ${
-          isScrolled ? "py-2" : "py-3"
-        }`}
-        role="navigation"
-        aria-label="Main navigation"
-      >
-        {/* Menu Toggle Button - Left */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all duration-200 hover:bg-secondary hover:text-accent hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
-          aria-expanded={isMenuOpen}
-          aria-controls="nav-menu"
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-        >
-          <span>{isMenuOpen ? "[✕]" : "[≡]"}</span>
-          <span className="uppercase">menu</span>
-        </button>
+  const isDetailPage = /^\/(projects|experience)\/./.test(pathname ?? "")
 
-        {/* Theme Toggle - Right */}
-        {mounted && (
-          <button
-            onClick={toggleTheme}
-            className="flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all duration-200 hover:bg-secondary hover:text-accent hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          >
-            <span>{theme === "dark" ? "[☀]" : "[☾]"}</span>
-            <span className="hidden sm:inline uppercase">
-              {theme === "dark" ? "light" : "dark"}
-            </span>
-          </button>
-        )}
+  // A section stays highlighted on its detail pages too (e.g. /projects/... -> projects)
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || !!pathname?.startsWith(`${href}/`)
+
+  return (
+    <>
+      {/* Menu: just the items, fixed on the left and vertically centered, directly on the page background.
+          The `site-menu` class reserves room for it in globals.css. z-[2] matches the page's own layer
+          (globals.css `body > *`), so page overlays such as lightboxes still cover it. */}
+      <nav
+        aria-label="Main navigation"
+        className="site-menu fixed inset-y-0 left-0 z-[2] flex w-[52px] flex-col justify-center overflow-y-auto md:w-56"
+      >
+        <ul className="flex flex-col items-center md:items-start md:pl-10">
+          {NAV_LINKS.map((link, index) => {
+            const active = isActive(link.href)
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  aria-label={link.label}
+                  aria-current={active ? "page" : undefined}
+                  className={`flex items-baseline gap-2.5 py-3.5 font-mono text-sm transition-colors duration-200 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    active ? "text-accent" : "text-muted-foreground"
+                  }`}
+                >
+                  <span aria-hidden="true" className={`hidden w-2 md:inline ${active ? "text-accent" : "text-transparent"}`}>
+                    ›
+                  </span>
+                  <span className="text-accent">{String(index + 1).padStart(2, "0")}.</span>
+                  <span className="hidden md:inline">[{link.label}]</span>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
       </nav>
 
-      {/* Dropdown Menu */}
-      <div
-        id="nav-menu"
-        className={`fixed left-0 right-0 top-[49px] origin-top bg-background/98 backdrop-blur-sm border-b border-border transition-all duration-500 ease-out ${
-          isMenuOpen
-            ? "opacity-100 visible [transform:perspective(1100px)_translateY(0)_rotateX(0deg)]"
-            : "opacity-0 invisible [transform:perspective(1100px)_translateY(-1rem)_rotateX(-7deg)]"
-        }`}
-        aria-hidden={!isMenuOpen}
-      >
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((link, index) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`font-mono text-sm hover:text-accent hover:bg-accent/10 px-4 py-3 border-l-2 hover:border-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring ${
-                    isActive ? "text-accent border-accent" : "text-muted-foreground border-transparent"
-                  } ${isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"}`}
-                  style={{
-                    transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
-                  }}
-                  tabIndex={isMenuOpen ? 0 : -1}
-                >
-                  <span className="text-accent mr-2">{String(index + 1).padStart(2, "0")}.</span>
-                  [{link.label}]
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Overlay to close menu when clicking outside */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 top-[49px] z-[-1]"
-          onClick={() => setIsMenuOpen(false)}
-          aria-hidden="true"
-        />
+      {/* Theme toggle keeps its old top-right spot (not on detail pages, where it would cover the lightbox close button) */}
+      {mounted && !isDetailPage && (
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="fixed top-3 right-4 z-40 flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all duration-200 hover:bg-secondary hover:text-accent hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        >
+          <span>{theme === "dark" ? "[☀]" : "[☾]"}</span>
+          <span className="hidden sm:inline uppercase">{theme === "dark" ? "light" : "dark"}</span>
+        </button>
       )}
-    </header>
+    </>
   )
 }

@@ -228,6 +228,16 @@
     position: relative;
   }
 
+  /* Room for the fixed left menu (components/navigation.tsx: w-[52px], md:w-56) */
+  body:has(> .site-menu) {
+    padding-left: 52px;
+  }
+  @media (min-width: 768px) {
+    body:has(> .site-menu) {
+      padding-left: 14rem;
+    }
+  }
+
   /* Add a subtle vignette effect */
   body::before {
     content: "";
