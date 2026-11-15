@@ -129,7 +129,7 @@ export default function Hero({ data }: HeroProps) {
 
         {/* Top: interactive 3D bot */}
         <motion.div
-          className="relative w-full max-w-2xl h-[300px] sm:h-[380px] md:h-[460px] order-1"
+          className="relative w-full max-w-2xl h-[300px] sm:h-[380px] md:h-[min(460px,50vh)] order-1"
           initial={reducedMotion ? false : { opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
