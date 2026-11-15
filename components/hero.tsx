@@ -84,10 +84,10 @@ export default function Hero({ data }: HeroProps) {
 
   return (
     <section ref={sectionRef} className="container mx-auto px-4 py-16 md:py-24 relative scan-line">
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        {/* Left: name */}
+      <div className="flex flex-col items-center gap-8 md:gap-10">
+        {/* Bottom: name, centered */}
         <motion.div
-          className="flex flex-col items-start gap-6 order-2 md:order-1"
+          className="flex flex-col items-center gap-6 order-2 text-center"
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
           variants={{
@@ -102,7 +102,7 @@ export default function Hero({ data }: HeroProps) {
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
             }}
           >
-            <pre className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs neon-text whitespace-pre">
+            <pre className="w-[89ch] text-left text-[5px] sm:text-[8px] md:text-[10px] lg:text-xs neon-text whitespace-pre">
 {renderedLines.map((line, i) => (
   <span key={i}>
     {line || " "}
@@ -114,7 +114,7 @@ export default function Hero({ data }: HeroProps) {
           </motion.div>
 
           <motion.div
-            className="text-left space-y-4"
+            className="text-center space-y-4"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
@@ -127,9 +127,9 @@ export default function Hero({ data }: HeroProps) {
           </motion.div>
         </motion.div>
 
-        {/* Right: interactive 3D bot */}
+        {/* Top: interactive 3D bot */}
         <motion.div
-          className="relative h-[300px] sm:h-[380px] md:h-[460px] order-1 md:order-2"
+          className="relative w-full max-w-2xl h-[300px] sm:h-[380px] md:h-[460px] order-1"
           initial={reducedMotion ? false : { opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
