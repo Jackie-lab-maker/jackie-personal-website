@@ -48,11 +48,11 @@ export function Navigation() {
             const active = isActive(link.href)
             return (
               <li key={link.href}>
-                {/* Phones: the word runs vertically so the menu column stays narrow */}
+                {/* Phones: the word runs vertically so the menu column stays narrow (px spaces the words there, since padding follows the text direction) */}
                 <Link
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`block py-3 font-mono text-xs [writing-mode:vertical-rl] rotate-180 md:py-3.5 md:text-sm md:[writing-mode:horizontal-tb] md:rotate-0 transition-colors duration-200 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  className={`block px-3 font-mono text-xs [writing-mode:vertical-rl] rotate-180 md:px-0 md:py-3.5 md:text-sm md:[writing-mode:horizontal-tb] md:rotate-0 transition-colors duration-200 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     active ? "text-accent" : "text-muted-foreground"
                   }`}
                 >
