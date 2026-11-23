@@ -44,23 +44,19 @@ export function Navigation() {
         className="site-menu fixed inset-y-0 left-0 z-[2] flex bg-background w-[52px] flex-col justify-center overflow-y-auto md:w-56"
       >
         <ul className="flex flex-col items-center md:items-start md:pl-10">
-          {NAV_LINKS.map((link, index) => {
+          {NAV_LINKS.map((link) => {
             const active = isActive(link.href)
             return (
               <li key={link.href}>
+                {/* Phones: the word runs vertically so the menu column stays narrow */}
                 <Link
                   href={link.href}
-                  aria-label={link.label}
                   aria-current={active ? "page" : undefined}
-                  className={`flex items-baseline gap-2.5 py-3.5 font-mono text-sm transition-colors duration-200 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  className={`block py-3 font-mono text-xs [writing-mode:vertical-rl] rotate-180 md:py-3.5 md:text-sm md:[writing-mode:horizontal-tb] md:rotate-0 transition-colors duration-200 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     active ? "text-accent" : "text-muted-foreground"
                   }`}
                 >
-                  <span aria-hidden="true" className={`hidden w-2 md:inline ${active ? "text-accent" : "text-transparent"}`}>
-                    ›
-                  </span>
-                  <span className="text-accent">{String(index + 1).padStart(2, "0")}.</span>
-                  <span className="hidden md:inline">[{link.label}]</span>
+                  {link.label}
                 </Link>
               </li>
             )
