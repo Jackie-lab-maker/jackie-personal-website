@@ -248,12 +248,26 @@
 
   // ── Work (from the resume data and bio on the current site) ──
   const WORK = [
+    { name: "Hacker Fab", role: "member of technical staff", dates: "Oct 2026 – Present",
+      logo: { src: "hackerfab-logo.png", bg: "#fff" },
+      summary: "building semiconductor equipment",
+      bullets: ["Design, build and operate <b>patterning</b>, <b>deposition</b> and <b>characterization</b> equipment for Waterloo's open-source student semiconductor fab at the Sedra Design Center.",
+                "Help run a tool set built around a <b>lithography stepper</b>, <b>DC sputter</b>, <b>tube furnace</b> and <b>spin coater</b>, as part of the global Hacker Fab network."] },
+    { name: "Waterloo AeroSoc", role: "co-founder & president", dates: "Oct 2026 – Present",
+      logo: { src: "aerosoc-logo.png", bg: "#fbf5e9" },
+      summary: "connecting Waterloo undergraduates passionate about aerospace to the industry",
+      bullets: ["Co-founded the society to connect Waterloo undergraduates passionate about <b>aerospace</b> with the industry.",
+                "Lead the executive team as president, building the society's <b>industry connections</b> and student community."] },
     { name: "Micron Technology", role: "member of technical staff", dates: "Sep 2026 – Present",
       logo: { src: "micron-logo-white.svg", pad: true, bg: "#000" },
       summary: "teaching a humanoid robot to be useful on a factory floor",
       bullets: ["Building <b>micronbot</b>, a dual-arm mobile robot for the SMAI and Physical Automation team, adapted from the open-source AlohaMini."] },
+    { name: "WISA — UWaterloo", role: "research assistant", dates: "May 2026 – Present",
+      logo: { src: "wisa-logo.png", bg: "#fff" },
+      summary: "sustainable aviation research at the Waterloo Institute for Sustainable Aeronautics",
+      bullets: [] },
     { name: "WATFlight", role: "co-founder & team director", dates: "Apr 2026 – Present",
-      logo: { src: "logo.png" },
+      logo: { src: "watflight-logo.png", bg: "#000" },
       summary: "student design team at Waterloo working toward a sustainable aircraft",
       bullets: ["Leading <b>GV-01</b>, the team's sustainable aviation vehicle, now at the Engineering Design Specification stage.",
                 "Built the <b>Launch Control Center</b>, a realtime Kanban platform for every sub-team."] },
@@ -353,7 +367,7 @@
     },
     {
       slug: "launch-control-center", title: "Launch Control Center", tag: "2026",
-      card: { img: "lcc-wordmark.png", cls: "black contain" },
+      card: { img: "watflight-logo.png", cls: "black contain" },
       summary: "realtime Kanban platform for the WATFlight design team, with row-level security.",
       link: "https://github.com/Jackie-lab-maker/watflight-project-management",
       body: `
