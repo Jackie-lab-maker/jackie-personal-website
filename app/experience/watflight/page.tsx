@@ -89,8 +89,7 @@ export default function WATFlightPage() {
               <div className="text-accent mb-2">{">"} PROJECTS</div>
               <p className="text-muted-foreground pl-4 leading-relaxed mb-3">
                 GV-01, the team&rsquo;s sustainable aviation vehicle (early stage, writing the Engineering
-                Design Specification), and the Launch Control Center, a task-management platform built for
-                the team.
+                Design Specification).
               </p>
               <Stagger className="flex flex-wrap gap-2 pl-4">
                 <StaggerItem variant="tilt-up">
@@ -99,14 +98,6 @@ export default function WATFlightPage() {
                     className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
                   >
                     [GV-01 →]
-                  </Link>
-                </StaggerItem>
-                <StaggerItem variant="tilt-up">
-                  <Link
-                    href="/projects/watflight-project-management"
-                    className="inline-block font-mono text-xs text-accent hover:text-foreground transition-all duration-200 border border-border px-3 py-1 hover:bg-accent/10 hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    [Launch Control Center →]
                   </Link>
                 </StaggerItem>
               </Stagger>

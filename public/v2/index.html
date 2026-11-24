@@ -241,7 +241,7 @@
 
 <script>
   // Photos and videos already in public/images are reused; files new to this site live in /v2/assets
-  const SHARED = {"alohamini-base.png":"micron-humanoid-robot/alohamini-base.png","baker-hughes-logo.jpg":"chart-industries/baker-hughes-logo.jpg","gv01-concept-poster.jpg":"watflight-gv-01/concept-demo-poster.jpg","gv01-concept.mp4":"watflight-gv-01/concept-demo.mp4","lcc-team-mechanical.png":"watflight-project-management/team-mechanical.png","lcc-team-propulsion.png":"watflight-project-management/team-propulsion.png","lcc-team-software.png":"watflight-project-management/team-software.png","lcc-wordmark.png":"watflight-project-management/wordmark-banner.png","logo.png":"watflight-project-management/logo.png","micron-logo-white.svg":"micron-logo/micron-logo-white.svg","micronbot-banner.jpg":"micron-humanoid-robot/banner-bg.jpg","toyota-camera-mount.jpg":"toyota-innovation-challenge/camera-mount.jpg","toyota-demo-poster.jpg":"toyota-innovation-challenge/demo-poster.jpg","toyota-gesture.mp4":"toyota-innovation-challenge/demo.mp4","toyota-gripper-and-targets.jpg":"toyota-innovation-challenge/gripper-and-targets.jpg","toyota-hand-slowdown.jpg":"toyota-innovation-challenge/hand-slowdown.jpg","toyota-pick-and-place-poster.jpg":"toyota-innovation-challenge/pick-and-place-poster.jpg","toyota-pick-and-place.mp4":"toyota-innovation-challenge/pick-and-place-demo.mp4","cryo-bulk-external-pipelines-1.png":"cryogenics-systems-modeling/bulk-external-pipelines-1.png","cryo-bulk-isometric-view.png":"cryogenics-systems-modeling/bulk-isometric-view.png","cryo-bulk-section-view.png":"cryogenics-systems-modeling/bulk-section-view.png","cryo-lng-isometric-view-2.png":"cryogenics-systems-modeling/lng-isometric-view-2.png","cryo-triflex-calc-conditions.png":"cryogenics-systems-modeling/triflex-calc-conditions.png","cryo-triflex-pipe-modeling.png":"cryogenics-systems-modeling/triflex-pipe-modeling.png","tooling-fixture-assembled.jpg":"design-of-tooling/fixture-assembled.jpg","tooling-fixture-detail.jpg":"design-of-tooling/fixture-detail.jpg","tooling-jig-assembled.jpg":"design-of-tooling/jig-assembled.jpg","tooling-jig-detail.jpg":"design-of-tooling/jig-detail.jpg"};
+  const SHARED = {"alohamini-base.png":"micron-humanoid-robot/alohamini-base.png","baker-hughes-logo.jpg":"chart-industries/baker-hughes-logo.jpg","gv01-concept-poster.jpg":"watflight-gv-01/concept-demo-poster.jpg","gv01-concept.mp4":"watflight-gv-01/concept-demo.mp4","micron-logo-white.svg":"micron-logo/micron-logo-white.svg","micronbot-banner.jpg":"micron-humanoid-robot/banner-bg.jpg","toyota-camera-mount.jpg":"toyota-innovation-challenge/camera-mount.jpg","toyota-demo-poster.jpg":"toyota-innovation-challenge/demo-poster.jpg","toyota-gesture.mp4":"toyota-innovation-challenge/demo.mp4","toyota-gripper-and-targets.jpg":"toyota-innovation-challenge/gripper-and-targets.jpg","toyota-hand-slowdown.jpg":"toyota-innovation-challenge/hand-slowdown.jpg","toyota-pick-and-place-poster.jpg":"toyota-innovation-challenge/pick-and-place-poster.jpg","toyota-pick-and-place.mp4":"toyota-innovation-challenge/pick-and-place-demo.mp4","cryo-bulk-external-pipelines-1.png":"cryogenics-systems-modeling/bulk-external-pipelines-1.png","cryo-bulk-isometric-view.png":"cryogenics-systems-modeling/bulk-isometric-view.png","cryo-bulk-section-view.png":"cryogenics-systems-modeling/bulk-section-view.png","cryo-lng-isometric-view-2.png":"cryogenics-systems-modeling/lng-isometric-view-2.png","cryo-triflex-calc-conditions.png":"cryogenics-systems-modeling/triflex-calc-conditions.png","cryo-triflex-pipe-modeling.png":"cryogenics-systems-modeling/triflex-pipe-modeling.png","tooling-fixture-assembled.jpg":"design-of-tooling/fixture-assembled.jpg","tooling-fixture-detail.jpg":"design-of-tooling/fixture-detail.jpg","tooling-jig-assembled.jpg":"design-of-tooling/jig-assembled.jpg","tooling-jig-detail.jpg":"design-of-tooling/jig-detail.jpg"};
   const A = f => SHARED[f] ? "/images/" + SHARED[f] : "/v2/assets/" + f;
   const fig = (src, caption, cls = "") => `<figure>${caption ? `<figcaption>${caption}</figcaption>` : ""}<img src="${A(src)}" alt="${caption || ""}" class="${cls}" loading="lazy"></figure>`;
   const vid = (src, poster, caption) => `<figure>${caption ? `<figcaption>${caption}</figcaption>` : ""}<video src="${A(src)}" poster="${A(poster)}" controls playsinline preload="none"></video></figure>`;
@@ -253,11 +253,11 @@
       summary: "building semiconductor equipment",
       bullets: ["Design, build and operate <b>patterning</b>, <b>deposition</b> and <b>characterization</b> equipment for Waterloo's open-source student semiconductor fab at the Sedra Design Center.",
                 "Help run a tool set built around a <b>lithography stepper</b>, <b>DC sputter</b>, <b>tube furnace</b> and <b>spin coater</b>, as part of the global Hacker Fab network."] },
-    { name: "Waterloo AeroSoc", role: "co-founder & president", dates: "Oct 2026 – Present",
+    { name: "Waterloo AeroSoc", role: "interim president", dates: "Oct 2026 – Present",
       logo: { src: "aerosoc-logo.png", bg: "#fbf5e9" },
       summary: "connecting Waterloo undergraduates passionate about aerospace to the industry",
-      bullets: ["Co-founded the society to connect Waterloo undergraduates passionate about <b>aerospace</b> with the industry.",
-                "Lead the executive team as president, building the society's <b>industry connections</b> and student community."] },
+      bullets: ["Connect Waterloo undergraduates passionate about <b>aerospace</b> with the industry.",
+                "Lead the executive team as interim president, building the society's <b>industry connections</b> and student community."] },
     { name: "Micron Technology", role: "member of technical staff", dates: "Sep 2026 – Present",
       logo: { src: "micron-logo-white.svg", pad: true, bg: "#000" },
       summary: "teaching a humanoid robot to be useful on a factory floor",
@@ -269,8 +269,7 @@
     { name: "WATFlight", role: "co-founder & team director", dates: "Apr 2026 – Present",
       logo: { src: "watflight-logo.png", bg: "#000" },
       summary: "student design team at Waterloo working toward a sustainable aircraft",
-      bullets: ["Leading <b>GV-01</b>, the team's sustainable aviation vehicle, now at the Engineering Design Specification stage.",
-                "Built the <b>Launch Control Center</b>, a realtime Kanban platform for every sub-team."] },
+      bullets: ["Leading <b>GV-01</b>, the team's sustainable aviation vehicle, now at the Engineering Design Specification stage."] },
     { name: "OPmobility", role: "technical program manager", dates: "Apr 2026 – May 2026",
       logo: { src: "opmobility-logo-white.png", pad: true, bg: "#0b1f4b" },
       summary: "",   // to be filled in
@@ -364,26 +363,6 @@
         ${fig("tooling-jig-detail.jpg", "Jig detail")}
         ${fig("tooling-fixture-assembled.jpg", "Fixture, assembled")}
         ${fig("tooling-fixture-detail.jpg", "Fixture detail")}`
-    },
-    {
-      slug: "launch-control-center", title: "Launch Control Center", tag: "2026",
-      card: { img: "watflight-logo.png", cls: "black contain" },
-      summary: "realtime Kanban platform for the WATFlight design team, with row-level security.",
-      link: "https://github.com/Jackie-lab-maker/watflight-project-management",
-      body: `
-        <p>A task-management platform for the WATFlight design team: a team dashboard plus a Kanban board for every sub-team, with realtime sync and role-based edit permissions.</p>
-        <h3>What I built</h3>
-        <ul>
-          <li>Kanban boards per sub-team (Backlog → To Do → In Progress → Review → Done) with drag-and-drop tasks.</li>
-          <li>A team dashboard with productivity analytics and an upcoming-deadlines feed.</li>
-          <li>Supabase auth with realtime collaboration, and Postgres row-level security enforcing edit permissions on the server, not just in the UI.</li>
-          <li>A member-approval gate and automated task-assignment email reminders.</li>
-        </ul>
-        <p class="meta">Vite + React · Tailwind CSS · Supabase · Resend · Vercel</p>
-        <h3>Sub-team boards</h3>
-        ${fig("lcc-team-mechanical.png", "Mechanical")}
-        ${fig("lcc-team-propulsion.png", "Propulsion")}
-        ${fig("lcc-team-software.png", "Software")}`
     },
   ];
 
